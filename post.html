@@ -1,1 +1,94 @@
+<!DOCTYPE html>
+<html lang="ckb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فرۆشتنی یاری - فۆڕمی فرۆشیار</title>
+    <link rel="stylesheet" href="a.css">
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-card">
+            <h2> فۆڕمی فرۆشتنی یاری</h2>
+            <p>زانیاری خۆت داخڵ بکە</p>
 
+            <form id="sellerForm" enctype="multipart/form-data">
+                <div class="input-group">
+                    <label> ناوی بەکارهێنەر</label>
+                    <input type="text" id="username" placeholder=": Ahmad_IT" required>
+                </div>
+
+                <div class="input-group">
+                    <label> شوێنی نیشتەجێبوون (شار)</label>
+                    <select id="location" required>
+                        <option value="">--شارەکەت هەلبژێرە --</option>
+                        <option value="هەولێر">هەولێر</option>
+                        <option value="سلێمانی">سلێمانی</option>
+                        <option value="دهۆک">دهۆک</option>
+                        <option value="کەرکووک">کەرکووک</option>
+                        <option value="حەلەبجە">حەلەبجە</option>
+                        <option value="زاخۆ">زاخۆ</option>
+                        <option value="ڕانیە">ڕانیە</option>
+                        <option value="سۆران">سۆران</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label> ئیمەیڵ</label>
+                    <input type="email" id="email" placeholder="name@example.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label> ژمارەی مۆبایل</label>
+                    <input type="tel" id="phone" placeholder="0770 123 4567" required>
+                </div>
+
+                <div class="input-group">
+                    <label> پاسوۆرد</label>
+                    <input type="password" id="password" placeholder="پاسوۆرد" required>
+                </div>
+
+
+<!-- لیستی یاریەکان (گەیمینگ کلاسیک) -->
+                <div class="input-group">
+                    <label> ناوی یاریەکە (گەیمینگ کلاسیک)</label>
+                    <select id="gameName" required>
+                        <option value="">-- یاریەکە هەڵبژێرە --</option>
+                        <option value="کڵاش">کڵاش</option>
+                        <option value="پیسی">پیسی</option>
+                        <option value="پۆبجی">پۆبجی</option>
+                        <option value="پلەی ستەیشن">پلەی ستەیشن</option>
+                       
+                    </select>
+                </div>
+
+
+
+
+                <div class="input-group">
+                    <label> نرخی یاری (دینار یان دۆلار)</label>
+                    <input type="text" id="price" placeholder="نموونە: 25,000 دینار  یا 20$" required>
+                </div>
+
+                
+                <div class="input-group">
+                    <label> وێنە</label>
+                    <input type="file" id="productImages" accept="image/*" multiple>
+                    <small>وێنەی بەرهەمەکەت</small>
+                    <div id="imagePreview" class="image-preview"></div>
+                </div>
+
+                <div class="input-group">
+                    <label> وەسفکردن</label>
+                    <textarea id="comment" rows="4" placeholder="وەسفی بەرهەمەکەت"></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn"> ناردن</button>
+                <div id="messageBox" class="message-box"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="a.js"></script>
+</body>
+</html>
