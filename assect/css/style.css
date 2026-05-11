@@ -470,11 +470,12 @@ body {
   .stat-label    { font-size: 0.68rem; }
 
   /* --- Hero Visual --- */
-  .hero-visual {
-    height: 270px;
-    max-width: 300px;
-    margin-top: 40px;
-  }
+.hero-visual {
+  height: 270px;
+  max-width: 300px;
+  margin-top: 80px;  /* ← ئەمە زیاد بکە، 80px یان زیاتر تاقی بکەرەوە */
+}
+
 
   .central-orb   { width: 118px; height: 118px; font-size: 2.1rem; }
   .floating-card { min-width: 98px; padding: 10px 12px; }
