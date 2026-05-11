@@ -88,15 +88,15 @@ body {
   align-items: center;
   gap: 4px;
   list-style: none;
-  /* allow horizontal scroll on small screens */
   overflow-x: auto;
-  overflow-y: visible;
+  overflow-y: hidden;   /* ← ئەمە بگۆڕە */
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;          /* Firefox */
+  scrollbar-width: none;
   flex-shrink: 1;
   min-width: 0;
-  padding-bottom: 2px;            /* room for focus ring */
+  padding-bottom: 2px;
 }
+
 .nav-links::-webkit-scrollbar { display: none; }
 
 .nav-link {
