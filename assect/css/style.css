@@ -453,7 +453,6 @@ body {
 
   .nav-links {
     gap: 2px;
-    /* fade-out right edge hint */
     -webkit-mask-image: linear-gradient(to left, transparent 0%, black 14%);
     mask-image:         linear-gradient(to left, transparent 0%, black 14%);
   }
@@ -469,7 +468,14 @@ body {
   .hero-stats    { gap: 12px; }
   .stat-num      { font-size: 1.35rem; }
   .stat-label    { font-size: 0.68rem; }
-  .hero-visual   { height: 270px; max-width: 300px; }
+
+  /* --- Hero Visual --- */
+  .hero-visual {
+    height: 270px;
+    max-width: 300px;
+    margin-top: 40px;
+  }
+
   .central-orb   { width: 118px; height: 118px; font-size: 2.1rem; }
   .floating-card { min-width: 98px; padding: 10px 12px; }
   .floating-card span  { font-size: 0.66rem; }
@@ -492,6 +498,7 @@ body {
   .footer-bottom .container { flex-direction: column; text-align: center; }
   .legal-grid  { grid-template-columns: 1fr; }
 }
+
 
 /* ===================================================
    RESPONSIVE — VERY SMALL (≤ 380px)
