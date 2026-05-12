@@ -187,7 +187,7 @@ body {
 .hero {
   min-height: 100vh;
   display: flex; align-items: center;
-  position: relative; overflow: hidden;
+  position: relative; overflow: visible;
   padding: calc(var(--nav-h) + 40px) 24px 60px;
   max-width: 1200px; margin: 0 auto;
   gap: 48px;
