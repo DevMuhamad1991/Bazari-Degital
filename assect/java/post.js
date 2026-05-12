@@ -1,104 +1,233 @@
-// -------------------------------------------------
-// کۆنفیگەیشن - یوزەرنیمی تێلێگرامی ئەدمین
-// -------------------------------------------------
-const TELEGRAM_USERNAME = "ahmad_siamand";
+/* ===========================
+   بازاری دیجیتال — JS
+=========================== */
 
-// -------------------------------------------------
-// پێشبینینی وێنەکان پێش ناردن
-// -------------------------------------------------
-const imageInput = document.getElementById("productImages");
-const imagePreview = document.getElementById("imagePreview");
+let selectedType = '';
+let selectedPlatform = '';
+let uploadedFiles = [];
 
-imageInput.addEventListener("change", function() {
-    imagePreview.innerHTML = "";
-    const files = Array.from(imageInput.files);
-    files.forEach(file => {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const img = document.createElement("img");
-            img.src = e.target.result;
-            imagePreview.appendChild(img);
-        };
-        reader.readAsDataURL(file);
-    });
+/* ===========================
+   هەڵبژاردنی جۆری ئەکاونت
+=========================== */
+function selectType(type) {
+  selectedType = type;
+
+  document.getElementById('typeSocial').classList.toggle('active', type === 'social');
+  document.getElementById('typeGame').classList.toggle('active', type === 'game');
+
+  document.getElementById('socialSection').classList.toggle('visible', type === 'social');
+  document.getElementById('gameSection').classList.toggle('visible', type === 'game');
+
+  // ڕیسێتی پلاتفۆرم
+  selectedPlatform = '';
+  document.querySelectorAll('.plat-btn').forEach(b => b.classList.remove('active'));
+
+  clearErr('type');
+  updateProgress();
+}
+
+/* ===========================
+   هەڵبژاردنی پلاتفۆرم
+=========================== */
+function selectPlat(el, group) {
+  const containers = { social: 'socialPlatforms', game: 'gamePlatforms' };
+  document.querySelectorAll('#' + containers[group] + ' .plat-btn')
+    .forEach(b => b.classList.remove('active'));
+
+  el.classList.add('active');
+  selectedPlatform = el.dataset.plat;
+
+  clearErr('platform');
+  updateProgress();
+}
+
+/* ===========================
+   تۆگڵی بەج
+=========================== */
+function toggleBadge(el) {
+  el.classList.toggle('active');
+}
+
+/* ===========================
+   تاگەکانی نیش
+=========================== */
+document.querySelectorAll('#nicheTags .tag').forEach(tag => {
+  tag.addEventListener('click', () => tag.classList.toggle('active'));
 });
 
-// -------------------------------------------------
-// ناردن بۆ تێلێگرام بە لینکی ڕاستەوخۆ
-// -------------------------------------------------
-function sendToTelegramDirect(message) {
-    const encodedMsg = encodeURIComponent(message);
-    const telegramUrl = `https://t.me/${TELEGRAM_USERNAME}?text=${encodedMsg}`;
-    window.open(telegramUrl, "_blank");
+/* ===========================
+   ژمارەکەری کاراکتەر
+=========================== */
+const descEl   = document.getElementById('desc');
+const countEl  = document.getElementById('charCount');
+
+descEl.addEventListener('input', () => {
+  const len = descEl.value.length;
+  countEl.textContent = len + ' / 400';
+  countEl.classList.toggle('warn', len > 380);
+  updateProgress();
+});
+
+/* ===========================
+   بارکردنی وێنە
+=========================== */
+document.getElementById('imgInput').addEventListener('change', function () {
+  Array.from(this.files).forEach(file => {
+    if (uploadedFiles.length >= 6) return;
+    uploadedFiles.push(file);
+
+    const reader = new FileReader();
+    reader.onload = e => {
+      const grid = document.getElementById('previewGrid');
+      const item = document.createElement('div');
+      item.className = 'prev-item';
+      const idx = uploadedFiles.length - 1;
+      item.innerHTML = `
+        <img src="${e.target.result}" alt="preview" />
+        <span class="del-btn" onclick="removeImg(${idx}, this)">×</span>
+      `;
+      grid.appendChild(item);
+    };
+    reader.readAsDataURL(file);
+  });
+
+  this.value = '';
+  updateProgress();
+});
+
+function removeImg(idx, btn) {
+  uploadedFiles.splice(idx, 1);
+  btn.closest('.prev-item').remove();
 }
 
-// -------------------------------------------------
-// وێنەکان بۆ تێکست
-// -------------------------------------------------
-async function getImagesText(files) {
-    if (!files || files.length === 0) return "هیچ وێنەیەک هەڵنەبژێردراوە";
-    let result = ` ژمارەی وێنەکان: ${files.length}\n`;
-    for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        result += `وێنەی ${i+1}: ${file.name} (قەبارە: ${(file.size / 1024).toFixed(1)} KB)\n`;
-    }
-    return result;
+/* ===========================
+   خەتی پێشکەوتن
+=========================== */
+function updateProgress() {
+  const fieldIds = ['username', 'phone', 'city', 'contact', 'price'];
+  let filled = fieldIds.filter(id => {
+    const el = document.getElementById(id);
+    return el && el.value.trim() !== '';
+  }).length;
+
+  if (selectedType)     filled++;
+  if (selectedPlatform) filled++;
+  if (descEl.value.trim()) filled++;
+
+  const total = fieldIds.length + 3;
+  const pct   = Math.round((filled / total) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
 }
 
-// -------------------------------------------------
-// سەرەکی: کۆکردنەوەی زانیاری و ناردن
-// -------------------------------------------------
-document.getElementById("sellerForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
+// گوێستن بە هەموو ئینپوتەکان بۆ پێشکەوتن
+document.querySelectorAll('input, select').forEach(el => {
+  el.addEventListener('input', updateProgress);
+});
 
-    const username = document.getElementById("username").value.trim();
-    const location = document.getElementById("location").value;
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const password = document.getElementById("password").value;
-    const price = document.getElementById("price").value.trim();
-    const gameName = document.getElementById("gameName").value;
-    const comment = document.getElementById("comment").value.trim();
-    const imageFiles = document.getElementById("productImages").files;
+/* ===========================
+   یارمەتیدەری هەڵە
+=========================== */
+function showErr(id, msg) {
+  const el = document.getElementById('err-' + id);
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add('show');
+}
 
-    const messageDiv = document.getElementById("messageBox");
+function clearErr(id) {
+  const el = document.getElementById('err-' + id);
+  if (!el) return;
+  el.textContent = '';
+  el.classList.remove('show');
+}
 
-    // پشکنینی خانە پێویستەکان
-    if (!username || !location || !email || !phone || !password || !price || !gameName) {
-        messageDiv.textContent = " تکایە هەموو خانە پێویستەکان پڕ بکەوە (ناو، شار، ئیمەیڵ، مۆبایل، پاسوۆرد، نرخ، یاری)";
-        messageDiv.className = "message-box error";
-        return;
-    }
+/* ===========================
+   دابەشکردنی فۆرم
+=========================== */
+document.getElementById('sellForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  let valid = true;
 
-    // کۆکردنەوەی زانیاری وێنەکان
-    const imagesText = await getImagesText(imageFiles);
-    
-    // دروستکردنی پەیامی تەواو
-    const message = `
- **زانیاری فرۆشیاری نوێ**
+  // فیلدە پێویستەکان
+  const required = [
+    { id: 'username', msg: 'ناوی بەکارهێنەر داخڵ بکە' },
+    { id: 'phone',    msg: 'ژمارەی مۆبایل داخڵ بکە'  },
+    { id: 'city',     msg: 'شار هەڵبژێرە'              },
+    { id: 'contact',  msg: 'ئایدی پەیوەندی داخڵ بکە'  },
+    { id: 'price',    msg: 'نرخ داخڵ بکە'              },
+  ];
 
- **ناوی بەکارهێنەر:** ${username}
- **شار:** ${location}
- **ئیمەیڵ:** ${email}
- **مۆبایل:** ${phone}
- **پاسوۆرد:** ${password}
- **نرخ:** ${price}
- **ناوی یاری:** ${gameName}
+  required.forEach(({ id, msg }) => {
+    const val = document.getElementById(id)?.value.trim();
+    if (!val) { showErr(id, msg); valid = false; }
+    else        clearErr(id);
+  });
 
- **وەسفکردن:**
-${comment || "هیچ وەسفێک نەنووسراوە"}
+  if (!selectedType) {
+    showErr('type', 'جۆری ئەکاونت هەڵبژێرە');
+    valid = false;
+  } else {
+    clearErr('type');
+  }
 
-${imagesText}
-    `;
+  if (!selectedPlatform) {
+    showErr('platform', 'پلاتفۆرم هەڵبژێرە');
+    valid = false;
+  } else {
+    clearErr('platform');
+  }
 
-    // ناردن بۆ تێلێگرام
-    sendToTelegramDirect(message);
+  if (!descEl.value.trim()) {
+    showErr('desc', 'وەسف بنووسە');
+    valid = false;
+  } else {
+    clearErr('desc');
+  }
 
-    // نیشاندانی پەیامی سەرکەوتن
-    messageDiv.textContent = ` لینکی تێلێگرام بۆ @${TELEGRAM_USERNAME} کرایەوە! تکایە پەیامەکە چێک بکە و بنێرە.`;
-    messageDiv.className = "message-box success";
+  if (!valid) return;
 
-    setTimeout(() => {
-        messageDiv.style.display = "none";
-    }, 6000);
+  // شبیەی ناردن
+  const btn = document.getElementById('submitBtn');
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  setTimeout(() => {
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    document.getElementById('sellForm').style.display = 'none';
+    document.getElementById('successBox').classList.remove('hidden');
+  }, 1800);
+});
+
+/* ===========================
+   ڕیسێتی فۆرم
+=========================== */
+document.getElementById('resetBtn').addEventListener('click', () => {
+  // نیشاندانەوەی فۆرم
+  document.getElementById('sellForm').style.display = '';
+  document.getElementById('successBox').classList.add('hidden');
+
+  // ڕیسێتی هەموو فیلدەکان
+  document.getElementById('sellForm').reset();
+
+  // ڕیسێتی گۆڕاوەکان
+  selectedType     = '';
+  selectedPlatform = '';
+  uploadedFiles    = [];
+
+  // ڕیسێتی کلاسەکان
+  document.querySelectorAll('.type-card, .plat-btn, .badge-check, .tag')
+    .forEach(el => el.classList.remove('active'));
+
+  // شاردنەوەی بەشە دینامیکییەکان
+  document.querySelectorAll('.dynamic-section')
+    .forEach(s => s.classList.remove('visible'));
+
+  // ڕیسێتی وێنەکان و ژمارەکەر
+  document.getElementById('previewGrid').innerHTML = '';
+  countEl.textContent = '0 / 400';
+  countEl.classList.remove('warn');
+
+  // ڕیسێتی خەتی پێشکەوتن
+  document.getElementById('progressBar').style.width = '0%';
 });
