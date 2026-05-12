@@ -362,7 +362,7 @@ body {
     height: 320px;
     width: 100%;
     max-width: 340px;
-    margin: -40px auto 0;  /* ← ئەمە بگۆڕە */
+    margin: 0 auto ;  /* ← ئەمە بگۆڕە */
     overflow: visible;
     display: flex;
     align-items: center;
@@ -570,7 +570,7 @@ body {
     text-align: center;
     padding-top: calc(var(--nav-h) + 32px);
     padding-bottom: 48px;
-    gap: 100px;
+    gap: 60px;
   }
   .hero-content { max-width: 100%; }
   .hero-subtitle { margin-left: auto; margin-right: auto; max-width: 520px; }
