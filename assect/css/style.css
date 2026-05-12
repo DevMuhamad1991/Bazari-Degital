@@ -276,13 +276,20 @@ body {
 .stat-label { font-size: 0.74rem; color: var(--text-muted); font-weight: 600; }
 .stat-divider { width: 1px; height: 36px; background: var(--border); flex-shrink: 0; }
 
-/* Hero Visual */
+}
+
+/* ===== HERO VISUAL ===== */
 .hero-visual {
-  flex: 1; position: relative; height: 460px;
-  display: flex; align-items: center; justify-content: center;
+  flex: 1;
+  position: relative;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   animation: fadeIn 1s ease 0.5s both;
   min-width: 260px;
 }
+
 .central-orb {
   width: 150px; height: 150px; border-radius: 50%;
   background: linear-gradient(135deg, var(--blue), var(--accent));
@@ -292,64 +299,54 @@ body {
   animation: orbit-pulse 4s ease-in-out infinite;
   position: relative; z-index: 2;
 }
-@keyframes orbit-pulse {
-  0%,100% { box-shadow: 0 0 60px rgba(37,99,235,0.5), 0 0 120px rgba(37,99,235,0.2); }
-  50%      { box-shadow: 0 0 90px rgba(37,99,235,0.8), 0 0 180px rgba(37,99,235,0.3); }
-}
+
+/* کارتەکان لەدەرەوەی لۆگۆکە */
 .floating-card {
-  position: absolute; background: var(--card);
-  border: 1px solid var(--border); border-radius: var(--radius);
+  position: absolute;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   padding: 14px 18px;
-  display: flex; flex-direction: column; align-items: center;
-  gap: 5px; text-align: center; min-width: 120px;
-  box-shadow: var(--shadow); transition: var(--transition);
+  display: flex; flex-direction: column;
+  align-items: center;
+  gap: 5px; text-align: center;
+  min-width: 130px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  z-index: 3;
 }
-.floating-card:hover { border-color: var(--border-bright); transform: scale(1.05); }
-.floating-card span  { font-size: 0.74rem; color: var(--text-muted); font-weight: 600; }
-.floating-card strong{ font-size: 0.92rem; color: var(--accent); font-weight: 900; }
+
 /* Desktop */
-.card-1 { top: 0px;    right: -60px;  animation: float1 4s   ease-in-out infinite; }
-.card-2 { top: 0px;    left:  -60px;  animation: float2 5s   ease-in-out infinite; }
-.card-3 { bottom: 0px; left: 50%; transform: translateX(-50%); animation: float3 4.5s ease-in-out infinite; }
+.card-1 { top: 40px;   right: -80px;                          animation: float1 4s   ease-in-out infinite; }
+.card-2 { top: 40px;   left:  -80px;                          animation: float2 5s   ease-in-out infinite; }
+.card-3 { bottom: 40px; left: 50%; transform: translateX(-50%); animation: float3 4.5s ease-in-out infinite; }
 
 /* Tablet */
 @media (max-width: 1024px) and (min-width: 641px) {
-  .card-1 { top: 0px;    right: -30px; }
-  .card-2 { top: 0px;    left:  -30px; }
-  .card-3 { bottom: -10px; }
+  .hero-visual { height: 420px; max-width: 500px; width: 100%; margin: 0 auto; }
+  .card-1 { top: 30px;  right: -50px; }
+  .card-2 { top: 30px;  left:  -50px; }
+  .card-3 { bottom: 20px; }
 }
 
 /* Mobile */
 @media (max-width: 640px) {
-  .card-1 { top: -10px;  right: -10px; }
-  .card-2 { top: -10px;  left:  -10px; }
-  .card-3 { bottom: -20px; }
+  .hero-visual {
+    height: 340px;
+    max-width: 320px;
+    margin: 40px auto 0;
+  }
+  .central-orb { width: 110px; height: 110px; font-size: 2rem; }
+
+  .floating-card { min-width: 100px; padding: 10px 12px; }
+  .floating-card span  { font-size: 0.66rem; }
+  .floating-card strong{ font-size: 0.82rem; }
+
+  .card-1 { top: 20px;  right: -15px; }
+  .card-2 { top: 20px;  left:  -15px; }
+  .card-3 { bottom: 10px; }
 }
 
-.hero-visual { height: 500px; }
-
-@media (max-width: 1024px) and (min-width: 641px) {
-  .hero-visual { height: 420px; }
-}
-
-@media (max-width: 640px) {
-  .hero-visual { height: 320px; margin-top: 80px; }
-}
-
-
-.hero-visual::after {
-  content: '';
-  position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--border-bright), transparent);
-}
-@keyframes float1 { 0%,100%{transform:translateY(0)}  50%{transform:translateY(-14px)} }
-@keyframes float2 { 0%,100%{transform:translateY(0)}  50%{transform:translateY(-20px)} }
-@keyframes float3 { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-12px)} }
 
 /* ===================================================
    ABOUT
