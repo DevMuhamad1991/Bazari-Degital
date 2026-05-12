@@ -357,6 +357,12 @@ body {
 
 /* Mobile */
 @media (max-width: 640px) {
+  
+    .hero {
+    gap: 20px;
+  }
+}
+  
 .hero-visual {
     position: relative;
     height: 320px;
