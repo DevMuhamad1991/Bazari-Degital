@@ -7,28 +7,40 @@
 
   <!-- فۆنت -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
 
-  <!-- ئایکۆنەکان -->
-  <link rel="stylesheet" href="assect/css/post.css" />
+  <!-- ئایکۆنەکان (Tabler) -->
+  <link rel="stylesheet" href="post.css" />
 
-  <!-- CSS -->
+  <!-- CSS — نەیڤبار جیاوازە -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ئۆربەکانی پاشەوانە -->
+  <!-- ══════════════════════════════
+       نەیڤبار
+  ══════════════════════════════ -->
+  
+
+  <!-- ══════════════════════════════
+       ئۆربەکانی پاشزەمین
+  ══════════════════════════════ -->
   <div class="bg-orbs">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
   </div>
 
+  <!-- ══════════════════════════════
+       ناوەڕۆک
+  ══════════════════════════════ -->
   <div class="container">
 
     <!-- سەرپەڕە -->
     <div class="hero">
-      <div class="logo-icon"><i class="ti ti-shopping-bag"></i></div>
+      <div class="logo-icon">
+        <i class="ti ti-shopping-bag"></i>
+      </div>
       <h1>بازاری دیجیتال</h1>
       <p>ئەکاونتەکەت بفرۆشە — سۆشیال میدیا یان یاری مۆبایل</p>
     </div>
@@ -45,7 +57,9 @@
       ════════════════════════════ -->
       <div class="card" style="--delay:0ms">
         <div class="card-header">
-          <div class="card-icon c-purple"><i class="ti ti-user-circle"></i></div>
+          <div class="card-icon c-blue">
+            <i class="ti ti-user-circle"></i>
+          </div>
           <div>
             <h2>زانیاری فرۆشیار</h2>
             <p class="card-sub">ناو و ژمارەی مۆبایلت داخڵ بکە</p>
@@ -57,7 +71,7 @@
             <label for="username">ناوی بەکارهێنەر</label>
             <div class="input-wrap">
               <i class="ti ti-user field-icon"></i>
-              <input type="text" id="username" placeholder="ناوت بنووسە" />
+              <input type="text" id="username" placeholder="ناوت بنووسە" autocomplete="name" />
             </div>
             <span class="err" id="err-username"></span>
           </div>
@@ -65,7 +79,7 @@
             <label for="phone">ژمارەی مۆبایل</label>
             <div class="input-wrap">
               <i class="ti ti-phone field-icon"></i>
-              <input type="tel" id="phone" placeholder="07XX XXX XXXX" dir="ltr" />
+              <input type="tel" id="phone" placeholder="07XX XXX XXXX" dir="ltr" autocomplete="tel" />
             </div>
             <span class="err" id="err-phone"></span>
           </div>
@@ -104,7 +118,9 @@
       ════════════════════════════ -->
       <div class="card" style="--delay:80ms">
         <div class="card-header">
-          <div class="card-icon c-violet"><i class="ti ti-apps"></i></div>
+          <div class="card-icon c-sky">
+            <i class="ti ti-apps"></i>
+          </div>
           <div>
             <h2>جۆری ئەکاونت</h2>
             <p class="card-sub">دیاری بکە چی دەفرۆشیت</p>
@@ -116,12 +132,12 @@
           <div class="type-card" id="typeSocial" onclick="selectType('social')">
             <i class="ti ti-social"></i>
             <span class="type-label">سۆشیال میدیا</span>
-            <span class="type-sub">ئینستا، تیکتۆک، یوتیوب...</span>
+            <span class="type-sub">ئینستا، تیکتۆک، یوتیوب…</span>
           </div>
           <div class="type-card" id="typeGame" onclick="selectType('game')">
             <i class="ti ti-device-mobile-joystick"></i>
             <span class="type-label">یاری مۆبایل</span>
-            <span class="type-sub">PUBG، Free Fire، CoC...</span>
+            <span class="type-sub">PUBG، Free Fire، CoC…</span>
           </div>
         </div>
         <span class="err" id="err-type"></span>
@@ -132,35 +148,51 @@
           <div class="platform-grid" id="socialPlatforms">
 
             <div class="plat-btn" data-plat="Instagram" onclick="selectPlat(this,'social')">
-              <div class="plat-ico ico-instagram"><i class="ti ti-brand-instagram" style="color:#fff;font-size:20px"></i></div>
+              <div class="plat-ico ico-instagram">
+                <i class="ti ti-brand-instagram" style="color:#fff;font-size:20px"></i>
+              </div>
               <span>Instagram</span>
             </div>
             <div class="plat-btn" data-plat="TikTok" onclick="selectPlat(this,'social')">
-              <div class="plat-ico ico-tiktok"><i class="ti ti-brand-tiktok" style="color:#fff;font-size:20px"></i></div>
+              <div class="plat-ico ico-tiktok">
+                <i class="ti ti-brand-tiktok" style="color:#fff;font-size:20px"></i>
+              </div>
               <span>TikTok</span>
             </div>
             <div class="plat-btn" data-plat="YouTube" onclick="selectPlat(this,'social')">
-              <div class="plat-ico ico-youtube"><i class="ti ti-brand-youtube" style="color:#fff;font-size:20px"></i></div>
+              <div class="plat-ico ico-youtube">
+                <i class="ti ti-brand-youtube" style="color:#fff;font-size:20px"></i>
+              </div>
               <span>YouTube</span>
             </div>
             <div class="plat-btn" data-plat="Facebook" onclick="selectPlat(this,'social')">
-              <div class="plat-ico ico-facebook"><i class="ti ti-brand-facebook" style="color:#fff;font-size:20px"></i></div>
+              <div class="plat-ico ico-facebook">
+                <i class="ti ti-brand-facebook" style="color:#fff;font-size:20px"></i>
+              </div>
               <span>Facebook</span>
             </div>
             <div class="plat-btn" data-plat="Twitter/X" onclick="selectPlat(this,'social')">
-              <div class="plat-ico ico-twitter"><i class="ti ti-brand-x" style="color:#fff;font-size:20px"></i></div>
+              <div class="plat-ico ico-twitter">
+                <i class="ti ti-brand-x" style="color:#fff;font-size:20px"></i>
+              </div>
               <span>X / Twitter</span>
             </div>
             <div class="plat-btn" data-plat="Telegram" onclick="selectPlat(this,'social')">
-              <div class="plat-ico ico-telegram"><i class="ti ti-brand-telegram" style="color:#fff;font-size:20px"></i></div>
+              <div class="plat-ico ico-telegram">
+                <i class="ti ti-brand-telegram" style="color:#fff;font-size:20px"></i>
+              </div>
               <span>Telegram</span>
             </div>
             <div class="plat-btn" data-plat="Snapchat" onclick="selectPlat(this,'social')">
-              <div class="plat-ico ico-snapchat"><i class="ti ti-brand-snapchat" style="color:#000;font-size:20px"></i></div>
+              <div class="plat-ico ico-snapchat">
+                <i class="ti ti-brand-snapchat" style="color:#000;font-size:20px"></i>
+              </div>
               <span>Snapchat</span>
             </div>
             <div class="plat-btn" data-plat="Other" onclick="selectPlat(this,'social')">
-              <div class="plat-ico ico-other"><i class="ti ti-dots" style="color:#fff;font-size:20px"></i></div>
+              <div class="plat-ico ico-other">
+                <i class="ti ti-dots" style="color:var(--b400);font-size:20px"></i>
+              </div>
               <span>تری</span>
             </div>
 
@@ -188,10 +220,18 @@
           <div class="field">
             <label>تایبەتمەندییەکان</label>
             <div class="badge-row">
-              <div class="badge-check" onclick="toggleBadge(this)"><i class="ti ti-circle-check"></i> تیک ئازوردراو</div>
-              <div class="badge-check" onclick="toggleBadge(this)"><i class="ti ti-mail-check"></i> ئیمەیڵ دووپات کراوەتەوە</div>
-              <div class="badge-check" onclick="toggleBadge(this)"><i class="ti ti-device-mobile-check"></i> ژمارە دووپات کراوەتەوە</div>
-              <div class="badge-check" onclick="toggleBadge(this)"><i class="ti ti-history"></i> ئەکاونتی کۆن</div>
+              <div class="badge-check" onclick="toggleBadge(this)">
+                <i class="ti ti-circle-check"></i> تیک ئازوردراو
+              </div>
+              <div class="badge-check" onclick="toggleBadge(this)">
+                <i class="ti ti-mail-check"></i> ئیمەیڵ دووپات کراوەتەوە
+              </div>
+              <div class="badge-check" onclick="toggleBadge(this)">
+                <i class="ti ti-device-mobile-check"></i> ژمارە دووپات کراوەتەوە
+              </div>
+              <div class="badge-check" onclick="toggleBadge(this)">
+                <i class="ti ti-history"></i> ئەکاونتی کۆن
+              </div>
             </div>
           </div>
 
@@ -216,35 +256,37 @@
           <div class="platform-grid" id="gamePlatforms">
 
             <div class="plat-btn" data-plat="PUBG Mobile" onclick="selectPlat(this,'game')">
-              <div class="plat-ico ico-pubg" style="font-size:13px;font-weight:700;color:#000">PUBG</div>
+              <div class="plat-ico ico-pubg" style="font-size:13px;font-weight:800;color:#000">PUBG</div>
               <span>PUBG Mobile</span>
             </div>
             <div class="plat-btn" data-plat="Free Fire" onclick="selectPlat(this,'game')">
-              <div class="plat-ico ico-freefire" style="font-size:12px;font-weight:700;color:#fff">FF</div>
+              <div class="plat-ico ico-freefire" style="font-size:12px;font-weight:800;color:#fff">FF</div>
               <span>Free Fire</span>
             </div>
             <div class="plat-btn" data-plat="Clash of Clans" onclick="selectPlat(this,'game')">
-              <div class="plat-ico ico-coc" style="font-size:12px;font-weight:700;color:#fff">CoC</div>
+              <div class="plat-ico ico-coc" style="font-size:12px;font-weight:800;color:#fff">CoC</div>
               <span>Clash of Clans</span>
             </div>
             <div class="plat-btn" data-plat="Clash Royale" onclick="selectPlat(this,'game')">
-              <div class="plat-ico ico-cr" style="font-size:12px;font-weight:700;color:#fff">CR</div>
+              <div class="plat-ico ico-cr" style="font-size:12px;font-weight:800;color:#fff">CR</div>
               <span>Clash Royale</span>
             </div>
             <div class="plat-btn" data-plat="Mobile Legends" onclick="selectPlat(this,'game')">
-              <div class="plat-ico ico-mlbb" style="font-size:11px;font-weight:700;color:#fff">MLBB</div>
+              <div class="plat-ico ico-mlbb" style="font-size:11px;font-weight:800;color:#fff">MLBB</div>
               <span>Mobile Legends</span>
             </div>
             <div class="plat-btn" data-plat="Brawl Stars" onclick="selectPlat(this,'game')">
-              <div class="plat-ico ico-brawl" style="font-size:11px;font-weight:700;color:#fff">BS</div>
+              <div class="plat-ico ico-brawl" style="font-size:11px;font-weight:800;color:#fff">BS</div>
               <span>Brawl Stars</span>
             </div>
             <div class="plat-btn" data-plat="Lords Mobile" onclick="selectPlat(this,'game')">
-              <div class="plat-ico ico-lords" style="font-size:11px;font-weight:700;color:#fff">LM</div>
+              <div class="plat-ico ico-lords" style="font-size:11px;font-weight:800;color:#fff">LM</div>
               <span>Lords Mobile</span>
             </div>
             <div class="plat-btn" data-plat="یارییەکی تر" onclick="selectPlat(this,'game')">
-              <div class="plat-ico ico-other"><i class="ti ti-device-gamepad-2" style="color:#fff;font-size:18px"></i></div>
+              <div class="plat-ico ico-other">
+                <i class="ti ti-device-gamepad-2" style="color:var(--b400);font-size:18px"></i>
+              </div>
               <span>تری</span>
             </div>
 
@@ -300,10 +342,18 @@
           <div class="field">
             <label>زانیاری تایبەت</label>
             <div class="badge-row">
-              <div class="badge-check" onclick="toggleBadge(this)"><i class="ti ti-diamond"></i> UC / جێم هەیە</div>
-              <div class="badge-check" onclick="toggleBadge(this)"><i class="ti ti-shirt"></i> سکین نادر هەیە</div>
-              <div class="badge-check" onclick="toggleBadge(this)"><i class="ti ti-mail-check"></i> ئیمەیڵ تەواوە</div>
-              <div class="badge-check" onclick="toggleBadge(this)"><i class="ti ti-lock-off"></i> بێ بەند</div>
+              <div class="badge-check" onclick="toggleBadge(this)">
+                <i class="ti ti-diamond"></i> UC / جێم هەیە
+              </div>
+              <div class="badge-check" onclick="toggleBadge(this)">
+                <i class="ti ti-shirt"></i> سکین نادر هەیە
+              </div>
+              <div class="badge-check" onclick="toggleBadge(this)">
+                <i class="ti ti-mail-check"></i> ئیمەیڵ تەواوە
+              </div>
+              <div class="badge-check" onclick="toggleBadge(this)">
+                <i class="ti ti-lock-off"></i> بێ بەند
+              </div>
             </div>
           </div>
         </div>
@@ -316,7 +366,9 @@
       ════════════════════════════ -->
       <div class="card" style="--delay:160ms">
         <div class="card-header">
-          <div class="card-icon c-indigo"><i class="ti ti-file-description"></i></div>
+          <div class="card-icon c-indigo">
+            <i class="ti ti-file-description"></i>
+          </div>
           <div>
             <h2>وەسف و وێنە</h2>
             <p class="card-sub">وەسفێکی تەواو بنووسە</p>
@@ -326,18 +378,21 @@
         <div class="field">
           <label for="desc">وەسفی ئەکاونت</label>
           <div class="textarea-wrap">
-            <textarea id="desc" rows="4" placeholder="وەسفی دەتەواو بنووسە — تایبەتمەندی سەرەکی، مێژووی ئەکاونت، چی تێدایە..."></textarea>
+            <textarea id="desc" rows="4" placeholder="وەسفی تەواوت بنووسە — تایبەتمەندی سەرەکی، مێژووی ئەکاونت، چی تێدایە…" maxlength="400"></textarea>
             <span class="char-count" id="charCount">0 / 400</span>
           </div>
           <span class="err" id="err-desc"></span>
         </div>
 
         <div class="field">
-          <label>سکرینشۆتی ئەکاونت <span style="color:var(--tx-3);font-weight:400">(پێویستە)</span></label>
+          <label>
+            سکرینشۆتی ئەکاونت
+            <span style="color:var(--tx-3);font-weight:400">(پێویستە)</span>
+          </label>
           <label class="upload-zone" for="imgInput">
             <i class="ti ti-cloud-upload upload-ico"></i>
             <p class="upload-title">کلیک بکە یان وێنە بکێشە ئێرە</p>
-            <p class="upload-sub">JPG، PNG — سکرینشۆتی ئەکاونت، ئاست، جێم...</p>
+            <p class="upload-sub">JPG، PNG — سکرینشۆتی ئەکاونت، ئاست، جێم…</p>
             <input type="file" id="imgInput" accept="image/*" multiple hidden />
           </label>
           <div class="preview-grid" id="previewGrid"></div>
@@ -348,23 +403,26 @@
           <div class="price-row">
             <div class="input-wrap" style="flex:1">
               <i class="ti ti-currency-dollar field-icon"></i>
-              <input type="number" id="price" placeholder="0" min="0" dir="ltr" />
+              <input type="number" id="price" placeholder="0" min="0" step="0.5" dir="ltr" />
             </div>
-            <span class="currency-tag">دۆلار</span>
+            <span class="currency-tag">$ دۆلار</span>
           </div>
-          <p class="hint"><i class="ti ti-info-circle"></i> نرخێکی گونجاو هەڵبژێرە بۆ خێراتر فرۆشتن</p>
+          <p class="hint">
+            <i class="ti ti-info-circle"></i>
+            نرخێکی گونجاو هەڵبژێرە بۆ خێراتر فرۆشتن
+          </p>
           <span class="err" id="err-price"></span>
         </div>
 
         <div class="warn-box">
-          <i class="ti ti-alert-triangle"></i>
+          <i class="ti ti-shield-lock"></i>
           <p>ئاگاداری بە: پاسوەرد و زانیاریە تایبەتەکانت تا کاتی فرۆشتنی تەواو مەدەیە بەکەسێک. بازاری دیجیتال مسۆگەری دەکات مامەڵەکە بە پارێزراوی تێبپەڕێت.</p>
         </div>
       </div>
 
       <!-- دوگمەی ناردن -->
       <button type="submit" class="submit-btn" id="submitBtn">
-        <i class="ti ti-brand-telegram btn-txt-icon"></i>
+        <i class="ti ti-send btn-txt-icon"></i>
         <span>ناردن بۆ ئەدمین</span>
         <div class="btn-shine"></div>
         <div class="spinner"></div>
@@ -374,7 +432,9 @@
 
     <!-- پەیامی سەرکەوتن -->
     <div class="success-box hidden" id="successBox">
-      <div class="success-ico"><i class="ti ti-circle-check"></i></div>
+      <div class="success-ico">
+        <i class="ti ti-circle-check"></i>
+      </div>
       <h3>سەرکەوتووانە نێردرا! 🎉</h3>
       <p>زانیارییەکانت بۆ ئەدمین نێردرا، ئەکاونتەکەت بە زووی دەردەکەوێت.</p>
       <button class="reset-btn" id="resetBtn">
@@ -385,7 +445,7 @@
   </div>
 
   <!-- JavaScript -->
-  <script src="assect/java/post.js"></script>
+  <script src="post.js"></script>
 
 </body>
 </html>
