@@ -590,68 +590,88 @@ body {
    RESPONSIVE — MOBILE (≤ 640px)
 =================================================== */
 @media (max-width: 640px) {
+  /* Navbar */
   .nav-container { padding: 0 12px; gap: 10px; }
-  .logo-text { display: none; } /* ← ناوی KurdAccount دیار نابێت */
-
+  .logo-text { display: none; }
   .nav-links { gap: 2px; }
   .nav-link { 
     font-size: 0.82rem; 
     padding: 7px 11px;
-    border-radius: 20px; /* ← نەرمتر */
+    border-radius: 20px;
     transition: var(--transition);
   }
   .nav-link:hover, .nav-link.active {
     background: rgba(59,130,246,0.15);
     color: var(--blue-light);
   }
-  .cta-btn { padding: 7px 13px !important; font-size: 0.82rem; border-radius: 20px !important; }
+
+  /* Hero */
+  .hero { 
+    padding: calc(var(--nav-h) + 20px) 16px 36px; 
+    gap: 20px; 
+  }
+  .hero-badge { font-size: 0.76rem; padding: 7px 13px; }
+  .hero-title { font-size: 1.85rem; line-height: 1.3; }
+  .hero-subtitle { font-size: 0.88rem; }
+  .btn { padding: 11px 18px; font-size: 0.86rem; }
+  .hero-stats { gap: 12px; margin-bottom: 0; }
+  .stat-num { font-size: 1.35rem; }
+  .stat-label { font-size: 0.68rem; }
+
+  /* Hero Visual */
+  .hero-visual {
+    position: relative;
+    height: 320px;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .central-orb { width: 100px; height: 100px; font-size: 1.8rem; position: relative; z-index: 2; }
+  .floating-card { position: absolute; min-width: 110px; padding: 10px 12px; z-index: 3; }
+  .floating-card span { font-size: 0.66rem; }
+  .floating-card strong { font-size: 0.82rem; }
+  .card-1 { top: 50%; left: -40px; right: auto; transform: translateY(-50%); }
+  .card-2 { top: 50%; right: -40px; left: auto; transform: translateY(-50%); }
+  .card-3 { bottom: -50px; left: 50%; top: auto; transform: translateX(-50%); }
+
+  /* About */
+  .about-para { font-size: 0.9rem; }
+
+  /* Sections */
+  .section-title { font-size: 1.45rem; }
+  .section-desc { font-size: 0.86rem; margin-bottom: 30px; }
+
+  /* Tutorials */
+  .tut-grid { grid-template-columns: 1fr; gap: 12px; }
+  .tut-card { padding: 22px 18px; }
+
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr; gap: 26px; }
+  .footer-top { padding: 40px 0 28px; }
+  .footer-bottom .container { flex-direction: column; text-align: center; }
+  .legal-grid { grid-template-columns: 1fr; }
 }
+
+
+/* ئەمە دوای 640px media query */
 
 @keyframes ripple {
   to { transform: scale(2.5); opacity: 0; }
 }
 
-
-  /* --- Hero --- */
-  .hero { padding: calc(var(--nav-h) + 20px) 16px 36px; gap: 24px; }
-  .hero-badge    { font-size: 0.76rem; padding: 7px 13px; }
-  .hero-title    { font-size: 1.85rem; line-height: 1.3; }
-  .hero-subtitle { font-size: 0.88rem; }
-  .btn           { padding: 11px 18px; font-size: 0.86rem; }
-  .hero-stats    { gap: 12px; }
-  .stat-num      { font-size: 1.35rem; }
-  .stat-label    { font-size: 0.68rem; }
-
-  /* --- Hero Visual --- */
-.hero-visual {
-  height: 270px;
-  max-width: 300px;
-  margin-top: 80px;  /* ← ئەمە زیاد بکە، 80px یان زیاتر تاقی بکەرەوە */
+@media (max-width: 380px) {
+  .logo-icon { width: 32px; height: 32px; font-size: 0.85rem; }
+  .logo-text { font-size: 1rem; }
+  .hero-title { font-size: 1.6rem; }
+  .hero-visual { height: 260px; max-width: 280px; }
+  .central-orb { width: 85px; height: 85px; font-size: 1.5rem; }
+  .floating-card { min-width: 90px; padding: 8px 10px; }
 }
 
-
-  .central-orb   { width: 118px; height: 118px; font-size: 2.1rem; }
-  .floating-card { min-width: 98px; padding: 10px 12px; }
-  .floating-card span  { font-size: 0.66rem; }
-  .floating-card strong{ font-size: 0.82rem; }
-
-  /* --- About --- */
-  .about-para { font-size: 0.9rem; }
-
-  /* --- Sections --- */
-  .section-title { font-size: 1.45rem; }
-  .section-desc  { font-size: 0.86rem; margin-bottom: 30px; }
-
-  /* --- Tutorials --- */
-  .tut-grid  { grid-template-columns: 1fr; gap: 12px; }
-  .tut-card  { padding: 22px 18px; }
-
-  /* --- Footer --- */
-  .footer-grid { grid-template-columns: 1fr; gap: 26px; }
-  .footer-top  { padding: 40px 0 28px; }
-  .footer-bottom .container { flex-direction: column; text-align: center; }
-  .legal-grid  { grid-template-columns: 1fr; }
-}
 
 
 
