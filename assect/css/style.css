@@ -484,17 +484,27 @@ body {
    RESPONSIVE — MOBILE (≤ 640px)
 =================================================== */
 @media (max-width: 640px) {
-  /* --- Navbar: keep all links, allow swipe --- */
   .nav-container { padding: 0 12px; gap: 10px; }
-  .logo-text     { font-size: 1.1rem; }
+  .logo-text { display: none; } /* ← ناوی KurdAccount دیار نابێت */
 
-  .nav-links {
-    gap: 2px;
-    -webkit-mask-image: linear-gradient(to left, transparent 0%, black 14%);
-    mask-image:         linear-gradient(to left, transparent 0%, black 14%);
+  .nav-links { gap: 2px; }
+  .nav-link { 
+    font-size: 0.82rem; 
+    padding: 7px 11px;
+    border-radius: 20px; /* ← نەرمتر */
+    transition: var(--transition);
   }
-  .nav-link { font-size: 0.82rem; padding: 7px 11px; }
-  .cta-btn  { padding: 7px 13px !important; font-size: 0.82rem; }
+  .nav-link:hover, .nav-link.active {
+    background: rgba(59,130,246,0.15);
+    color: var(--blue-light);
+  }
+  .cta-btn { padding: 7px 13px !important; font-size: 0.82rem; border-radius: 20px !important; }
+}
+
+@keyframes ripple {
+  to { transform: scale(2.5); opacity: 0; }
+}
+
 
   /* --- Hero --- */
   .hero { padding: calc(var(--nav-h) + 20px) 16px 36px; gap: 24px; }
