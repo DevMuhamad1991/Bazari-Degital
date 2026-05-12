@@ -35,7 +35,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 reveals.forEach(r => revealObserver.observe(r));
 
-// ===== ACTIVE NAV LINK =====
+// ===== NAV SMOOTH EFFECT =====
 const navLinks = document.querySelectorAll('.nav-link');
 const currentPage = window.location.pathname.split('/').pop();
 
@@ -44,6 +44,16 @@ navLinks.forEach(link => {
   if (href === currentPage || (currentPage === '' && href === 'index.html')) {
     link.classList.add('active');
   }
+});
+
+navLinks.forEach(link => {
+  link.addEventListener('mouseenter', function () {
+    this.style.transition = 'color 0.3s ease, background 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease';
+  });
+
+  link.addEventListener('mouseleave', function () {
+    this.style.transition = 'color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease';
+  });
 
   link.addEventListener('click', function () {
     navLinks.forEach(l => l.classList.remove('active'));
@@ -51,25 +61,5 @@ navLinks.forEach(link => {
   });
 });
 
-// ===== NAV RIPPLE EFFECT =====
-navLinks.forEach(link => {
-  link.addEventListener('click', function (e) {
-    const ripple = document.createElement('span');
-    ripple.style.cssText = `
-      position:absolute; border-radius:50%;
-      background:rgba(59,130,246,0.25);
-      width:60px; height:60px;
-      transform:scale(0);
-      animation:ripple 0.5s ease-out;
-      pointer-events:none;
-      top:50%; left:50%;
-      margin:-30px 0 0 -30px;
-    `;
-    this.style.position = 'relative';
-    this.style.overflow = 'hidden';
-    this.appendChild(ripple);
-    setTimeout(() => ripple.remove(), 500);
-  });
-});
 
 
