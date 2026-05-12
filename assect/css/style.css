@@ -280,6 +280,7 @@ body {
 }
 
 /* ===== HERO VISUAL ===== */
+/* ===== HERO VISUAL — BASE ===== */
 .hero-visual {
   flex: 1;
   position: relative;
@@ -299,7 +300,6 @@ body {
   box-shadow: 0 0 60px rgba(37,99,235,0.55), 0 0 120px rgba(37,99,235,0.2);
   animation: orbit-pulse 4s ease-in-out infinite;
   position: relative; z-index: 2;
-  flex-shrink: 0;
 }
 
 .floating-card {
@@ -316,22 +316,27 @@ body {
   transition: var(--transition);
   z-index: 3;
 }
+.floating-card:hover { border-color: var(--border-bright); transform: scale(1.05); }
+.floating-card span  { font-size: 0.74rem; color: var(--text-muted); font-weight: 600; }
+.floating-card strong{ font-size: 0.92rem; color: var(--accent); font-weight: 900; }
 
-/* Desktop — چەپ، ناوەراست، راست */
-.card-1 { 
-  top: 50%; left: -20px; 
-  transform: translateY(-50%);
-  animation: float2 5s ease-in-out infinite; 
+/* Desktop */
+.card-1 { top: 50%; left: -10px;  right: auto; animation: float2 5s   ease-in-out infinite; }
+.card-2 { top: 50%; right: -10px; left: auto;  animation: float1 4s   ease-in-out infinite; }
+.card-3 { bottom: 20px; left: 50%; transform: translateX(-50%); animation: float3 4.5s ease-in-out infinite; }
+
+/* Animations */
+@keyframes float1 {
+  0%,100%{ transform: translateY(-50%); }
+  50%    { transform: translateY(calc(-50% - 14px)); }
 }
-.card-2 { 
-  top: 50%; right: -20px; 
-  transform: translateY(-50%);
-  animation: float1 4s ease-in-out infinite; 
+@keyframes float2 {
+  0%,100%{ transform: translateY(-50%); }
+  50%    { transform: translateY(calc(-50% - 20px)); }
 }
-.card-3 { 
-  bottom: 20px; left: 50%; 
-  transform: translateX(-50%);
-  animation: float3 4.5s ease-in-out infinite; 
+@keyframes float3 {
+  0%,100%{ transform: translateX(-50%) translateY(0); }
+  50%    { transform: translateX(-50%) translateY(-12px); }
 }
 
 /* Tablet */
@@ -350,49 +355,46 @@ body {
 /* Mobile */
 @media (max-width: 640px) {
   .hero-visual {
+    position: relative;
     height: 320px;
-    width: 300px;
-    margin: 30px auto 0;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
     overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .central-orb {
     width: 100px;
     height: 100px;
     font-size: 1.8rem;
+    position: relative;
+    z-index: 2;
   }
 
   .floating-card {
-    min-width: 85px;
-    padding: 8px 10px;
+    position: absolute;
+    min-width: 110px;
+    padding: 10px 12px;
+    z-index: 3;
   }
-  .floating-card span  { font-size: 0.62rem; }
-  .floating-card strong{ font-size: 0.78rem; }
+  .floating-card span  { font-size: 0.66rem; }
+  .floating-card strong{ font-size: 0.82rem; }
 
-  .card-1 { top: 50%; left: 0px;  transform: translateY(-50%); }
-  .card-2 { top: 50%; right: 0px; transform: translateY(-50%); }
-  .card-3 { bottom: 0px; left: 50%; transform: translateX(-50%); }
+  .card-1 { top: 50%; left: 0px;  right: auto; transform: translateY(-50%); }
+  .card-2 { top: 50%; right: 0px; left: auto;  transform: translateY(-50%); }
+  .card-3 { bottom: -20px; left: 50%; top: auto; transform: translateX(-50%); }
 }
 
-@keyframes float1 { 
-  0%,100%{ transform: translateY(-50%); } 
-  50%    { transform: translateY(calc(-50% - 14px)); } 
-}
-@keyframes float2 { 
-  0%,100%{ transform: translateY(-50%); } 
-  50%    { transform: translateY(calc(-50% - 20px)); } 
-}
-@keyframes float3 { 
-  0%,100%{ transform: translateX(-50%) translateY(0); } 
-  50%    { transform: translateX(-50%) translateY(-12px); } 
-}
-
-
+/* Very Small */
 @media (max-width: 380px) {
-  .hero-visual { height: 280px; width: 260px; }
+  .hero-visual { height: 280px; max-width: 280px; }
   .central-orb { width: 85px; height: 85px; font-size: 1.5rem; }
-  .floating-card { min-width: 75px; padding: 7px 8px; }
+  .floating-card { min-width: 90px; padding: 8px 10px; }
 }
+
 
 
 
