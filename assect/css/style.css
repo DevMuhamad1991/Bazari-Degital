@@ -307,9 +307,35 @@ body {
 .floating-card:hover { border-color: var(--border-bright); transform: scale(1.05); }
 .floating-card span  { font-size: 0.74rem; color: var(--text-muted); font-weight: 600; }
 .floating-card strong{ font-size: 0.92rem; color: var(--accent); font-weight: 900; }
-.card-1 { top: 50px;  right: 10px; animation: float1 4s   ease-in-out infinite; }
-.card-2 { top: 50px;  left:  10px; animation: float2 5s   ease-in-out infinite; }
-.card-3 { bottom: 70px; left: 50%; transform: translateX(-50%); animation: float3 4.5s ease-in-out infinite; }
+/* Desktop */
+.card-1 { top: 0px;    right: -60px;  animation: float1 4s   ease-in-out infinite; }
+.card-2 { top: 0px;    left:  -60px;  animation: float2 5s   ease-in-out infinite; }
+.card-3 { bottom: 0px; left: 50%; transform: translateX(-50%); animation: float3 4.5s ease-in-out infinite; }
+
+/* Tablet */
+@media (max-width: 1024px) and (min-width: 641px) {
+  .card-1 { top: 0px;    right: -30px; }
+  .card-2 { top: 0px;    left:  -30px; }
+  .card-3 { bottom: -10px; }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .card-1 { top: -10px;  right: -10px; }
+  .card-2 { top: -10px;  left:  -10px; }
+  .card-3 { bottom: -20px; }
+}
+
+.hero-visual { height: 500px; }
+
+@media (max-width: 1024px) and (min-width: 641px) {
+  .hero-visual { height: 420px; }
+}
+
+@media (max-width: 640px) {
+  .hero-visual { height: 320px; margin-top: 80px; }
+}
+
 
 .hero-visual::after {
   content: '';
