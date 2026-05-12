@@ -37,14 +37,24 @@ reveals.forEach(r => revealObserver.observe(r));
 
 // ===== NAV SMOOTH EFFECT =====
 const navLinks = document.querySelectorAll('.nav-link');
-const currentPage = window.location.pathname.split('/').pop();
+const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 
 navLinks.forEach(link => {
+  // تەنیا بەپێی پەڕەی ئێستا active بکە، click save مەکە
   const href = link.getAttribute('href');
-  if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+  if (href === currentPage) {
     link.classList.add('active');
   }
+
+  link.addEventListener('mouseenter', function () {
+    this.style.transition = 'color 0.3s ease, background 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease';
+  });
+
+  link.addEventListener('mouseleave', function () {
+    this.style.transition = 'color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease';
+  });
 });
+
 
 navLinks.forEach(link => {
   link.addEventListener('mouseenter', function () {
