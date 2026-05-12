@@ -320,16 +320,7 @@ body {
 .floating-card span  { font-size: 0.74rem; color: var(--text-muted); font-weight: 600; }
 .floating-card strong{ font-size: 0.92rem; color: var(--accent); font-weight: 900; }
 
-.hero-visual::after {
-  content: '';
-  position: absolute;
-  bottom: -80px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--border-bright), transparent);
-}
+
 
 
 /* Desktop */
