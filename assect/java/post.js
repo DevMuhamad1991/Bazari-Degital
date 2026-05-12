@@ -1,24 +1,30 @@
-/* ===========================
-   بازاری دیجیتال — JS
-=========================== */
+/* ===================================================
+   post.js — بازاری دیجیتال (نوێکراوەوە)
+=================================================== */
 
-let selectedType = '';
+'use strict';
+
+/* ── گۆڕاوەی گلۆبال ── */
+let selectedType     = '';
 let selectedPlatform = '';
-let uploadedFiles = [];
+let uploadedFiles    = [];
 
-/* ===========================
-   هەڵبژاردنی جۆری ئەکاونت
-=========================== */
+/* ─────────────────────────────────
+   1. هەڵبژاردنی جۆری ئەکاونت
+───────────────────────────────── */
 function selectType(type) {
   selectedType = type;
 
   document.getElementById('typeSocial').classList.toggle('active', type === 'social');
-  document.getElementById('typeGame').classList.toggle('active', type === 'game');
+  document.getElementById('typeGame').classList.toggle('active',   type === 'game');
 
-  document.getElementById('socialSection').classList.toggle('visible', type === 'social');
-  document.getElementById('gameSection').classList.toggle('visible', type === 'game');
+  const socialSec = document.getElementById('socialSection');
+  const gameSec   = document.getElementById('gameSection');
 
-  // ڕیسێتی پلاتفۆرم
+  socialSec.classList.toggle('visible', type === 'social');
+  gameSec.classList.toggle('visible',   type === 'game');
+
+  /* ڕیسێتی هەڵبژاردنی پلاتفۆرم */
   selectedPlatform = '';
   document.querySelectorAll('.plat-btn').forEach(b => b.classList.remove('active'));
 
@@ -26,12 +32,13 @@ function selectType(type) {
   updateProgress();
 }
 
-/* ===========================
-   هەڵبژاردنی پلاتفۆرم
-=========================== */
+/* ─────────────────────────────────
+   2. هەڵبژاردنی پلاتفۆرم
+───────────────────────────────── */
 function selectPlat(el, group) {
   const containers = { social: 'socialPlatforms', game: 'gamePlatforms' };
-  document.querySelectorAll('#' + containers[group] + ' .plat-btn')
+  document
+    .querySelectorAll('#' + containers[group] + ' .plat-btn')
     .forEach(b => b.classList.remove('active'));
 
   el.classList.add('active');
@@ -41,92 +48,149 @@ function selectPlat(el, group) {
   updateProgress();
 }
 
-/* ===========================
-   تۆگڵی بەج
-=========================== */
+/* ─────────────────────────────────
+   3. تۆگڵی بەج
+───────────────────────────────── */
 function toggleBadge(el) {
   el.classList.toggle('active');
 }
 
-/* ===========================
-   تاگەکانی نیش
-=========================== */
+/* ─────────────────────────────────
+   4. تاگەکانی نیش
+───────────────────────────────── */
 document.querySelectorAll('#nicheTags .tag').forEach(tag => {
   tag.addEventListener('click', () => tag.classList.toggle('active'));
 });
 
-/* ===========================
-   ژمارەکەری کاراکتەر
-=========================== */
-const descEl   = document.getElementById('desc');
-const countEl  = document.getElementById('charCount');
+/* ─────────────────────────────────
+   5. ژمارەکەری کاراکتەر
+───────────────────────────────── */
+const descEl  = document.getElementById('desc');
+const countEl = document.getElementById('charCount');
+
+const MAX_DESC = 400;
 
 descEl.addEventListener('input', () => {
   const len = descEl.value.length;
-  countEl.textContent = len + ' / 400';
-  countEl.classList.toggle('warn', len > 380);
+
+  /* کۆتاکردنی تێکست بە ماکسیمووم */
+  if (len > MAX_DESC) {
+    descEl.value = descEl.value.slice(0, MAX_DESC);
+  }
+
+  const current = descEl.value.length;
+  countEl.textContent = `${current} / ${MAX_DESC}`;
+  countEl.classList.toggle('warn', current > MAX_DESC - 20);
+
+  clearErr('desc');
   updateProgress();
 });
 
-/* ===========================
-   بارکردنی وێنە
-=========================== */
-document.getElementById('imgInput').addEventListener('change', function () {
-  Array.from(this.files).forEach(file => {
-    if (uploadedFiles.length >= 6) return;
+/* ─────────────────────────────────
+   6. بارکردنی وێنە — Drag & Drop و کلیک
+───────────────────────────────── */
+const imgInput   = document.getElementById('imgInput');
+const previewGrid = document.getElementById('previewGrid');
+const uploadZone  = document.querySelector('.upload-zone');
+const MAX_IMGS    = 6;
+
+/* هاندەری فایل ── هاوبەش بۆ کلیک و drag */
+function handleFiles(files) {
+  Array.from(files).forEach(file => {
+    if (uploadedFiles.length >= MAX_IMGS) return;
+    if (!file.type.startsWith('image/')) return;
+
+    const idx = uploadedFiles.length;
     uploadedFiles.push(file);
 
     const reader = new FileReader();
-    reader.onload = e => {
-      const grid = document.getElementById('previewGrid');
-      const item = document.createElement('div');
-      item.className = 'prev-item';
-      const idx = uploadedFiles.length - 1;
-      item.innerHTML = `
-        <img src="${e.target.result}" alt="preview" />
-        <span class="del-btn" onclick="removeImg(${idx}, this)">×</span>
-      `;
-      grid.appendChild(item);
-    };
+    reader.onload = e => renderPreview(e.target.result, idx);
     reader.readAsDataURL(file);
   });
-
-  this.value = '';
   updateProgress();
-});
-
-function removeImg(idx, btn) {
-  uploadedFiles.splice(idx, 1);
-  btn.closest('.prev-item').remove();
 }
 
-/* ===========================
-   خەتی پێشکەوتن
-=========================== */
+/* رێندەری پرێڤیو */
+function renderPreview(src, idx) {
+  const item = document.createElement('div');
+  item.className = 'prev-item';
+  item.dataset.idx = idx;
+  item.innerHTML = `
+    <img src="${src}" alt="preview" loading="lazy" />
+    <span class="del-btn" title="سڕینەوە">×</span>
+  `;
+  item.querySelector('.del-btn').addEventListener('click', () => removeImg(item));
+  previewGrid.appendChild(item);
+}
+
+/* سڕینەوەی وێنە */
+function removeImg(item) {
+  const idx = parseInt(item.dataset.idx, 10);
+  uploadedFiles.splice(idx, 1);
+  item.remove();
+
+  /* نوێکردنەوەی ئیندێکسەکان */
+  previewGrid.querySelectorAll('.prev-item').forEach((el, i) => {
+    el.dataset.idx = i;
+  });
+  updateProgress();
+}
+
+imgInput.addEventListener('change', function () {
+  handleFiles(this.files);
+  this.value = '';
+});
+
+/* Drag & Drop */
+['dragenter', 'dragover'].forEach(ev => {
+  uploadZone.addEventListener(ev, e => {
+    e.preventDefault();
+    uploadZone.style.borderColor = 'var(--b500)';
+    uploadZone.style.background  = 'rgba(59,142,243,.07)';
+  });
+});
+
+['dragleave', 'drop'].forEach(ev => {
+  uploadZone.addEventListener(ev, e => {
+    e.preventDefault();
+    uploadZone.style.borderColor = '';
+    uploadZone.style.background  = '';
+  });
+});
+
+uploadZone.addEventListener('drop', e => {
+  handleFiles(e.dataTransfer.files);
+});
+
+/* ─────────────────────────────────
+   7. خەتی پێشکەوتن
+───────────────────────────────── */
+const progressBar = document.getElementById('progressBar');
+const FIELD_IDS   = ['username', 'phone', 'city', 'contact', 'price'];
+const TOTAL       = FIELD_IDS.length + 3; /* +3 بۆ: جۆر، پلاتفۆرم، وەسف */
+
 function updateProgress() {
-  const fieldIds = ['username', 'phone', 'city', 'contact', 'price'];
-  let filled = fieldIds.filter(id => {
+  let filled = FIELD_IDS.filter(id => {
     const el = document.getElementById(id);
     return el && el.value.trim() !== '';
   }).length;
 
-  if (selectedType)     filled++;
-  if (selectedPlatform) filled++;
-  if (descEl.value.trim()) filled++;
+  if (selectedType)          filled++;
+  if (selectedPlatform)      filled++;
+  if (descEl.value.trim())   filled++;
 
-  const total = fieldIds.length + 3;
-  const pct   = Math.round((filled / total) * 100);
-  document.getElementById('progressBar').style.width = pct + '%';
+  const pct = Math.round((filled / TOTAL) * 100);
+  progressBar.style.width = pct + '%';
 }
 
-// گوێستن بە هەموو ئینپوتەکان بۆ پێشکەوتن
+/* گوێستن بە هەموو خانەکان */
 document.querySelectorAll('input, select').forEach(el => {
   el.addEventListener('input', updateProgress);
 });
 
-/* ===========================
-   یارمەتیدەری هەڵە
-=========================== */
+/* ─────────────────────────────────
+   8. یارمەتیدەری هەڵە
+───────────────────────────────── */
 function showErr(id, msg) {
   const el = document.getElementById('err-' + id);
   if (!el) return;
@@ -141,27 +205,48 @@ function clearErr(id) {
   el.classList.remove('show');
 }
 
-/* ===========================
-   دابەشکردنی فۆرم
-=========================== */
-document.getElementById('sellForm').addEventListener('submit', function (e) {
+/* ─────────────────────────────────
+   9. دابەشکردنی فۆرم
+───────────────────────────────── */
+const sellForm  = document.getElementById('sellForm');
+const submitBtn = document.getElementById('submitBtn');
+
+/* پشکنینی مۆبایل */
+function isValidPhone(val) {
+  return /^[0-9+\s\-()]{7,15}$/.test(val.trim());
+}
+
+sellForm.addEventListener('submit', function (e) {
   e.preventDefault();
   let valid = true;
 
-  // فیلدە پێویستەکان
-  const required = [
+  const REQUIRED = [
     { id: 'username', msg: 'ناوی بەکارهێنەر داخڵ بکە' },
-    { id: 'phone',    msg: 'ژمارەی مۆبایل داخڵ بکە'  },
-    { id: 'city',     msg: 'شار هەڵبژێرە'              },
-    { id: 'contact',  msg: 'ئایدی پەیوەندی داخڵ بکە'  },
-    { id: 'price',    msg: 'نرخ داخڵ بکە'              },
+    { id: 'phone',    msg: 'ژمارەی مۆبایل داخڵ بکە'   },
+    { id: 'city',     msg: 'شار هەڵبژێرە'               },
+    { id: 'contact',  msg: 'ئایدی پەیوەندی داخڵ بکە'   },
+    { id: 'price',    msg: 'نرخ داخڵ بکە'               },
   ];
 
-  required.forEach(({ id, msg }) => {
+  REQUIRED.forEach(({ id, msg }) => {
     const val = document.getElementById(id)?.value.trim();
     if (!val) { showErr(id, msg); valid = false; }
-    else        clearErr(id);
+    else       clearErr(id);
   });
+
+  /* پشکنینی تایبەتی مۆبایل */
+  const phoneVal = document.getElementById('phone').value;
+  if (phoneVal && !isValidPhone(phoneVal)) {
+    showErr('phone', 'ژمارەی مۆبایل دروست نییە');
+    valid = false;
+  }
+
+  /* پشکنینی نرخ */
+  const priceVal = parseFloat(document.getElementById('price').value);
+  if (!isNaN(priceVal) && priceVal < 0) {
+    showErr('price', 'نرخ نابێت منفی بێت');
+    valid = false;
+  }
 
   if (!selectedType) {
     showErr('type', 'جۆری ئەکاونت هەڵبژێرە');
@@ -178,56 +263,87 @@ document.getElementById('sellForm').addEventListener('submit', function (e) {
   }
 
   if (!descEl.value.trim()) {
-    showErr('desc', 'وەسف بنووسە');
+    showErr('desc', 'وەسفی ئەکاونت بنووسە');
     valid = false;
   } else {
     clearErr('desc');
   }
 
-  if (!valid) return;
+  if (!valid) {
+    /* ئاستەنگکردنی یەکەمین هەڵەی دیار */
+    const firstErr = sellForm.querySelector('.err.show');
+    if (firstErr) {
+      firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return;
+  }
 
-  // شبیەی ناردن
-  const btn = document.getElementById('submitBtn');
-  btn.classList.add('loading');
-  btn.disabled = true;
+  /* شبیەی ناردن */
+  submitBtn.classList.add('loading');
+  submitBtn.disabled = true;
 
   setTimeout(() => {
-    btn.classList.remove('loading');
-    btn.disabled = false;
-    document.getElementById('sellForm').style.display = 'none';
+    submitBtn.classList.remove('loading');
+    submitBtn.disabled = false;
+    sellForm.style.display = 'none';
     document.getElementById('successBox').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, 1800);
 });
 
-/* ===========================
-   ڕیسێتی فۆرم
-=========================== */
+/* ─────────────────────────────────
+   10. ڕیسێتی فۆرم
+───────────────────────────────── */
 document.getElementById('resetBtn').addEventListener('click', () => {
-  // نیشاندانەوەی فۆرم
-  document.getElementById('sellForm').style.display = '';
+  sellForm.style.display = '';
   document.getElementById('successBox').classList.add('hidden');
 
-  // ڕیسێتی هەموو فیلدەکان
-  document.getElementById('sellForm').reset();
+  sellForm.reset();
 
-  // ڕیسێتی گۆڕاوەکان
   selectedType     = '';
   selectedPlatform = '';
   uploadedFiles    = [];
 
-  // ڕیسێتی کلاسەکان
   document.querySelectorAll('.type-card, .plat-btn, .badge-check, .tag')
     .forEach(el => el.classList.remove('active'));
 
-  // شاردنەوەی بەشە دینامیکییەکان
   document.querySelectorAll('.dynamic-section')
     .forEach(s => s.classList.remove('visible'));
 
-  // ڕیسێتی وێنەکان و ژمارەکەر
-  document.getElementById('previewGrid').innerHTML = '';
-  countEl.textContent = '0 / 400';
+  previewGrid.innerHTML = '';
+  countEl.textContent = `0 / ${MAX_DESC}`;
   countEl.classList.remove('warn');
+  progressBar.style.width = '0%';
 
-  // ڕیسێتی خەتی پێشکەوتن
-  document.getElementById('progressBar').style.width = '0%';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+/* ─────────────────────────────────
+   11. هامبەرگەری نەیڤبار (مۆبایل)
+───────────────────────────────── */
+const navbar   = document.querySelector('.navbar');
+const hamburger = document.querySelector('.hamburger');
+
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    navbar.classList.toggle('open');
+  });
+
+  /* داخستن بە کلیک لە دەرەوە */
+  document.addEventListener('click', e => {
+    if (!navbar.contains(e.target)) {
+      navbar.classList.remove('open');
+    }
+  });
+}
+
+/* ─────────────────────────────────
+   12. ئەفێکتی ستایلی نەیڤبار لەسەر سکرۆڵ
+───────────────────────────────── */
+window.addEventListener('scroll', () => {
+  if (navbar) {
+    navbar.style.boxShadow = window.scrollY > 10
+      ? '0 2px 30px rgba(0,0,0,0.45)'
+      : '';
+  }
+}, { passive: true });
