@@ -383,9 +383,10 @@ body {
   .floating-card span  { font-size: 0.66rem; }
   .floating-card strong{ font-size: 0.82rem; }
 
-  .card-1 { top: 50%; left: 0px;  right: auto; transform: translateY(-50%); }
-  .card-2 { top: 50%; right: 0px; left: auto;  transform: translateY(-50%); }
-  .card-3 { bottom: -20px; left: 50%; top: auto; transform: translateX(-50%); }
+.card-1 { top: 50%; left: -40px;  right: auto; transform: translateY(-50%); }
+.card-2 { top: 50%; right: -40px; left: auto;  transform: translateY(-50%); }
+.card-3 { bottom: -50px; left: 50%; top: auto; transform: translateX(-50%); }
+
 }
 
 /* Very Small */
