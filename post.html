@@ -1,94 +1,391 @@
 <!DOCTYPE html>
-<html lang="ckb">
+<html lang="ckb" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فرۆشتنی یاری - فۆڕمی فرۆشیار</title>
-    <link rel="stylesheet" href="assect/css/post.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>بازاری دیجیتال — فرۆشتنی ئەکاونت</title>
+
+  <!-- فۆنت -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- ئایکۆنەکان -->
+  <link rel="stylesheet" href="assect/css/post.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="form-container">
-        <div class="form-card">
-            <h2> فۆڕمی فرۆشتنی یاری</h2>
-            <p>زانیاری خۆت داخڵ بکە</p>
 
-            <form id="sellerForm" enctype="multipart/form-data">
-                <div class="input-group">
-                    <label> ناوی بەکارهێنەر</label>
-                    <input type="text" id="username" placeholder=": Ahmad_IT" required>
-                </div>
+  <!-- ئۆربەکانی پاشەوانە -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
 
-                <div class="input-group">
-                    <label> شوێنی نیشتەجێبوون (شار)</label>
-                    <select id="location" required>
-                        <option value="">--شارەکەت هەلبژێرە --</option>
-                        <option value="هەولێر">هەولێر</option>
-                        <option value="سلێمانی">سلێمانی</option>
-                        <option value="دهۆک">دهۆک</option>
-                        <option value="کەرکووک">کەرکووک</option>
-                        <option value="حەلەبجە">حەلەبجە</option>
-                        <option value="زاخۆ">زاخۆ</option>
-                        <option value="ڕانیە">ڕانیە</option>
-                        <option value="سۆران">سۆران</option>
-                    </select>
-                </div>
+  <div class="container">
 
-                <div class="input-group">
-                    <label> ئیمەیڵ</label>
-                    <input type="email" id="email" placeholder="name@example.com" required>
-                </div>
-
-                <div class="input-group">
-                    <label> ژمارەی مۆبایل</label>
-                    <input type="tel" id="phone" placeholder="0770 123 4567" required>
-                </div>
-
-                <div class="input-group">
-                    <label> پاسوۆرد</label>
-                    <input type="password" id="password" placeholder="پاسوۆرد" required>
-                </div>
-
-
-<!-- لیستی یاریەکان (گەیمینگ کلاسیک) -->
-                <div class="input-group">
-                    <label> ناوی یاریەکە (گەیمینگ کلاسیک)</label>
-                    <select id="gameName" required>
-                        <option value="">-- یاریەکە هەڵبژێرە --</option>
-                        <option value="کڵاش">کڵاش</option>
-                        <option value="پیسی">پیسی</option>
-                        <option value="پۆبجی">پۆبجی</option>
-                        <option value="پلەی ستەیشن">پلەی ستەیشن</option>
-                       
-                    </select>
-                </div>
-
-
-
-
-                <div class="input-group">
-                    <label> نرخی یاری (دینار یان دۆلار)</label>
-                    <input type="text" id="price" placeholder="نموونە: 25,000 دینار  یا 20$" required>
-                </div>
-
-                
-                <div class="input-group">
-                    <label> وێنە</label>
-                    <input type="file" id="productImages" accept="image/*" multiple>
-                    <small>وێنەی بەرهەمەکەت</small>
-                    <div id="imagePreview" class="image-preview"></div>
-                </div>
-
-                <div class="input-group">
-                    <label> وەسفکردن</label>
-                    <textarea id="comment" rows="4" placeholder="وەسفی بەرهەمەکەت"></textarea>
-                </div>
-
-                <button type="submit" id="submitBtn"> ناردن</button>
-                <div id="messageBox" class="message-box"></div>
-            </form>
-        </div>
+    <!-- سەرپەڕە -->
+    <div class="hero">
+      <div class="logo-icon"><i class="ti ti-shopping-bag"></i></div>
+      <h1>بازاری دیجیتال</h1>
+      <p>ئەکاونتەکەت بفرۆشە — سۆشیال میدیا یان یاری مۆبایل</p>
     </div>
 
-    <script src="assect/java/post.js"></script>
+    <!-- خەتی پێشکەوتن -->
+    <div class="progress-track">
+      <div class="progress-fill" id="progressBar"></div>
+    </div>
+
+    <form id="sellForm" novalidate>
+
+      <!-- ════════════════════════════
+           کارت ١ — زانیاری فرۆشیار
+      ════════════════════════════ -->
+      <div class="card" style="--delay:0ms">
+        <div class="card-header">
+          <div class="card-icon c-purple"><i class="ti ti-user-circle"></i></div>
+          <div>
+            <h2>زانیاری فرۆشیار</h2>
+            <p class="card-sub">ناو و ژمارەی مۆبایلت داخڵ بکە</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label for="username">ناوی بەکارهێنەر</label>
+            <div class="input-wrap">
+              <i class="ti ti-user field-icon"></i>
+              <input type="text" id="username" placeholder="ناوت بنووسە" />
+            </div>
+            <span class="err" id="err-username"></span>
+          </div>
+          <div class="field">
+            <label for="phone">ژمارەی مۆبایل</label>
+            <div class="input-wrap">
+              <i class="ti ti-phone field-icon"></i>
+              <input type="tel" id="phone" placeholder="07XX XXX XXXX" dir="ltr" />
+            </div>
+            <span class="err" id="err-phone"></span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="city">شوێنی نیشتەجێبوون</label>
+          <div class="input-wrap select-wrap">
+            <i class="ti ti-map-pin field-icon"></i>
+            <select id="city">
+              <option value="">شار هەڵبژێرە</option>
+              <option>هەولێر</option>
+              <option>سلێمانی</option>
+              <option>دهۆک</option>
+              <option>کەرکوک</option>
+              <option>بغداد</option>
+              <option>شارێکی تر</option>
+            </select>
+            <i class="ti ti-chevron-down sel-arrow"></i>
+          </div>
+          <span class="err" id="err-city"></span>
+        </div>
+
+        <div class="field">
+          <label for="contact">ئایدی تیلیگرام / واتساپ بۆ پەیوەندی</label>
+          <div class="input-wrap">
+            <i class="ti ti-brand-telegram field-icon"></i>
+            <input type="text" id="contact" placeholder="@username یان ژمارە" dir="ltr" />
+          </div>
+          <span class="err" id="err-contact"></span>
+        </div>
+      </div>
+
+      <!-- ════════════════════════════
+           کارت ٢ — جۆری ئەکاونت
+      ════════════════════════════ -->
+      <div class="card" style="--delay:80ms">
+        <div class="card-header">
+          <div class="card-icon c-violet"><i class="ti ti-apps"></i></div>
+          <div>
+            <h2>جۆری ئەکاونت</h2>
+            <p class="card-sub">دیاری بکە چی دەفرۆشیت</p>
+          </div>
+        </div>
+
+        <!-- هەڵبژاردنی جۆر -->
+        <div class="type-wrap">
+          <div class="type-card" id="typeSocial" onclick="selectType('social')">
+            <i class="ti ti-social"></i>
+            <span class="type-label">سۆشیال میدیا</span>
+            <span class="type-sub">ئینستا، تیکتۆک، یوتیوب...</span>
+          </div>
+          <div class="type-card" id="typeGame" onclick="selectType('game')">
+            <i class="ti ti-device-mobile-joystick"></i>
+            <span class="type-label">یاری مۆبایل</span>
+            <span class="type-sub">PUBG، Free Fire، CoC...</span>
+          </div>
+        </div>
+        <span class="err" id="err-type"></span>
+
+        <!-- ─── بەشی سۆشیال میدیا ─── -->
+        <div class="dynamic-section" id="socialSection">
+          <div class="section-divider">پلاتفۆرم هەڵبژێرە</div>
+          <div class="platform-grid" id="socialPlatforms">
+
+            <div class="plat-btn" data-plat="Instagram" onclick="selectPlat(this,'social')">
+              <div class="plat-ico ico-instagram"><i class="ti ti-brand-instagram" style="color:#fff;font-size:20px"></i></div>
+              <span>Instagram</span>
+            </div>
+            <div class="plat-btn" data-plat="TikTok" onclick="selectPlat(this,'social')">
+              <div class="plat-ico ico-tiktok"><i class="ti ti-brand-tiktok" style="color:#fff;font-size:20px"></i></div>
+              <span>TikTok</span>
+            </div>
+            <div class="plat-btn" data-plat="YouTube" onclick="selectPlat(this,'social')">
+              <div class="plat-ico ico-youtube"><i class="ti ti-brand-youtube" style="color:#fff;font-size:20px"></i></div>
+              <span>YouTube</span>
+            </div>
+            <div class="plat-btn" data-plat="Facebook" onclick="selectPlat(this,'social')">
+              <div class="plat-ico ico-facebook"><i class="ti ti-brand-facebook" style="color:#fff;font-size:20px"></i></div>
+              <span>Facebook</span>
+            </div>
+            <div class="plat-btn" data-plat="Twitter/X" onclick="selectPlat(this,'social')">
+              <div class="plat-ico ico-twitter"><i class="ti ti-brand-x" style="color:#fff;font-size:20px"></i></div>
+              <span>X / Twitter</span>
+            </div>
+            <div class="plat-btn" data-plat="Telegram" onclick="selectPlat(this,'social')">
+              <div class="plat-ico ico-telegram"><i class="ti ti-brand-telegram" style="color:#fff;font-size:20px"></i></div>
+              <span>Telegram</span>
+            </div>
+            <div class="plat-btn" data-plat="Snapchat" onclick="selectPlat(this,'social')">
+              <div class="plat-ico ico-snapchat"><i class="ti ti-brand-snapchat" style="color:#000;font-size:20px"></i></div>
+              <span>Snapchat</span>
+            </div>
+            <div class="plat-btn" data-plat="Other" onclick="selectPlat(this,'social')">
+              <div class="plat-ico ico-other"><i class="ti ti-dots" style="color:#fff;font-size:20px"></i></div>
+              <span>تری</span>
+            </div>
+
+          </div>
+
+          <div class="section-divider" style="margin-top:1.5rem">زانیاری ئەکاونت</div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="acctHandle">ئایدی / یوزەرنەیم</label>
+              <div class="input-wrap">
+                <i class="ti ti-at field-icon"></i>
+                <input type="text" id="acctHandle" placeholder="@yourhandle" dir="ltr" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="followers">ژمارەی فۆلۆوەر</label>
+              <div class="input-wrap">
+                <i class="ti ti-users field-icon"></i>
+                <input type="number" id="followers" placeholder="بۆ نموونە: 50000" dir="ltr" min="0" />
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>تایبەتمەندییەکان</label>
+            <div class="badge-row">
+              <div class="badge-check" onclick="toggleBadge(this)"><i class="ti ti-circle-check"></i> تیک ئازوردراو</div>
+              <div class="badge-check" onclick="toggleBadge(this)"><i class="ti ti-mail-check"></i> ئیمەیڵ دووپات کراوەتەوە</div>
+              <div class="badge-check" onclick="toggleBadge(this)"><i class="ti ti-device-mobile-check"></i> ژمارە دووپات کراوەتەوە</div>
+              <div class="badge-check" onclick="toggleBadge(this)"><i class="ti ti-history"></i> ئەکاونتی کۆن</div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>جۆری ناوەڕۆک / نیش</label>
+            <div class="tags-wrap" id="nicheTags">
+              <span class="tag" data-val="Gaming">🎮 Gaming</span>
+              <span class="tag" data-val="Lifestyle">✨ Lifestyle</span>
+              <span class="tag" data-val="Music">🎵 Music</span>
+              <span class="tag" data-val="Sports">⚽ Sports</span>
+              <span class="tag" data-val="Fashion">👗 Fashion</span>
+              <span class="tag" data-val="Tech">💻 Tech</span>
+              <span class="tag" data-val="Comedy">😂 Comedy</span>
+              <span class="tag" data-val="Business">💼 Business</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── بەشی یاری مۆبایل ─── -->
+        <div class="dynamic-section" id="gameSection">
+          <div class="section-divider">یاری هەڵبژێرە</div>
+          <div class="platform-grid" id="gamePlatforms">
+
+            <div class="plat-btn" data-plat="PUBG Mobile" onclick="selectPlat(this,'game')">
+              <div class="plat-ico ico-pubg" style="font-size:13px;font-weight:700;color:#000">PUBG</div>
+              <span>PUBG Mobile</span>
+            </div>
+            <div class="plat-btn" data-plat="Free Fire" onclick="selectPlat(this,'game')">
+              <div class="plat-ico ico-freefire" style="font-size:12px;font-weight:700;color:#fff">FF</div>
+              <span>Free Fire</span>
+            </div>
+            <div class="plat-btn" data-plat="Clash of Clans" onclick="selectPlat(this,'game')">
+              <div class="plat-ico ico-coc" style="font-size:12px;font-weight:700;color:#fff">CoC</div>
+              <span>Clash of Clans</span>
+            </div>
+            <div class="plat-btn" data-plat="Clash Royale" onclick="selectPlat(this,'game')">
+              <div class="plat-ico ico-cr" style="font-size:12px;font-weight:700;color:#fff">CR</div>
+              <span>Clash Royale</span>
+            </div>
+            <div class="plat-btn" data-plat="Mobile Legends" onclick="selectPlat(this,'game')">
+              <div class="plat-ico ico-mlbb" style="font-size:11px;font-weight:700;color:#fff">MLBB</div>
+              <span>Mobile Legends</span>
+            </div>
+            <div class="plat-btn" data-plat="Brawl Stars" onclick="selectPlat(this,'game')">
+              <div class="plat-ico ico-brawl" style="font-size:11px;font-weight:700;color:#fff">BS</div>
+              <span>Brawl Stars</span>
+            </div>
+            <div class="plat-btn" data-plat="Lords Mobile" onclick="selectPlat(this,'game')">
+              <div class="plat-ico ico-lords" style="font-size:11px;font-weight:700;color:#fff">LM</div>
+              <span>Lords Mobile</span>
+            </div>
+            <div class="plat-btn" data-plat="یارییەکی تر" onclick="selectPlat(this,'game')">
+              <div class="plat-ico ico-other"><i class="ti ti-device-gamepad-2" style="color:#fff;font-size:18px"></i></div>
+              <span>تری</span>
+            </div>
+
+          </div>
+
+          <div class="section-divider" style="margin-top:1.5rem">زانیاری ئەکاونت</div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="gameId">ئایدی یاری (Game ID)</label>
+              <div class="input-wrap">
+                <i class="ti ti-hash field-icon"></i>
+                <input type="text" id="gameId" placeholder="ئایدی ئەکاونتت" dir="ltr" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="gameLevel">ئاست / لێوەڵ</label>
+              <div class="input-wrap">
+                <i class="ti ti-star field-icon"></i>
+                <input type="number" id="gameLevel" placeholder="بۆ نموونە: 80" dir="ltr" min="1" />
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="gameRank">ڕانک</label>
+              <div class="input-wrap select-wrap">
+                <i class="ti ti-trophy field-icon"></i>
+                <select id="gameRank">
+                  <option value="">ڕانک هەڵبژێرە</option>
+                  <option>Bronze</option>
+                  <option>Silver</option>
+                  <option>Gold</option>
+                  <option>Platinum</option>
+                  <option>Diamond</option>
+                  <option>Master</option>
+                  <option>Grandmaster</option>
+                  <option>Conqueror / Ace</option>
+                </select>
+                <i class="ti ti-chevron-down sel-arrow"></i>
+              </div>
+            </div>
+            <div class="field">
+              <label for="gameServer">سێروەر / ناحیە</label>
+              <div class="input-wrap">
+                <i class="ti ti-world field-icon"></i>
+                <input type="text" id="gameServer" placeholder="بۆ نموونە: Asia، ME" dir="ltr" />
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>زانیاری تایبەت</label>
+            <div class="badge-row">
+              <div class="badge-check" onclick="toggleBadge(this)"><i class="ti ti-diamond"></i> UC / جێم هەیە</div>
+              <div class="badge-check" onclick="toggleBadge(this)"><i class="ti ti-shirt"></i> سکین نادر هەیە</div>
+              <div class="badge-check" onclick="toggleBadge(this)"><i class="ti ti-mail-check"></i> ئیمەیڵ تەواوە</div>
+              <div class="badge-check" onclick="toggleBadge(this)"><i class="ti ti-lock-off"></i> بێ بەند</div>
+            </div>
+          </div>
+        </div>
+
+        <span class="err" id="err-platform"></span>
+      </div>
+
+      <!-- ════════════════════════════
+           کارت ٣ — وەسف و وێنە
+      ════════════════════════════ -->
+      <div class="card" style="--delay:160ms">
+        <div class="card-header">
+          <div class="card-icon c-indigo"><i class="ti ti-file-description"></i></div>
+          <div>
+            <h2>وەسف و وێنە</h2>
+            <p class="card-sub">وەسفێکی تەواو بنووسە</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="desc">وەسفی ئەکاونت</label>
+          <div class="textarea-wrap">
+            <textarea id="desc" rows="4" placeholder="وەسفی دەتەواو بنووسە — تایبەتمەندی سەرەکی، مێژووی ئەکاونت، چی تێدایە..."></textarea>
+            <span class="char-count" id="charCount">0 / 400</span>
+          </div>
+          <span class="err" id="err-desc"></span>
+        </div>
+
+        <div class="field">
+          <label>سکرینشۆتی ئەکاونت <span style="color:var(--tx-3);font-weight:400">(پێویستە)</span></label>
+          <label class="upload-zone" for="imgInput">
+            <i class="ti ti-cloud-upload upload-ico"></i>
+            <p class="upload-title">کلیک بکە یان وێنە بکێشە ئێرە</p>
+            <p class="upload-sub">JPG، PNG — سکرینشۆتی ئەکاونت، ئاست، جێم...</p>
+            <input type="file" id="imgInput" accept="image/*" multiple hidden />
+          </label>
+          <div class="preview-grid" id="previewGrid"></div>
+        </div>
+
+        <div class="field">
+          <label for="price">نرخی فرۆشتن</label>
+          <div class="price-row">
+            <div class="input-wrap" style="flex:1">
+              <i class="ti ti-currency-dollar field-icon"></i>
+              <input type="number" id="price" placeholder="0" min="0" dir="ltr" />
+            </div>
+            <span class="currency-tag">دۆلار</span>
+          </div>
+          <p class="hint"><i class="ti ti-info-circle"></i> نرخێکی گونجاو هەڵبژێرە بۆ خێراتر فرۆشتن</p>
+          <span class="err" id="err-price"></span>
+        </div>
+
+        <div class="warn-box">
+          <i class="ti ti-alert-triangle"></i>
+          <p>ئاگاداری بە: پاسوەرد و زانیاریە تایبەتەکانت تا کاتی فرۆشتنی تەواو مەدەیە بەکەسێک. بازاری دیجیتال مسۆگەری دەکات مامەڵەکە بە پارێزراوی تێبپەڕێت.</p>
+        </div>
+      </div>
+
+      <!-- دوگمەی ناردن -->
+      <button type="submit" class="submit-btn" id="submitBtn">
+        <i class="ti ti-brand-telegram btn-txt-icon"></i>
+        <span>ناردن بۆ ئەدمین</span>
+        <div class="btn-shine"></div>
+        <div class="spinner"></div>
+      </button>
+
+    </form>
+
+    <!-- پەیامی سەرکەوتن -->
+    <div class="success-box hidden" id="successBox">
+      <div class="success-ico"><i class="ti ti-circle-check"></i></div>
+      <h3>سەرکەوتووانە نێردرا! 🎉</h3>
+      <p>زانیارییەکانت بۆ ئەدمین نێردرا، ئەکاونتەکەت بە زووی دەردەکەوێت.</p>
+      <button class="reset-btn" id="resetBtn">
+        <i class="ti ti-refresh"></i> فۆرمێکی نوێ
+      </button>
+    </div>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script src="assect/java/post.js"></script>
+
 </body>
 </html>
