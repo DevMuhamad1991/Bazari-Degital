@@ -309,9 +309,10 @@ body {
 .floating-card:hover { border-color: var(--border-bright); transform: scale(1.05); }
 .floating-card span  { font-size: 0.74rem; color: var(--text-muted); font-weight: 600; }
 .floating-card strong{ font-size: 0.92rem; color: var(--accent); font-weight: 900; }
-.card-1 { top: 50px;  right: 10px; animation: float1 4s   ease-in-out infinite; }
-.card-2 { top: 50px;  left:  10px; animation: float2 5s   ease-in-out infinite; }
-.card-3 { bottom: 70px; left: 50%; transform: translateX(-50%); animation: float3 4.5s ease-in-out infinite; }
+.card-1 { top: 30px;  right: 0px; animation: float1 4s ease-in-out infinite; }
+.card-2 { top: 30px;  left: 0px;  animation: float2 5s ease-in-out infinite; }
+.card-3 { bottom: 30px; left: 50%; transform: translateX(-50%); animation: float3 4.5s ease-in-out infinite; }
+
 @keyframes float1 { 0%,100%{transform:translateY(0)}  50%{transform:translateY(-14px)} }
 @keyframes float2 { 0%,100%{transform:translateY(0)}  50%{transform:translateY(-20px)} }
 @keyframes float3 { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-12px)} }
