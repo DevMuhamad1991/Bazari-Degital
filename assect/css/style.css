@@ -55,7 +55,6 @@ body {
   background: var(--dark);
   color: var(--text);
   direction: rtl;
-  overflow-x: hidden;
   line-height: 1.8;
 }
 
