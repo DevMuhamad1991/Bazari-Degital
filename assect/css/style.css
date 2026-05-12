@@ -278,74 +278,69 @@ body {
 
 }
 
-/* ===== HERO VISUAL ===== */
 .hero-visual {
   flex: 1;
   position: relative;
-  height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
   animation: fadeIn 1s ease 0.5s both;
   min-width: 260px;
-}
-
-.central-orb {
-  width: 150px; height: 150px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--blue), var(--accent));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 2.8rem; color: white;
-  box-shadow: 0 0 60px rgba(37,99,235,0.55), 0 0 120px rgba(37,99,235,0.2);
-  animation: orbit-pulse 4s ease-in-out infinite;
-  position: relative; z-index: 2;
-}
-
-/* کارتەکان لەدەرەوەی لۆگۆکە */
-.floating-card {
-  position: absolute;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 14px 18px;
-  display: flex; flex-direction: column;
-  align-items: center;
-  gap: 5px; text-align: center;
-  min-width: 130px;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-  z-index: 3;
+  height: 460px;
 }
 
 /* Desktop */
-.card-1 { top: 40px;   right: -80px;                          animation: float1 4s   ease-in-out infinite; }
-.card-2 { top: 40px;   left:  -80px;                          animation: float2 5s   ease-in-out infinite; }
-.card-3 { bottom: 40px; left: 50%; transform: translateX(-50%); animation: float3 4.5s ease-in-out infinite; }
+.card-1 { top: 30px;    right: 0px;   animation: float1 4s   ease-in-out infinite; }
+.card-2 { top: 30px;    left:  0px;   animation: float2 5s   ease-in-out infinite; }
+.card-3 { bottom: 30px; left: 50%;    transform: translateX(-50%); animation: float3 4.5s ease-in-out infinite; }
 
-/* Tablet */
+/* Tablet (641px - 1024px) */
 @media (max-width: 1024px) and (min-width: 641px) {
-  .hero-visual { height: 420px; max-width: 500px; width: 100%; margin: 0 auto; }
-  .card-1 { top: 30px;  right: -50px; }
-  .card-2 { top: 30px;  left:  -50px; }
+  .hero-visual {
+    height: 380px;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .card-1 { top: 20px; right: 10px; }
+  .card-2 { top: 20px; left:  10px; }
   .card-3 { bottom: 20px; }
 }
 
-/* Mobile */
+/* Mobile (640px و کەمتر) */
 @media (max-width: 640px) {
   .hero-visual {
-    height: 340px;
-    max-width: 320px;
-    margin: 40px auto 0;
+    height: 300px;
+    width: 280px;
+    margin: 20px auto 0;
+    overflow: visible;
   }
-  .central-orb { width: 110px; height: 110px; font-size: 2rem; }
 
-  .floating-card { min-width: 100px; padding: 10px 12px; }
-  .floating-card span  { font-size: 0.66rem; }
-  .floating-card strong{ font-size: 0.82rem; }
+  .central-orb {
+    width: 100px;
+    height: 100px;
+    font-size: 1.8rem;
+  }
 
-  .card-1 { top: 20px;  right: -15px; }
-  .card-2 { top: 20px;  left:  -15px; }
-  .card-3 { bottom: 10px; }
+  .floating-card {
+    min-width: 90px;
+    padding: 8px 10px;
+  }
+  .floating-card span  { font-size: 0.62rem; }
+  .floating-card strong{ font-size: 0.78rem; }
+
+  /* کارتەکان دەوری لۆگۆکە */
+  .card-1 { top: 10px;   right: 10px;  left: auto; }
+  .card-2 { top: 10px;   left: 10px;   right: auto; }
+  .card-3 { bottom: 10px; left: 50%; transform: translateX(-50%); }
 }
+
+@media (max-width: 380px) {
+  .hero-visual { height: 260px; width: 240px; }
+  .central-orb { width: 85px; height: 85px; font-size: 1.5rem; }
+  .floating-card { min-width: 78px; padding: 7px 8px; }
+}
+
 
 
 /* ===================================================
