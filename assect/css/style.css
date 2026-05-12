@@ -20,6 +20,32 @@
   --nav-h: 64px;
 }
 
+/* ===== TABLET FIX (768px - 1024px) ===== */
+@media (max-width: 1024px) and (min-width: 641px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding-top: calc(var(--nav-h) + 32px);
+    gap: 60px;
+  }
+  .hero-content { max-width: 100%; }
+  .hero-actions { justify-content: center; }
+  .hero-stats   { justify-content: center; }
+
+  .hero-visual {
+    height: 360px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    overflow: visible;
+  }
+
+  .card-1 { top: 20px;  right: 20px; }
+  .card-2 { top: 20px;  left: 20px;  }
+  .card-3 { bottom: 20px; }
+}
+
+
 html { scroll-behavior: smooth; }
 
 body {
