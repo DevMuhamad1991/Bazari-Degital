@@ -131,11 +131,43 @@ body {
   font-size: 0.9rem; font-weight: 600;
   padding: 8px 14px;
   border-radius: 8px;
-  transition: var(--transition);
   white-space: nowrap;
   flex-shrink: 0;
+  position: relative;
+  transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
-.nav-link:hover { color: var(--text); background: rgba(59,130,246,0.1); }
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 60%; height: 2px;
+  background: linear-gradient(90deg, var(--blue-light), var(--accent));
+  border-radius: 2px;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover {
+  color: var(--text);
+  background: rgba(59,130,246,0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(37,99,235,0.15);
+}
+
+.nav-link:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.nav-link.active {
+  color: var(--blue-light);
+  background: rgba(59,130,246,0.1);
+}
+
+.nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
 
 .cta-btn {
   background: linear-gradient(135deg, var(--blue), var(--accent)) !important;
