@@ -349,21 +349,6 @@ body::before {
   animation: fadeUp 0.6s var(--ease) both;
 }
 
-.logo-icon {
-  width: 70px; height: 70px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #1058be, #2d8fff, #4fc3f7);
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 1.1rem;
-  box-shadow:
-    0 0 0 1px rgba(45, 143, 255, 0.4),
-    0 8px 50px rgba(29, 114, 232, 0.6),
-    0 0 100px rgba(45, 143, 255, 0.2),
-    0 2px 8px rgba(0, 0, 0, 0.6);
-  animation: popIn 0.55s var(--ease) both;
-}
-
-.logo-icon i { font-size: 32px; color: #fff; }
 
 .hero h1 {
   font-size: 22px;
