@@ -33,25 +33,13 @@
 
 
 
-// ===== NAVBAR DRAG SCROLL =====
-window.addEventListener('load', () => {
-  const navList = document.querySelector('.nav-links');
-  if (!navList) return;
-
-  let isDown = false, startX, scrollLeft;
-
-  navList.addEventListener('touchstart', (e) => {
-    isDown = true;
-    startX = e.touches[0].pageX - navList.offsetLeft;
-    scrollLeft = navList.scrollLeft;
-  });
-  navList.addEventListener('touchend', () => { isDown = false; });
-  navList.addEventListener('touchmove', (e) => {
-    if (!isDown) return;
-    const x = e.touches[0].pageX - navList.offsetLeft;
-    navList.scrollLeft = scrollLeft - (x - startX) * 1.5;
-  });
+// ===== NAVBAR SCROLL =====
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
 });
+
+
 
 
 
