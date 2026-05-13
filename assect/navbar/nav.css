@@ -113,3 +113,22 @@
   display: flex;
   align-items: center;
 }
+
+
+@media (max-width: 640px) {
+  .nav-container { padding: 0 12px; gap: 10px; }
+  .logo-text     { font-size: 1.1rem; }
+
+  .nav-links {
+    gap: 2px;
+    -webkit-mask-image: linear-gradient(to left, transparent 0%, black 14%);
+    mask-image:         linear-gradient(to left, transparent 0%, black 14%);
+  }
+  .nav-link { font-size: 0.82rem; padding: 7px 11px; }
+}
+
+@media (max-width: 380px) {
+  .logo-icon { width: 32px; height: 32px; font-size: 0.85rem; }
+  .logo-text { font-size: 1rem; }
+}
+
