@@ -1,6 +1,6 @@
 // ===== LOAD NAVBAR =====
 const base = window.location.pathname.includes('Bazari-Degital') ? '/Bazari-Degital' : '';
-fetch(base + '/navbar.html')
+fetch(base + 'assect/navbar/nav.html')
   .then(res => res.text())
   .then(html => {
     document.getElementById('navbar-placeholder').innerHTML = html;
