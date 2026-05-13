@@ -160,10 +160,13 @@
 @media (max-width: 640px) {
   .nav-container { padding: 0 12px; gap: 8px; }
   .logo-text { display: none; }
+  .logo { flex-shrink: 0; overflow: visible; }
+  .nav-logo-icon { display: flex !important; flex-shrink: 0; }
   .nav-link { font-size: 0.82rem; padding: 7px 13px; border-radius: 20px; }
   .nav-link:hover, .nav-link.active { background: rgba(45, 143, 255, 0.15); color: var(--b400); transform: none; }
   .cta-btn { padding: 7px 13px; font-size: 0.82rem; border-radius: 20px; }
 }
+
 
 @media (max-width: 380px) {
   .nav-logo-icon { width: 32px; height: 32px; font-size: 0.85rem; }
