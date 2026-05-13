@@ -1,5 +1,291 @@
 /* ===================================================
    style.css — بازاری دیجیتال (KurdAccount Theme)
+  
+  
+  
+  
+  
+  
+  
+  
+  /* ===================================================
+   نەیڤ بار - بازاری دیجیتال
+   دەبێت ئەم فایلە دوای style.css بار بکرێت
+   یان لە HTML دا پێش style.css زیاد بکە
+=================================================== */
+
+/* ڕیسێتی نەیڤ بار بۆ هەموو شاشەکان */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  
+  width: 100%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  padding: 14px 24px;
+  
+  /* شوشەیی - glassmorphism */
+  background: rgba(4, 6, 15, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  
+  /* سنووری ژێرەوەی نایاب */
+  border-bottom: 1px solid rgba(45, 143, 255, 0.2);
+  
+  /* سێبەر */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  
+  /* گواستنەوەی نەرم */
+  transition: all 0.3s var(--ease, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+/* لۆگۆ */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.navbar-logo i {
+  font-size: 24px;
+  color: #5db8ff;
+  background: linear-gradient(135deg, #1a72e8, #4fc3f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.navbar-logo span {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ddeeff;
+  letter-spacing: -0.3px;
+}
+
+/* ناوەڕاست - لینکەکان (بۆ دیزکتۆپ) */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  position: relative;
+}
+
+.navbar-links a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  color: #7a9bc4;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.navbar-links a i {
+  font-size: 16px;
+}
+
+.navbar-links a:hover {
+  color: #5db8ff;
+  background: rgba(45, 143, 255, 0.08);
+}
+
+/* خەتی ژێرەوە بۆ لینکی چالاک */
+.navbar-links li.active a {
+  color: #5db8ff;
+}
+
+.navbar-links li.active::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 3px;
+  background: linear-gradient(90deg, #2d8fff, #4fc3f7);
+  border-radius: 3px;
+  box-shadow: 0 0 6px rgba(45, 143, 255, 0.6);
+}
+
+/* ئایکۆنی هێمبەرگەر (بۆ مۆبایل) */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+.navbar-toggle span {
+  width: 100%;
+  height: 2.5px;
+  background: #ddeeff;
+  border-radius: 3px;
+  transition: all 0.25s ease;
+}
+
+.navbar-toggle.active span:nth-child(1) {
+  transform: translateY(8.5px) rotate(45deg);
+}
+
+.navbar-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggle.active span:nth-child(3) {
+  transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* ===========================
+   رسپۆنسیڤ - مۆبایل
+=========================== */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 12px 18px;
+  }
+  
+  .navbar-toggle {
+    display: flex;
+  }
+  
+  .navbar-links {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 260px;
+    height: 100vh;
+    background: rgba(8, 12, 24, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 80px 20px 30px;
+    margin: 0;
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+    border-left: 1px solid rgba(45, 143, 255, 0.2);
+  }
+  
+  .navbar-links.open {
+    right: 0;
+  }
+  
+  .navbar-links li {
+    width: 100%;
+  }
+  
+  .navbar-links a {
+    width: 100%;
+    padding: 12px 16px;
+    justify-content: flex-start;
+    font-size: 14px;
+  }
+  
+  .navbar-links a i {
+    width: 24px;
+    font-size: 18px;
+  }
+  
+  /* خەتی ژێرەوە لە مۆبایل */
+  .navbar-links li.active::after {
+    bottom: 4px;
+    left: 20px;
+    transform: none;
+    width: 40px;
+    height: 2px;
+  }
+  
+  /* بەشی ڕاستی نەیڤ بار (لە مۆبایلدا card نیشان نادەین) */
+  .navbar-right {
+    display: none;
+  }
+}
+
+/* ===========================
+   بەشی ڕاستی نەیڤ بار (پۆست یان کارت)
+=========================== */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.navbar-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(45, 143, 255, 0.1);
+  border: 1px solid rgba(45, 143, 255, 0.25);
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navbar-card:hover {
+  background: rgba(45, 143, 255, 0.2);
+  border-color: rgba(45, 143, 255, 0.5);
+}
+
+.navbar-card i {
+  font-size: 16px;
+  color: #5db8ff;
+}
+
+.navbar-card span {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #5db8ff;
+}
+
+.navbar-user {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a72e8, #4fc3f7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.navbar-user i {
+  font-size: 18px;
+  color: white;
+}
+
+/* سکرۆڵ کردن نەیڤ بار بچووک دەبێتەوە */
+.navbar.scrolled {
+  padding: 8px 24px;
+  background: rgba(4, 6, 15, 0.95);
+  border-bottom-color: rgba(45, 143, 255, 0.4);
+}
+  
 =================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;900&display=swap');
