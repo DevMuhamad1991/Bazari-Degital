@@ -22,7 +22,7 @@ counters.forEach(c => countObserver.observe(c));
 
 // ===== LOAD NAVBAR =====
 const base = window.location.pathname.includes('Bazari-Degital') ? '/Bazari-Degital' : '';
-fetch(base + 'assect/navbar/nav.html')
+fetch(base + 'index.html')
   .then(res => res.text())
   .then(html => {
     document.getElementById('navbar-placeholder').innerHTML = html;
