@@ -1,7 +1,3 @@
-/* ===================================================
-   post.js — بازاری دیجیتال (نوێکراوەوە)
-=================================================== */
-
 'use strict';
 
 /* ── گۆڕاوەی گلۆبال ── */
@@ -18,13 +14,9 @@ function selectType(type) {
   document.getElementById('typeSocial').classList.toggle('active', type === 'social');
   document.getElementById('typeGame').classList.toggle('active',   type === 'game');
 
-  const socialSec = document.getElementById('socialSection');
-  const gameSec   = document.getElementById('gameSection');
+  document.getElementById('socialSection').classList.toggle('visible', type === 'social');
+  document.getElementById('gameSection').classList.toggle('visible',   type === 'game');
 
-  socialSec.classList.toggle('visible', type === 'social');
-  gameSec.classList.toggle('visible',   type === 'game');
-
-  /* ڕیسێتی هەڵبژاردنی پلاتفۆرم */
   selectedPlatform = '';
   document.querySelectorAll('.plat-btn').forEach(b => b.classList.remove('active'));
 
@@ -67,14 +59,10 @@ document.querySelectorAll('#nicheTags .tag').forEach(tag => {
 ───────────────────────────────── */
 const descEl  = document.getElementById('desc');
 const countEl = document.getElementById('charCount');
-
 const MAX_DESC = 400;
 
 descEl.addEventListener('input', () => {
-  const len = descEl.value.length;
-
-  /* کۆتاکردنی تێکست بە ماکسیمووم */
-  if (len > MAX_DESC) {
+  if (descEl.value.length > MAX_DESC) {
     descEl.value = descEl.value.slice(0, MAX_DESC);
   }
 
@@ -89,12 +77,11 @@ descEl.addEventListener('input', () => {
 /* ─────────────────────────────────
    6. بارکردنی وێنە — Drag & Drop و کلیک
 ───────────────────────────────── */
-const imgInput   = document.getElementById('imgInput');
+const imgInput    = document.getElementById('imgInput');
 const previewGrid = document.getElementById('previewGrid');
 const uploadZone  = document.querySelector('.upload-zone');
 const MAX_IMGS    = 6;
 
-/* هاندەری فایل ── هاوبەش بۆ کلیک و drag */
 function handleFiles(files) {
   Array.from(files).forEach(file => {
     if (uploadedFiles.length >= MAX_IMGS) return;
@@ -110,7 +97,6 @@ function handleFiles(files) {
   updateProgress();
 }
 
-/* رێندەری پرێڤیو */
 function renderPreview(src, idx) {
   const item = document.createElement('div');
   item.className = 'prev-item';
@@ -123,13 +109,11 @@ function renderPreview(src, idx) {
   previewGrid.appendChild(item);
 }
 
-/* سڕینەوەی وێنە */
 function removeImg(item) {
   const idx = parseInt(item.dataset.idx, 10);
   uploadedFiles.splice(idx, 1);
   item.remove();
 
-  /* نوێکردنەوەی ئیندێکسەکان */
   previewGrid.querySelectorAll('.prev-item').forEach((el, i) => {
     el.dataset.idx = i;
   });
@@ -141,7 +125,6 @@ imgInput.addEventListener('change', function () {
   this.value = '';
 });
 
-/* Drag & Drop */
 ['dragenter', 'dragover'].forEach(ev => {
   uploadZone.addEventListener(ev, e => {
     e.preventDefault();
@@ -167,7 +150,7 @@ uploadZone.addEventListener('drop', e => {
 ───────────────────────────────── */
 const progressBar = document.getElementById('progressBar');
 const FIELD_IDS   = ['username', 'phone', 'city', 'contact', 'price'];
-const TOTAL       = FIELD_IDS.length + 3; /* +3 بۆ: جۆر، پلاتفۆرم، وەسف */
+const TOTAL       = FIELD_IDS.length + 3;
 
 function updateProgress() {
   let filled = FIELD_IDS.filter(id => {
@@ -175,15 +158,13 @@ function updateProgress() {
     return el && el.value.trim() !== '';
   }).length;
 
-  if (selectedType)          filled++;
-  if (selectedPlatform)      filled++;
-  if (descEl.value.trim())   filled++;
+  if (selectedType)        filled++;
+  if (selectedPlatform)    filled++;
+  if (descEl.value.trim()) filled++;
 
-  const pct = Math.round((filled / TOTAL) * 100);
-  progressBar.style.width = pct + '%';
+  progressBar.style.width = Math.round((filled / TOTAL) * 100) + '%';
 }
 
-/* گوێستن بە هەموو خانەکان */
 document.querySelectorAll('input, select').forEach(el => {
   el.addEventListener('input', updateProgress);
 });
@@ -211,7 +192,6 @@ function clearErr(id) {
 const sellForm  = document.getElementById('sellForm');
 const submitBtn = document.getElementById('submitBtn');
 
-/* پشکنینی مۆبایل */
 function isValidPhone(val) {
   return /^[0-9+\s\-()]{7,15}$/.test(val.trim());
 }
@@ -231,17 +211,15 @@ sellForm.addEventListener('submit', function (e) {
   REQUIRED.forEach(({ id, msg }) => {
     const val = document.getElementById(id)?.value.trim();
     if (!val) { showErr(id, msg); valid = false; }
-    else       clearErr(id);
+    else        clearErr(id);
   });
 
-  /* پشکنینی تایبەتی مۆبایل */
   const phoneVal = document.getElementById('phone').value;
   if (phoneVal && !isValidPhone(phoneVal)) {
     showErr('phone', 'ژمارەی مۆبایل دروست نییە');
     valid = false;
   }
 
-  /* پشکنینی نرخ */
   const priceVal = parseFloat(document.getElementById('price').value);
   if (!isNaN(priceVal) && priceVal < 0) {
     showErr('price', 'نرخ نابێت منفی بێت');
@@ -270,15 +248,11 @@ sellForm.addEventListener('submit', function (e) {
   }
 
   if (!valid) {
-    /* ئاستەنگکردنی یەکەمین هەڵەی دیار */
     const firstErr = sellForm.querySelector('.err.show');
-    if (firstErr) {
-      firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+    if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
 
-  /* شبیەی ناردن */
   submitBtn.classList.add('loading');
   submitBtn.disabled = true;
 
@@ -317,17 +291,3 @@ document.getElementById('resetBtn').addEventListener('click', () => {
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
-
-// ── Active Nav Link ──
-const navLinks = document.querySelectorAll('.nav-link');
-
-navLinks.forEach(link => {
-  link.addEventListener('click', function () {
-    navLinks.forEach(l => l.classList.remove('active'));
-    this.classList.add('active');
-  });
-});
-
-
-
-
