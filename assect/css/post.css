@@ -118,7 +118,7 @@
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: 4px; left: 50%;
+  bottom: 3px; left: 50%;
   transform: translateX(-50%) scaleX(0);
   width: 60%; height: 2px;
   background: linear-gradient(90deg, var(--b400), var(--sky));
