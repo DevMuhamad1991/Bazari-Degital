@@ -1,3 +1,41 @@
+/* ===========================
+   ڤاریەبڵەکانی سیستەم
+=========================== */
+:root {
+  --b400: #5db8ff;
+  --b500: #2d8fff;
+  --b600: #1a72e8;
+  --b700: #1058be;
+  --b800: #0a3d85;
+  --b900: #051e45;
+  --sky:     #4fc3f7;
+  --sky-dim: rgba(79, 195, 247, 0.1);
+  --bg:          #04060f;
+  --bg-card:     #080c18;
+  --bg-input:    #0b0f1e;
+  --bg-input-fo: #0e1428;
+  --border:    rgba(45, 143, 255, 0.12);
+  --border-ho: rgba(45, 143, 255, 0.38);
+  --border-fo: rgba(45, 143, 255, 0.8);
+  --tx:   #ddeeff;
+  --tx-2: #7a9bc4;
+  --tx-3: #3d5270;
+  --ok:   #34d399;
+  --err:  #f87171;
+  --warn: #fbbf24;
+  --rad-sm:   8px;
+  --rad-md:   12px;
+  --rad-lg:   18px;
+  --rad-xl:   24px;
+  --rad-full: 999px;
+  --ease:     cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.0, 0, 0.2, 1);
+  --glow:      0 0 0 3px rgba(59, 142, 243, 0.2);
+  --glow-card: 0 8px 40px rgba(59, 142, 243, 0.08);
+  --nav-h:      64px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
  /* ============NAVBAR — چاکkirawey
 ============================== */
 .navbar {
@@ -163,43 +201,7 @@
 
 
 
-/* ===========================
-   ڤاریەبڵەکانی سیستەم
-=========================== */
-:root {
-  --b400: #5db8ff;
-  --b500: #2d8fff;
-  --b600: #1a72e8;
-  --b700: #1058be;
-  --b800: #0a3d85;
-  --b900: #051e45;
-  --sky:     #4fc3f7;
-  --sky-dim: rgba(79, 195, 247, 0.1);
-  --bg:          #04060f;
-  --bg-card:     #080c18;
-  --bg-input:    #0b0f1e;
-  --bg-input-fo: #0e1428;
-  --border:    rgba(45, 143, 255, 0.12);
-  --border-ho: rgba(45, 143, 255, 0.38);
-  --border-fo: rgba(45, 143, 255, 0.8);
-  --tx:   #ddeeff;
-  --tx-2: #7a9bc4;
-  --tx-3: #3d5270;
-  --ok:   #34d399;
-  --err:  #f87171;
-  --warn: #fbbf24;
-  --rad-sm:   8px;
-  --rad-md:   12px;
-  --rad-lg:   18px;
-  --rad-xl:   24px;
-  --rad-full: 999px;
-  --ease:     cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-out: cubic-bezier(0.0, 0, 0.2, 1);
-  --glow:      0 0 0 3px rgba(59, 142, 243, 0.2);
-  --glow-card: 0 8px 40px rgba(59, 142, 243, 0.08);
-  --nav-h:      64px;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+
 
 
 /* ===========================
