@@ -34,21 +34,15 @@
   --glow-card: 0 8px 40px rgba(59, 142, 243, 0.08);
   --nav-h:      64px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ڤاریەبڵی نوێ */
+  --blue:       #2563eb;
+  --accent:     #22d3ee;
+  --text:       #ddeeff;
+  --text-muted: #7a9bc4;
+  --blue-light: #60a5fa;
 }
 
-
-/* =====================================================
-   NAVBAR — چاکسەراوە (RTL + ئایکۆن + ئەنیمەیشن)
-===================================================== */
-
-/* ── ڤاریەبڵەی نوێ کە کەم بوون ── */
-:root {
-  --blue:       #2563eb;   /* بۆ logo-icon gradient */
-  --accent:     #22d3ee;   /* بۆ logo-icon gradient + nav underline */
-  --text:       #ddeeff;   /* بۆ .logo رەنگی دەق */
-  --text-muted: #7a9bc4;   /* بۆ .nav-link رەنگی ئاسایی */
-  --blue-light: #60a5fa;   /* بۆ .nav-link.active */
-}
 
 /* =====================================================
    NAVBAR
@@ -96,7 +90,11 @@
   color: var(--blue-light);
 }
 
-/* FIX 1: --blue و --accent ئێستا تەعریفکراون بۆ ئایکۆن نیشاندان */
+/* ── ناوی لۆگۆ: لاپتۆپ دیارە، موبایل شاراوەتەوە ── */
+.logo-text {
+  display: inline;
+}
+
 .logo-icon {
   width: 38px;
   height: 38px;
@@ -118,7 +116,7 @@
   min-width: 0;
   display: flex;
   align-items: center;
-  overflow: hidden;        /* ← ئەمە بمێنێتەوە بۆ y-axis */
+  overflow: hidden;
 }
 
 /* ── Nav Links ── */
@@ -129,7 +127,7 @@
   list-style: none;
   flex-wrap: nowrap;
   overflow-x: auto;
-  overflow-y: visible;     /* ← بگۆڕە hidden → visible */
+  overflow-y: visible;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding: 0 4px 2px;
@@ -139,7 +137,6 @@
   display: none;
 }
 
-/* ── Nav Link Item ── */
 .nav-links li {
   flex-shrink: 0;
 }
@@ -161,13 +158,12 @@
     box-shadow 0.3s ease;
 }
 
-/* FIX 2: RTL — right بەجێی left بۆ ئەنیمەیشنی خەتی ژێر */
 .nav-link::after {
   content: '';
   position: absolute;
   bottom: 4px;
-  right: 50%; /* ← right بۆ RTL */
-  transform: translateX(50%) scaleX(0); /* ← +50% بۆ RTL */
+  right: 50%;
+  transform: translateX(50%) scaleX(0);
   width: 60%;
   height: 2px;
   background: linear-gradient(90deg, var(--accent), var(--blue-light));
@@ -182,10 +178,9 @@
   box-shadow: 0 4px 16px rgba(37,99,235,0.15);
 }
 
-/* FIX 3: ئەنیمەیشنی active و hover چاکسەراوە */
 .nav-link:hover::after,
 .nav-link.active::after {
-  transform: translateX(50%) scaleX(1); /* ← +50% هاوتای بەرووی */
+  transform: translateX(50%) scaleX(1);
 }
 
 .nav-link.active {
@@ -193,20 +188,20 @@
   background: rgba(59,130,246,0.1);
 }
 
-/* ── Mobile ≤ 640px ── */
+/* ── موبایل ≤ 640px ── */
 @media (max-width: 640px) {
   .nav-container {
     padding: 0 12px;
     gap: 8px;
   }
 
+  /* ناوی لۆگۆ شاراوەتەوە لە موبایل */
   .logo-text {
     display: none;
   }
 
   .nav-links {
     gap: 4px;
-
     -webkit-mask-image: linear-gradient(
       to right,
       transparent 0%,
@@ -214,7 +209,6 @@
       black 92%,
       transparent 100%
     );
-
     mask-image: linear-gradient(
       to right,
       transparent 0%,
@@ -244,7 +238,7 @@
   }
 }
 
-/* ── Very Small ≤ 380px ── */
+/* ── زۆر بچووک ≤ 380px ── */
 @media (max-width: 380px) {
   .logo-icon {
     width: 32px;
@@ -257,10 +251,6 @@
     padding: 6px 10px;
   }
 }
-
-
-
-
 
 
 /* ===========================
