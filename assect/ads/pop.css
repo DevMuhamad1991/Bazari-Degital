@@ -1,1 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
 
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+#ad-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+}
+#ad-overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.ad-card {
+  background: #1a1a2e;
+  border-radius: 22px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.07);
+  transform: scale(0.88) translateY(30px);
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  position: relative;
+}
+#ad-overlay.show .ad-card {
+  transform: scale(1) translateY(0);
+}
+
+.ad-banner {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  display: none;
+}
+.ad-banner.active { display: block; }
+
+.ad-banner .bg-grad {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.ad-banner .brand-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+}
+
+.brand-name {
+  font-size: 28px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  text-align: right;
+}
+.brand-tagline {
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  margin-top: 6px;
+  text-align: right;
+}
+
+.brand-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  padding: 12px 0 4px;
+}
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+  border: none;
+}
+.dot.active {
+  background: #e63946;
+  transform: scale(1.3);
+}
+
+.ad-body {
+  padding: 16px 24px 20px;
+}
+
+.ad-headline {
+  font-size: 17px;
+  font-weight: 700;
+  color: #f0f0f0;
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+.ad-headline span { color: #e63946; }
+
+.features {
+  list-style: none;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #ccc;
+  flex-direction: row-reverse;
+}
+.features li .icon {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: #e63946;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 12px;
+  color: #fff;
+}
+
+.ad-cta-main {
+  display: block;
+  width: 100%;
+  background: linear-gradient(135deg, #e63946, #c1121f);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 14px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 18px rgba(230,57,70,0.35);
+  transition: transform 0.18s, box-shadow 0.18s;
+  margin-bottom: 10px;
+}
+.ad-cta-main:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(230,57,70,0.45);
+}
+
+.ad-cta-close {
+  display: block;
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 12px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ad-cta-close:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.ad-x {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.45);
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 10;
+  transition: background 0.2s;
+  line-height: 1;
+}
+.ad-x:hover { background: rgba(230,57,70,0.7); }
+
+.timer-bar {
+  height: 3px;
+  background: rgba(255,255,255,0.08);
+  position: relative;
+  overflow: hidden;
+}
+.timer-bar-fill {
+  position: absolute;
+  top: 0; right: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #e63946, #ff6b6b);
+  animation: timer-anim 8s linear infinite;
+}
+@keyframes timer-anim {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+
+@media (min-width: 768px) {
+  .ad-card { max-width: 480px; }
+  .ad-banner { height: 230px; }
+  .brand-name { font-size: 32px; }
+  .ad-headline { font-size: 18px; }
+  .features li { font-size: 15px; }
+}
+@media (min-width: 1024px) {
+  .ad-card { max-width: 500px; }
+}
