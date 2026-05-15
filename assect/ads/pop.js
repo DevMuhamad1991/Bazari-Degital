@@ -5,7 +5,7 @@
 // CSS
 const link = document.createElement(‘link’);
 link.rel = ‘stylesheet’;
-link.href = ‘popup-ad.css’;
+link.href = 'assect/ads/pop.css';
 document.head.appendChild(link);
 
 // HTML فەچ بکە و بیخەرە ناو body
