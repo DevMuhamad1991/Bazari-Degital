@@ -9,7 +9,7 @@ link.href = 'assect/ads/pop.css';
 document.head.appendChild(link);
 
 // HTML فەچ بکە و بیخەرە ناو body
-fetch(‘popup-ad.html’)
+fetch('assect/ads/pop.html')
 .then(r => r.text())
 .then(html => {
 const wrapper = document.createElement(‘div’);
