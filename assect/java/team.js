@@ -149,6 +149,50 @@ fetch(base + 'assect/navbar/nav.html')
   nums.forEach((el) => observer.observe(el));
 })();
 
+/* ─────────────────────────────────────────
+   3.  CURSOR GLOW — شوێنی ماوسی موبایل
+       نییە، تەنها دێسکتۆپ
+───────────────────────────────────────── */
+(function initCursorGlow() {
+  if (window.matchMedia('(pointer: coarse)').matches) return; // touch device
+
+  const glow = document.createElement('div');
+  glow.id    = 'cursor-glow';
+  Object.assign(glow.style, {
+    position:      'fixed',
+    width:         '320px',
+    height:        '320px',
+    borderRadius:  '50%',
+    background:    'radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%)',
+    pointerEvents: 'none',
+    zIndex:        '9999',
+    transform:     'translate(-50%,-50%)',
+    transition:    'opacity .4s ease',
+    opacity:       '0',
+    top:           '0',
+    left:          '0',
+  });
+  document.body.appendChild(glow);
+
+  let raf;
+  let mx = 0, my = 0, cx = 0, cy = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mx = e.clientX;
+    my = e.clientY;
+    glow.style.opacity = '1';
+  });
+  document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
+
+  function loop() {
+    cx += (mx - cx) * 0.12;
+    cy += (my - cy) * 0.12;
+    glow.style.left = cx + 'px';
+    glow.style.top  = cy + 'px';
+    raf = requestAnimationFrame(loop);
+  }
+  loop();
+})();
 
 
 
