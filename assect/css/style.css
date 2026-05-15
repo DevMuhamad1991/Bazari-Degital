@@ -442,17 +442,7 @@ body {
 }
 
   
-.hero-visual {
-    position: relative;
-    height: 320px;
-    width: 100%;
-    max-width: 340px;
-    margin: 0 auto ;  /* ← ئەمە بگۆڕە */
-    overflow: visible;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+
 
 
   .central-orb {
