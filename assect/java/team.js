@@ -160,10 +160,10 @@ fetch(base + 'assect/navbar/nav.html')
   glow.id    = 'cursor-glow';
   Object.assign(glow.style, {
     position:      'fixed',
-    width:         '320px',
-    height:        '320px',
+    width:         '520px',
+    height:        '520px',
     borderRadius:  '50%',
-    background:    'radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%)',
+    background:    'radial-gradient(circle, rgba(87,99,535,0.07) 0%, transparent 70%)',
     pointerEvents: 'none',
     zIndex:        '9999',
     transform:     'translate(-50%,-50%)',
