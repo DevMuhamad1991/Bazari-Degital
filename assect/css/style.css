@@ -373,52 +373,6 @@ body {
 
 /* ===== HERO VISUAL ===== */
 /* ===== HERO VISUAL — BASE ===== */
-.hero-visual {
-  flex: 1;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: fadeIn 1s ease 0.5s both;
-  min-width: 260px;
-  height: 480px;
-}
-
-.central-orb {
-  width: 150px; height: 150px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--blue), var(--accent));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 2.8rem; color: white;
-  box-shadow: 0 0 60px rgba(37,99,235,0.55), 0 0 120px rgba(37,99,235,0.2);
-  animation: orbit-pulse 4s ease-in-out infinite;
-  position: relative; z-index: 2;
-}
-
-.floating-card {
-  position: absolute;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 14px 18px;
-  display: flex; flex-direction: column;
-  align-items: center;
-  gap: 5px; text-align: center;
-  min-width: 120px;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-  z-index: 3;
-}
-.floating-card:hover { border-color: var(--border-bright); transform: scale(1.05); }
-.floating-card span  { font-size: 0.74rem; color: var(--text-muted); font-weight: 600; }
-.floating-card strong{ font-size: 0.92rem; color: var(--accent); font-weight: 900; }
-
-
-
-
-/* Desktop */
-.card-1 { top: 50%; left: -10px;  right: auto; animation: float2 5s   ease-in-out infinite; }
-.card-2 { top: 50%; right: -10px; left: auto;  animation: float1 4s   ease-in-out infinite; }
-.card-3 { bottom: 20px; left: 50%; transform: translateX(-50%); animation: float3 4.5s ease-in-out infinite; }
 
 /* Animations */
 @keyframes float1 {
