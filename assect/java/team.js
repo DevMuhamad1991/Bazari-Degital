@@ -77,29 +77,6 @@ fetch(base + 'assect/navbar/nav.html')
 
 
 
-/* ─────────────────────────────────────────
-   1.  AOS — Animate On Scroll (lightweight)
-───────────────────────────────────────── */
-(function initAOS() {
-  const items = document.querySelectorAll('[data-aos]');
-  if (!items.length) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el    = entry.target;
-          const delay = parseInt(el.dataset.aosDelay || 0, 10);
-          setTimeout(() => el.classList.add('aos-animate'), delay);
-          observer.unobserve(el);
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-  );
-
-  items.forEach((el) => observer.observe(el));
-})();
 
 
 
