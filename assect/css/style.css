@@ -447,13 +447,46 @@ body {
   .card-3 { bottom: 10px; }
 }
 
-/* Mobile */
+/* mobile */
 @media (max-width: 640px) {
-  
-    .hero {
+  .hero {
     gap: 20px;
   }
+
+  .hero-visual {
+    position: relative;
+    height: 360px;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .central-orb {
+    width: 100px;
+    height: 100px;
+    font-size: 1.8rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .floating-card {
+    position: absolute;
+    min-width: 110px;
+    padding: 10px 12px;
+    z-index: 3;
+  }
+  .floating-card span  { font-size: 0.66rem; }
+  .floating-card strong{ font-size: 0.82rem; }
+
+  .card-1 { top: 40%; left: -40px;  right: auto; transform: translateY(-50%); }
+  .card-2 { top: 40%; right: -40px; left: auto;  transform: translateY(-50%); }
+  .card-3 { bottom: 10px; left: 50%; top: auto; transform: translateX(-50%); }
 }
+
   
 .hero-visual {
     position: relative;
