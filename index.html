@@ -239,7 +239,19 @@
     </div>
   </footer>
 
-  <script src="assect/ads/pop.js"></script>
+  <script>
+(function(){
+  var o = document.createElement('div');
+  o.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:99999;display:flex;align-items:center;justify-content:center';
+  var b = document.createElement('div');
+  b.style.cssText = 'background:#fff;padding:20px;border-radius:10px;text-align:center';
+  b.innerHTML = '<img src="https://devmuhamad1991.github.io/Bazari-Degital/assect/image/home.jpg" style="width:300px;display:block"><br><button onclick="this.closest(\'div\').parentNode.remove()">داخستن</button>';
+  o.appendChild(b);
+  document.body.appendChild(o);
+})();
+</script>
+
+
   <script src="assect/java/script.js"></script>
 </body>
 </html>
