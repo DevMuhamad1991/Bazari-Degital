@@ -1,295 +1,167 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700;900&display=swap');
+@keyframes ka-fadeIn  { from{opacity:0} to{opacity:1} }
+@keyframes ka-slideUp { from{transform:translateY(40px);opacity:0} to{transform:translateY(0);opacity:1} }
 
-*, *::before, *::after { 
-  box-sizing: border-box; 
-  margin: 0; 
-  padding: 0; 
-}
-
-#ad-overlay {
+#ka-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.72);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  z-index: 9999;
+  background: rgba(0,0,0,.65);
+  backdrop-filter: blur(5px);
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 99999;
   padding: 16px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s ease;
-  font-family: 'Noto Naskh Arabic', sans-serif;
-  direction: rtl;
+  animation: ka-fadeIn .35s ease;
 }
 
-#ad-overlay.show {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.ad-card {
-  background: #1a1a2e;
-  border-radius: 22px;
+#ka-card {
+  background: #1a1a1a;
+  border-radius: 20px;
   overflow: hidden;
   width: 100%;
   max-width: 420px;
-  box-shadow: 0 25px 80px rgba(0,0,0,0.6), 
-              0 0 0 1px rgba(255,255,255,0.07);
-  transform: scale(0.88) translateY(30px);
-  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
-  position: relative;
+  box-shadow: 0 32px 80px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.06);
+  animation: ka-slideUp .4s cubic-bezier(.22,1,.36,1);
+  font-family: 'Noto Kufi Arabic','Cairo',sans-serif;
+  direction: rtl;
 }
 
-#ad-overlay.show .ad-card {
-  transform: scale(1) translateY(0);
-}
-
-.ad-banner {
+#ka-banner {
   position: relative;
-  height: 200px;
+  width: 100%;
+  aspect-ratio: 16/9;
   overflow: hidden;
-  display: none;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
 }
 
-.ad-banner.active { 
-  display: block; 
+#ka-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s ease;
 }
 
-.ad-banner .bg-grad {
+#ka-banner:hover img { transform: scale(1.04); }
+
+#ka-banner-overlay {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.ad-banner .brand-overlay {
-  position: absolute;
-  inset: 0;
+  background: linear-gradient(120deg, rgba(0,0,0,.6) 40%, transparent);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  padding: 20px 24px;
-  background: linear-gradient(
-    135deg, 
-    rgba(0,0,0,0.3) 0%, 
-    rgba(0,0,0,0.6) 100%
-  );
+  padding: 20px 22px;
+  gap: 10px;
 }
 
-.brand-name {
-  font-size: 28px;
-  font-weight: 900;
+#ka-title {
   color: #fff;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
-  letter-spacing: -0.5px;
-  line-height: 1.4;
+  font-size: clamp(15px, 4vw, 21px);
+  font-weight: 900;
+  line-height: 1.45;
   text-align: right;
-  font-family: 'Noto Naskh Arabic', sans-serif;
+  text-shadow: 0 2px 12px rgba(0,0,0,.5);
 }
 
-.brand-tagline {
-  font-size: 14px;
-  color: rgba(255,255,255,0.85);
-  margin-top: 6px;
-  text-align: right;
-  line-height: 1.6;
-  font-family: 'Noto Naskh Arabic', sans-serif;
-}
+#ka-title span { color: #f9ca24; font-style: italic; }
 
-.brand-dots {
-  display: flex;
-  justify-content: center;
-  gap: 7px;
-  padding: 12px 0 4px;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.2);
-  transition: background 0.3s, transform 0.3s;
-  cursor: pointer;
-  border: none;
-}
-
-.dot.active {
-  background: #e63946;
-  transform: scale(1.3);
-}
-
-.ad-body {
-  padding: 16px 24px 20px;
-}
-
-.ad-headline {
-  font-size: 17px;
-  font-weight: 700;
-  color: #f0f0f0;
-  text-align: center;
-  line-height: 1.8;
-  margin-bottom: 14px;
-  font-family: 'Noto Naskh Arabic', sans-serif;
-}
-
-.ad-headline span { 
-  color: #e63946; 
-}
-
-.features {
+#ka-checks {
   list-style: none;
-  margin-bottom: 18px;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 5px;
+  align-items: flex-end;
 }
 
-.features li {
+#ka-checks li {
+  color: #fff;
+  font-size: clamp(11px, 2.5vw, 13px);
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 15px;
-  color: #ccc;
-  flex-direction: row-reverse;
-  font-family: 'Noto Naskh Arabic', sans-serif;
-  line-height: 1.6;
+  gap: 6px;
+  text-shadow: 0 1px 6px rgba(0,0,0,.6);
 }
 
-.features li .icon {
-  width: 22px;
-  height: 22px;
+#ka-checks li::before {
+  content: '✓';
+  background: #27ae60;
+  color: #fff;
   border-radius: 50%;
-  background: #e63946;
+  width: 18px;
+  height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 11px;
   flex-shrink: 0;
-  font-size: 12px;
-  color: #fff;
+  order: 1;
 }
 
-.ad-cta-main {
-  display: block;
-  width: 100%;
-  background: linear-gradient(135deg, #e63946, #c1121f);
-  color: #fff;
-  border: none;
-  border-radius: 14px;
-  padding: 14px;
-  font-family: 'Noto Naskh Arabic', sans-serif;
-  font-size: 17px;
-  font-weight: 700;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  box-shadow: 0 4px 18px rgba(230,57,70,0.35);
-  transition: transform 0.18s, box-shadow 0.18s;
-  margin-bottom: 10px;
-  line-height: 1.6;
+#ka-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 16px 20px;
 }
 
-.ad-cta-main:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(230,57,70,0.45);
-}
-
-.ad-cta-close {
-  display: block;
-  width: 100%;
-  background: rgba(255,255,255,0.06);
-  color: rgba(255,255,255,0.5);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 14px;
-  padding: 12px;
-  font-family: 'Noto Naskh Arabic', sans-serif;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background 0.2s;
-  line-height: 1.6;
-}
-
-.ad-cta-close:hover {
-  background: rgba(255,255,255,0.1);
-  color: #fff;
-}
-
-.ad-x {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.45);
-  border: none;
-  color: #fff;
-  font-size: 18px;
-  cursor: pointer;
+#ka-btn-go {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
-  transition: background 0.2s;
-  line-height: 1;
+  gap: 8px;
+  background: linear-gradient(135deg, #e84393, #c0392b);
+  color: #fff;
+  font-family: inherit;
+  font-size: clamp(15px, 3.5vw, 18px);
+  font-weight: 700;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 24px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .18s, box-shadow .18s, filter .18s;
+  box-shadow: 0 6px 24px rgba(232,67,147,.45);
 }
 
-.ad-x:hover { 
-  background: rgba(230,57,70,0.7); 
+#ka-btn-go:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 32px rgba(232,67,147,.6);
+  filter: brightness(1.08);
 }
 
-.timer-bar {
-  height: 3px;
-  background: rgba(255,255,255,0.08);
-  position: relative;
-  overflow: hidden;
+#ka-btn-go:active { transform: scale(.97); }
+
+#ka-btn-close {
+  background: rgba(255,255,255,.07);
+  color: rgba(255,255,255,.5);
+  font-family: inherit;
+  font-size: clamp(13px, 3vw, 15px);
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 50px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background .18s, color .18s;
 }
 
-.timer-bar-fill {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  background: linear-gradient(90deg, #e63946, #ff6b6b);
-  animation: timer-anim 8s linear infinite;
-}
-
-@keyframes timer-anim {
-  from { 
-    width: 100%; 
-  }
-  to {   
-    width: 0%; 
-  }
+#ka-btn-close:hover {
+  background: rgba(255,255,255,.12);
+  color: rgba(255,255,255,.8);
 }
 
 @media (min-width: 768px) {
-  .ad-card { 
-    max-width: 480px; 
-  }
-
-  .ad-banner { 
-    height: 230px; 
-  }
-
-  .brand-name { 
-    font-size: 32px; 
-  }
-
-  .ad-headline { 
-    font-size: 18px; 
-  }
-
-  .features li { 
-    font-size: 16px; 
-  }
+  #ka-card { max-width: 480px; }
+  #ka-banner-overlay { padding: 28px; gap: 14px; }
+  #ka-actions { padding: 20px 20px 26px; gap: 12px; }
 }
 
 @media (min-width: 1024px) {
-  .ad-card { 
-    max-width: 500px; 
-  }
+  #ka-card { max-width: 540px; }
 }
