@@ -15,7 +15,8 @@ banner.rel = ‘noopener’;
 
 // Image
 var img = document.createElement(‘img’);
-img.src = ‘assect/image/home.jpg’;
+img.src = ‘img.src = 'https://devmuhamad1991.github.io/Bazari-Degital/assect/image/home.jpg';
+’;
 img.alt = ‘Ad’;
 
 // Banner overlay text
