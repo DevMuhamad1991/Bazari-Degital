@@ -3,7 +3,7 @@
 // ١. CSS ڕاستەوخۆ لەناو JS
 const style = document.createElement(‘style’);
 style.textContent = `
-@import url(‘https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700;900&display=swap’);
+
 
 ```
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
