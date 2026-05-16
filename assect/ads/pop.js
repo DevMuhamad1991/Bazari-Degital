@@ -15,7 +15,7 @@ banner.rel = ‘noopener’;
 
 // Image
 var img = document.createElement(‘img’);
-img.src = ‘../image/home.jpg’;
+img.src = ‘assect/image/home.jpg’;
 img.alt = ‘Ad’;
 
 // Banner overlay text
