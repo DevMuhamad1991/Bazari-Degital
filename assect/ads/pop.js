@@ -143,8 +143,8 @@ overlay.innerHTML = `
   <!-- ① ئەم href گۆڕ بۆ بەستەری ریکلامەکەت -->
   <a id="ka-banner" href="https://example.com" target="_blank" rel="noopener">
 
-    <!-- ② وێنەکەت ئێرە: src="assect/image/home.jpg" -->
-    <img src="assect/ads/ad.jpg" alt="ریکلام"
+    <!-- ② وێنەکەت ئێرە: src="../image/home.jpg" -->
+    <img src="../image/home.jpg" alt="ریکلام"
          onerror="this.style.display='none';document.getElementById('ka-banner').style.background='linear-gradient(135deg,#1a472a,#2d6a4f)'" />
 
     <div id="ka-banner-overlay">
