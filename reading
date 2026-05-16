@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>رێتینگ - Kurd Account</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <span class="nav-logo">Kurd Account</span>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#" class="active">Reating</a></li>
+    <li><a href="#">About Team</a></li>
+    <li><a href="#">POST</a></li>
+    <li><a href="#">Market Place</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="rating-hero">
+  <div class="badge-pill"><span class="dot"></span> بەرێوەچوونی رێتینگ - زیندوو</div>
+  <h1 class="hero-title">بۆچی <span>Kurd Account</span><br>هەڵبژاری باشترین؟</h1>
+  <p class="hero-sub">سەدها کارگێڕ و کڕیار ئەزموونی خۆیان هاوبەش کردووە — رووی ئەوانەی بکە کە ئیتر پشت بەستوون</p>
+</section>
+
+<!-- FILTER BAR (hidden) -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterCards('all', this)">هەموو ⭐</button>
+  <button class="filter-btn" onclick="filterCards('5', this)">٥ ئەستێرە 🌟</button>
+  <button class="filter-btn" onclick="filterCards('4', this)">٤ ئەستێرە ✨</button>
+  <button class="filter-btn" onclick="filterCards('gaming', this)">گەیمینگ 🎮</button>
+  <button class="filter-btn" onclick="filterCards('social', this)">سۆشیالمیدیا 📱</button>
+  <button class="filter-btn" onclick="filterCards('stream', this)">ستریمینگ 🎥</button>
+</div>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat-item">
+    <div class="stat-num gold" id="count1">0</div>
+    <div class="stat-label">کۆی رێتینگ</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" id="count2">0</div>
+    <div class="stat-label">مامەڵەکاری بەختیار</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num green" id="count3">0</div>
+    <div class="stat-label">% پشتیوانی دووبارە</div>
+  </div>
+</div>
+
+<!-- CARDS GRID -->
+<div class="reviews-grid" id="cardsGrid">
+
+  <div class="review-card featured" data-cat="gaming social">
+    <div class="quote-icon">"</div>
+    <div class="card-top">
+      <div class="avatar" style="background:linear-gradient(135deg,#1a8cff,#00d4ff);color:#fff">ئ</div>
+      <div class="card-meta">
+        <div class="card-name">ئەحمەد کەریم</div>
+        <div class="card-handle">@ahmed_k · سلێمانی</div>
+      </div>
+      <span class="verified-badge">✔ تأیید کراو</span>
+    </div>
+    <div class="stars">
+      <span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span>
+    </div>
+    <p class="review-text">
+      واقیعاً خزمەتگوزارییەکی نایاب! ئەکاونتی گەیمینگەکەم تا دوای ٤٨ کاتژمێر گەیشت. گرنتیەکەیان سەد لە سەد ڕاستە — هیچ کێشەیەکم نەبوو. تیمەکەیان ٢٤/٧ بەردەست بوون و وەڵامی پرسیارەکانم دەرهێنان.
+    </p>
+    <div class="card-footer">
+      <button class="helpful-btn" onclick="likeCard(this)">👍 کارپێکراو (٤٢)</button>
+      <span class="card-date">١٤ی مایس ٢٠٢٦</span>
+    </div>
+  </div>
+
+  <div class="review-card" data-cat="social">
+    <div class="card-top">
+      <div class="avatar" style="background:linear-gradient(135deg,#c77dff,#7b2ff7);color:#fff">س</div>
+      <div class="card-meta">
+        <div class="card-name">سارا ئەحمەد</div>
+        <div class="card-handle">@sara_a · هەولێر</div>
+      </div>
+      <span class="verified-badge">✔ تأیید کراو</span>
+    </div>
+    <div class="stars">
+      <span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span>
+    </div>
+    <p class="review-text">
+      ئەکاونتی ئینستاگرامەکەم بەخێرایی زۆر گەیشتم. پلاتفۆرمەکە سادەیە و ئاسان. پشتیبانیەکەیان زۆر خۆشمامەڵەن!
+    </p>
+    <div class="card-footer">
+      <button class="helpful-btn" onclick="likeCard(this)">👍 کارپێکراو (٢٨)</button>
+      <span class="card-date">١٢ی مایس ٢٠٢٦</span>
+    </div>
+  </div>
+
+  <div class="review-card" data-cat="stream">
+    <div class="card-top">
+      <div class="avatar" style="background:linear-gradient(135deg,#ffd166,#ff9f1c);color:#06060f">ر</div>
+      <div class="card-meta">
+        <div class="card-name">ڕۆژان نەجەف</div>
+        <div class="card-handle">@rojan_n · کرکووک</div>
+      </div>
+      <span class="verified-badge">✔ تأیید کراو</span>
+    </div>
+    <div class="stars">
+      <span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star empty">★</span>
+    </div>
+    <p class="review-text">
+      ستریمینگ ئەکاونتەکانیان بەرزترین کوالیتین. گەیشتنی ئەکاونت زۆر خێرا بوو، تەنها ئارزوم دەکەم زیاتر جۆرەکانیان بکەنە پێشکەش.
+    </p>
+    <div class="card-footer">
+      <button class="helpful-btn" onclick="likeCard(this)">👍 کارپێکراو (١٧)</button>
+      <span class="card-date">١٠ی مایس ٢٠٢٦</span>
+    </div>
+  </div>
+
+  <div class="review-card" data-cat="gaming">
+    <div class="card-top">
+      <div class="avatar" style="background:linear-gradient(135deg,#06d6a0,#0cb89d);color:#06060f">ه</div>
+      <div class="card-meta">
+        <div class="card-name">هاوار سەلیم</div>
+        <div class="card-handle">@hawar_s · دهۆک</div>
+      </div>
+    </div>
+    <div class="stars">
+      <span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span>
+    </div>
+    <p class="review-text">
+      بەهاوی کڕینم دەکرێت! ئەکاونتی Valorant و Fortnite هەر دووکیانم کڕی. بەدووی کاتژمێرێکدا هەردووکیان گەیشتمە. زۆر سپاسگوزارم!
+    </p>
+    <div class="card-footer">
+      <button class="helpful-btn" onclick="likeCard(this)">👍 کارپێکراو (٣٣)</button>
+      <span class="card-date">٩ی مایس ٢٠٢٦</span>
+    </div>
+  </div>
+
+  <div class="review-card" data-cat="social">
+    <div class="card-top">
+      <div class="avatar" style="background:linear-gradient(135deg,#ef476f,#c1121f);color:#fff">ب</div>
+      <div class="card-meta">
+        <div class="card-name">بینا ئیسماعیل</div>
+        <div class="card-handle">@bina_i · زاخۆ</div>
+      </div>
+      <span class="verified-badge">✔ تأیید کراو</span>
+    </div>
+    <div class="stars">
+      <span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span><span class="star full">★</span>
+    </div>
+    <p class="review-text">
+      پلاتفۆرمێکی پشت پێ بەستراو. ئەکاونتی تیک تاکی کارەکەم گەیشتم و ئیتا بەکاری دەهێنم. پشتیبانیەکەیان لە ژوورەوە کردوون.
+    </p>
+    <div class="card-footer">
+      <button class="helpful-btn" onclick="likeCard(this)">👍 کارپێکراو (٢١)</button>
+      <span class="card-date">٧ی مایس ٢٠٢٦</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- WRITE REVIEW -->
+<div class="write-review">
+  <div class="write-card">
+    <h2 class="write-title">رێتینگی خۆت بنووسە ⭐</h2>
+    <p class="write-sub">ئەزموونی خۆت هاوبەش بکە و بەکری کڕیارانی تر بیت</p>
+    <div class="star-selector" id="starSel">
+      <span onclick="setStars(1)">★</span>
+      <span onclick="setStars(2)">★</span>
+      <span onclick="setStars(3)">★</span>
+      <span onclick="setStars(4)">★</span>
+      <span onclick="setStars(5)">★</span>
+    </div>
+    <textarea class="write-input" rows="4" placeholder="ئەزموونی خۆت بنووسە..."></textarea>
+    <button class="submit-btn" onclick="submitReview()">🚀 ناردنی رێتینگ</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="main.js"></script>
+</body>
+</html>
