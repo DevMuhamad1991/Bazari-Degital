@@ -50,28 +50,6 @@ body::after {
 
 .particles { display: none; }
 
-/* ── NAVBAR ── */
-nav {
-  position: sticky; top: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 40px;
-  background: rgba(6,13,31,0.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-logo { font-size: 1.3rem; font-weight: 900; color: var(--accent2); letter-spacing: 1px; }
-.nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a {
-  color: var(--muted); text-decoration: none; font-size: 0.95rem; font-weight: 500;
-  transition: color .25s;
-  position: relative;
-}
-.nav-links a.active { color: var(--text); }
-.nav-links a.active::after {
-  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
-  height: 2px; background: var(--accent); border-radius: 2px;
-}
-.nav-links a:hover { color: var(--accent2); }
 
 /* ── HERO ── */
 .rating-hero {
@@ -116,27 +94,6 @@ nav {
 /* ── FILTERS HIDDEN ── */
 .filter-bar { display: none; }
 
-/* ── STATS ROW ── */
-.stats-row {
-  position: relative; z-index: 1;
-  display: flex; justify-content: center; gap: 0;
-  max-width: 700px; margin: 0 auto 52px;
-  border-radius: 8px; overflow: hidden;
-  border: 1px solid var(--border);
-  background: rgba(12,26,53,0.7);
-  backdrop-filter: blur(10px);
-  animation: fadeDown 1s .4s ease both;
-}
-.stat-item {
-  flex: 1; padding: 22px 12px;
-  text-align: center;
-  border-left: 1px solid var(--border);
-}
-.stat-item:last-child { border-left: none; }
-.stat-num { font-size: 1.9rem; font-weight: 900; color: var(--accent); }
-.stat-num.gold  { color: var(--gold); }
-.stat-num.green { color: var(--green); }
-.stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
 
 /* ── REVIEW CARDS ── */
 .reviews-grid {
