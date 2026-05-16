@@ -499,7 +499,7 @@ body::before {
    دوگمەی ناردن
 =========================== */
 .submit-btn {
-  width: 100%; padding: 15px 20px; border: none; border-radius: var(--rad-lg);
+  width: 75%; padding: 15px 20px; border: none; border-radius: var(--rad-lg);
   background: linear-gradient(135deg, #1a72e8 0%, #2d8fff 60%, #4fc3f7 100%);
   color: #fff; font-family: 'Noto Kufi Arabic', sans-serif; font-size: 15px; font-weight: 700;
   cursor: pointer; position: relative; overflow: hidden;
