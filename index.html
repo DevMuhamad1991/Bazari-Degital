@@ -241,42 +241,67 @@
 
 <script>
 (function(){
+  // ── زیادکردنی ریکلامەکانت ئێرە ──
+  var ads = [
+    {
+      img: 'https://devmuhamad1991.github.io/Bazari-Degital/assect/image/home.jpg',
+      title: 'باوەڕپێکراوترین سایتی گرەو<br>لە کوردستان <span style="color:#f9ca24">AryanBet</span>',
+      checks: ['✅ 100% کاشباکی وەرشی','✅ تا وەکو 20% کاشباکی هەفتانە','✅ تا وەکو 30% پۆینتی زیادە'],
+      link: 'https://example.com'
+    },
+    {
+      img: 'https://devmuhamad1991.github.io/Bazari-Degital/assect/image/home.jpg',
+      title: 'باشترین شوێن بۆ کرین و فرۆشتن<br><span style="color:#f9ca24">Kurd Account</span>',
+      checks: ['✅ گەرەنتی تەواو','✅ پارەگەڕانەوە لە ١٢ کاتژمێردا','✅ زیاتر لە ٥٠٠٠ ئەکاونت'],
+      link: 'https://example.com'
+    },
+    {
+      img: 'https://devmuhamad1991.github.io/Bazari-Degital/assect/image/home.jpg',
+      title: 'ئەکاونتی پریمیەم بکرە<br><span style="color:#f9ca24">بە نرخی گونجاو</span>',
+      checks: ['✅ Netflix، Spotify، Steam','✅ گەرەنتی ١٠٠%','✅ گەیاندنی فەوری'],
+      link: 'https://example.com'
+    }
+  ];
+
+  // random یەکێک هەڵبژێرە
+  var ad = ads[Math.floor(Math.random() * ads.length)];
+
   var o = document.createElement('div');
   o.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(5px);z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px';
-  
+
   var c = document.createElement('div');
   c.style.cssText = 'background:#1a1a1a;border-radius:20px;overflow:hidden;width:100%;max-width:420px;direction:rtl;font-family:Noto Kufi Arabic,Cairo,sans-serif';
-  
+
   var a = document.createElement('a');
-  a.href = 'https://example.com';
+  a.href = ad.link;
   a.target = '_blank';
   a.style.cssText = 'display:block;position:relative;cursor:pointer';
-  
+
   var img = document.createElement('img');
-  img.src = 'https://devmuhamad1991.github.io/Bazari-Degital/assect/image/home.jpg';
+  img.src = ad.img;
   img.style.cssText = 'width:100%;display:block;aspect-ratio:16/9;object-fit:cover';
-  
-  var overlay = document.createElement('div');
-  overlay.style.cssText = 'position:absolute;inset:0;background:linear-gradient(120deg,rgba(0,0,0,.6) 40%,transparent);display:flex;flex-direction:column;justify-content:center;align-items:flex-end;padding:20px;gap:8px';
-  overlay.innerHTML = '<div style="color:#fff;font-size:clamp(14px,4vw,20px);font-weight:900;text-align:right;line-height:1.4">باوەڕپێکراوترین سایتی گرەو<br>لە کوردستان <span style="color:#f9ca24">YourBrand</span></div><ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;align-items:flex-end"><li style="color:#fff;font-size:12px;font-weight:600">✅ 100% کاشباکی وەرشی</li><li style="color:#fff;font-size:12px;font-weight:600">✅ تا وەکو 20% کاشباکی هەفتانە</li><li style="color:#fff;font-size:12px;font-weight:600">✅ تا وەکو 30% پۆینتی زیادە</li></ul>';
-  
+
+  var ov = document.createElement('div');
+  ov.style.cssText = 'position:absolute;inset:0;background:linear-gradient(120deg,rgba(0,0,0,.6) 40%,transparent);display:flex;flex-direction:column;justify-content:center;align-items:flex-end;padding:20px;gap:8px';
+  ov.innerHTML = '<div style="color:#fff;font-size:clamp(14px,4vw,20px);font-weight:900;text-align:right;line-height:1.4">' + ad.title + '</div><ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;align-items:flex-end">' + ad.checks.map(function(t){ return '<li style="color:#fff;font-size:12px;font-weight:600">'+t+'</li>'; }).join('') + '</ul>';
+
   a.appendChild(img);
-  a.appendChild(overlay);
-  
+  a.appendChild(ov);
+
   var btns = document.createElement('div');
   btns.style.cssText = 'display:flex;flex-direction:column;gap:10px;padding:14px';
-  
+
   var btnGo = document.createElement('a');
-  btnGo.href = 'https://example.com';
+  btnGo.href = ad.link;
   btnGo.target = '_blank';
   btnGo.textContent = 'بینینی زیاتر ←';
   btnGo.style.cssText = 'display:block;text-align:center;background:linear-gradient(135deg,#e84393,#c0392b);color:#fff;font-family:inherit;font-size:16px;font-weight:700;border-radius:50px;padding:13px;text-decoration:none';
-  
+
   var btnX = document.createElement('button');
   btnX.textContent = 'داخستن';
   btnX.style.cssText = 'background:rgba(255,255,255,.07);color:rgba(255,255,255,.5);font-family:inherit;font-size:14px;border:1px solid rgba(255,255,255,.1);border-radius:50px;padding:11px;cursor:pointer;width:100%';
   btnX.onclick = function(){ o.remove(); };
-  
+
   btns.appendChild(btnGo);
   btns.appendChild(btnX);
   c.appendChild(a);
@@ -286,6 +311,7 @@
   document.body.appendChild(o);
 })();
 </script>
+
 
 
 
