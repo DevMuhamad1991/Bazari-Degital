@@ -7,7 +7,7 @@ fetch(base + 'assect/navbar/nav.html')
 
     // Active link
     const navLinks = document.querySelectorAll('.nav-link');
-    const currentPage = window.location.pathname.split('/').pop() || 'read.html';
+const currentPage = window.location.pathname.split('/').pop() || 'read.html';
     navLinks.forEach(link => {
       if (link.getAttribute('href') === currentPage) {
         link.classList.add('active');
