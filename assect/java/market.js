@@ -1,4 +1,4 @@
-// دۆخی سڵایدەکانconst st = {};const st = {};
+// دۆخی سڵایدەکانconst st = {};const st =const st = {};
 
 // ── گۆڕینی سڵاید ──
 function go(id, idx) {
@@ -33,38 +33,65 @@ document.querySelectorAll('.dot').forEach(el => {
   });
 });
 
-// ── تاچ + ماوس سوايپ ──
+// ── تاچ + ماوس  (سوايپ + تاپ بۆ مۆداڵ) ──
 document.querySelectorAll('.img-wrap').forEach(wrap => {
   const id = wrap.id.replace('-wrap', '');
   st[id] = 0;
-  let sx = 0, dragging = false;
 
-  // تاچ (مۆبايل)
+  let startX = 0;
+  let moved  = false;
+
+  /* ───── مۆبايل (تاچ) ───── */
   wrap.addEventListener('touchstart', e => {
-    sx = e.touches[0].clientX;
+    startX = e.touches[0].clientX;
+    moved  = false;
+  }, { passive: true });
+
+  wrap.addEventListener('touchmove', e => {
+    if (Math.abs(e.touches[0].clientX - startX) > 8) moved = true;
   }, { passive: true });
 
   wrap.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - sx;
-    const n  = document.getElementById(id + '-slides').children.length;
-    if (dx < -40 && st[id] < n - 1) go(id, st[id] + 1);
-    if (dx >  40 && st[id] > 0)     go(id, st[id] - 1);
+    const dx = e.changedTouches[0].clientX - startX;
+    if (!moved) {
+      // تاپ → مۆداڵ بكرێتەوە
+      openModal(id);
+    } else {
+      const n = document.getElementById(id + '-slides').children.length;
+      if (dx < -40 && st[id] < n - 1) go(id, st[id] + 1);
+      if (dx >  40 && st[id] > 0)     go(id, st[id] - 1);
+    }
   }, { passive: true });
 
-  // ماوس (دێسكتۆپ)
+  /* ───── دێسكتۆپ (ماوس) ───── */
   wrap.addEventListener('mousedown', e => {
-    sx = e.clientX;
-    dragging = true;
+    if (e.target.closest('.arr') || e.target.closest('.dot')) return;
+    startX = e.clientX;
+    moved  = false;
+    wrap.style.userSelect = 'none';
   });
+
+  wrap.addEventListener('mousemove', e => {
+    if (Math.abs(e.clientX - startX) > 8) moved = true;
+  });
+
   wrap.addEventListener('mouseup', e => {
-    if (!dragging) return;
-    dragging = false;
-    const dx = e.clientX - sx;
-    const n  = document.getElementById(id + '-slides').children.length;
-    if (dx < -40 && st[id] < n - 1) go(id, st[id] + 1);
-    if (dx >  40 && st[id] > 0)     go(id, st[id] - 1);
+    if (e.target.closest('.arr') || e.target.closest('.dot')) return;
+    wrap.style.userSelect = '';
+    const dx = e.clientX - startX;
+    if (!moved) {
+      // كليك ئاسايى → مۆداڵ بكرێتەوە
+      openModal(id);
+    } else {
+      const n = document.getElementById(id + '-slides').children.length;
+      if (dx < -40 && st[id] < n - 1) go(id, st[id] + 1);
+      if (dx >  40 && st[id] > 0)     go(id, st[id] - 1);
+    }
   });
-  wrap.addEventListener('mouseleave', () => { dragging = false; });
+
+  wrap.addEventListener('mouseleave', () => {
+    wrap.style.userSelect = '';
+  });
 });
 
 // ── مۆداڵ ──
@@ -74,42 +101,34 @@ const modalDots   = document.getElementById('modalDots');
 let curCard = null;
 let curIdx  = 0;
 
-// كليك لە img-wrap بۆ كردنەوەى مۆداڵ
-document.querySelectorAll('.img-wrap').forEach(wrap => {
-  wrap.addEventListener('click', e => {
-    // ئەگەر كليك لە دوگمەى ئارۆ بوو، مۆداڵ نەكرێتەوە
-    if (e.target.classList.contains('arr') || e.target.classList.contains('dot')) return;
+function openModal(id) {
+  const srcSlides = Array.from(
+    document.getElementById(id + '-slides').children
+  );
 
-    const id = wrap.id.replace('-wrap', '');
-    const srcSlides = Array.from(
-      document.getElementById(id + '-slides').children
-    );
+  modalSlides.innerHTML = '';
+  modalDots.innerHTML   = '';
 
-    modalSlides.innerHTML = '';
-    modalDots.innerHTML   = '';
+  srcSlides.forEach((slide, i) => {
+    const clone = slide.cloneNode(true);
+    clone.classList.add('modal-slide');
+    modalSlides.appendChild(clone);
 
-    srcSlides.forEach((slide, i) => {
-      // كلۆنى سڵايد
-      const clone = slide.cloneNode(true);
-      clone.classList.add('modal-slide');
-      modalSlides.appendChild(clone);
-
-      // خاڵى مۆداڵ
-      const dot = document.createElement('div');
-      dot.className = 'modal-dot' + (i === (st[id] || 0) ? ' on' : '');
-      dot.addEventListener('click', ev => {
-        ev.stopPropagation();
-        goModal(i);
-      });
-      modalDots.appendChild(dot);
+    const dot = document.createElement('div');
+    dot.className = 'modal-dot' + (i === (st[id] || 0) ? ' on' : '');
+    dot.addEventListener('click', ev => {
+      ev.stopPropagation();
+      goModal(i);
     });
-
-    curCard = id;
-    curIdx  = st[id] || 0;
-    goModal(curIdx);
-    modal.classList.add('show');
+    modalDots.appendChild(dot);
   });
-});
+
+  curCard = id;
+  curIdx  = st[id] || 0;
+  goModal(curIdx);
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
 
 function goModal(idx) {
   const n = modalSlides.children.length;
@@ -118,6 +137,11 @@ function goModal(idx) {
   modalSlides.style.transform = `translateX(-${idx * 100}%)`;
   modalDots.querySelectorAll('.modal-dot')
     .forEach((d, i) => d.classList.toggle('on', i === idx));
+}
+
+function closeModal() {
+  modal.classList.remove('show');
+  document.body.style.overflow = '';
 }
 
 // دوگمەى ئارۆى مۆداڵ
@@ -130,15 +154,13 @@ document.getElementById('modalNext').addEventListener('click', e => {
   goModal(curIdx + 1);
 });
 
-// داخستنى مۆداڵ
-document.getElementById('closeModal').addEventListener('click', () => {
-  modal.classList.remove('show');
-});
+// داخستن
+document.getElementById('closeModal').addEventListener('click', closeModal);
 modal.addEventListener('click', e => {
-  if (e.target === modal) modal.classList.remove('show');
+  if (e.target === modal) closeModal();
 });
 
-// سوايپ لە ناو مۆداڵ (مۆبايل)
+// سوايپى مۆبايل لە ناو مۆداڵ
 let msx = 0;
 modalSlides.addEventListener('touchstart', e => {
   msx = e.touches[0].clientX;
@@ -148,7 +170,7 @@ modalSlides.addEventListener('touchend', e => {
   if (Math.abs(dx) > 50) goModal(dx < 0 ? curIdx + 1 : curIdx - 1);
 }, { passive: true });
 
-// ماوس سوايپ لە ناو مۆداڵ (دێسكتۆپ)
+// ماوس سوايپ لە ناو مۆداڵ
 let mdragging = false, mmsx = 0;
 modalSlides.addEventListener('mousedown', e => { mmsx = e.clientX; mdragging = true; });
 modalSlides.addEventListener('mouseup', e => {
@@ -164,13 +186,13 @@ document.addEventListener('keydown', e => {
   if (!modal.classList.contains('show')) return;
   if (e.key === 'ArrowLeft')  goModal(curIdx + 1);
   if (e.key === 'ArrowRight') goModal(curIdx - 1);
-  if (e.key === 'Escape')     modal.classList.remove('show');
+  if (e.key === 'Escape')     closeModal();
 });
 
 // ── كڕين — واتساپ ──
 function buyProduct(name, price) {
   if (confirm(`تۆ دەتەوێت "${name}" بە $${price} بكڕيت؟`)) {
-    const phone   = "964XXXXXXXXX"; // ژمارەى واتساپت لێرە بنوسە
+    const phone   = "964XXXXXXXXX";
     const message = encodeURIComponent(
       `سڵاو، من حەز بە كڕينى ${name} بە $${price} دەكەم`
     );
