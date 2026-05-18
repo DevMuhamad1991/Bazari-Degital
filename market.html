@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="ckb" dir="rtl">
+<html lang="ku" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KurdAccount - ماركێت پلەيس</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="assect/css/market.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kurd Account — Market Place</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="assect/css/style.css"/>
+  <link rel="stylesheet" href="assect/css/market.css"/>
 </head>
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar" id="navbar">
+  <nav class="navbar">
     <div class="nav-container">
-      <a href="index.html" class="logo-nav">
-        <i class="fa-solid fa-shield-halved"></i>
-        Kurd<span>Account</span>
+      <a href="index.html" class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-shield-halved"></i></span>
+        <span class="logo-text">Kurd<span class="accent">Account</span></span>
       </a>
       <ul class="nav-links">
         <li><a href="market.html" class="nav-link active">Market Place</a></li>
@@ -27,306 +30,313 @@
   </nav>
 
   <!-- HERO -->
-  <div class="hero">
-    <div class="hero-title">ماركێت پلەيس 🛒</div>
-    <div class="hero-sub">بەئێزترين پلاتفۆرم بۆ كڕين و فرۆشتنى ئەكاونتى ديجيتاڵ</div>
+  <div class="market-hero">
+    <h1>🛒 مارکەت پلەیس</h1>
+    <p>هەمووجۆرە ئەکاونت — گەیمینگ، سۆشیالمیدیا، ستریمینگ و زیاتر</p>
   </div>
 
-  <div class="container">
+  <!-- LAYOUT -->
+  <div class="market-layout container">
 
-    <!-- SEARCH -->
-    <div class="search-wrap">
-      <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input type="text" placeholder="گەران بەدواى ئەكاونتدا...">
-      </div>
-    </div>
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar">
 
-    <!-- CATEGORY CHIPS -->
-    <div class="chips-scroll">
-      <div class="chips" id="cat-chips">
-        <div class="chip active-blue">هەموو</div>
-        <div class="chip">🎮 گەيمنگ</div>
-        <div class="chip">📱 سۆشياڵ</div>
-        <div class="chip">🎬 ستريمنگ</div>
-        <div class="chip">🛡 ڤيپيئن</div>
-        <div class="chip">🎵 موزيك</div>
-      </div>
-    </div>
-
-    <!-- SORT CHIPS -->
-    <div class="chips-scroll" style="padding-bottom:14px">
-      <div class="chips" id="sort-chips">
-        <div class="chip active-green">نوێترين</div>
-        <div class="chip">ئارزانترين</div>
-        <div class="chip">گرانترين</div>
-        <div class="chip">هەڵسەنگاندن</div>
-      </div>
-    </div>
-
-    <!-- RESULTS ROW -->
-    <div class="results-row">
-      <div class="results-lbl">ئەنجامەكان</div>
-      <div class="results-badge">6 ئەكاونت</div>
-    </div>
-
-    <!-- CARDS -->
-    <div class="cards">
-
-      <div class="card" data-product="NordVPN 2 ساڵ" data-price="18">
-        <div class="img-wrap" id="c1-wrap">
-          <div class="slides" id="c1-slides">
-            <div class="slide bg0">🔒</div>
-            <div class="slide bg1">🌍</div>
-            <div class="slide bg2">🛡️</div>
-          </div>
-          <button class="arr arr-l" data-c="c1" data-dir="-1">&#8249;</button>
-          <button class="arr arr-r" data-c="c1" data-dir="1">&#8250;</button>
-          <div class="dot-strip" id="c1-dots">
-            <div class="dot on" data-c="c1" data-i="0"></div>
-            <div class="dot"    data-c="c1" data-i="1"></div>
-            <div class="dot"    data-c="c1" data-i="2"></div>
-          </div>
+      <!-- گەڕان -->
+      <div class="sidebar-box">
+        <div class="sidebar-title"><i class="fa-solid fa-magnifying-glass"></i> گەڕان</div>
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass" style="color:#3a5580"></i>
+          <input type="text" placeholder="ناوی ئەکاونت..."/>
         </div>
-        <div class="card-body">
-          <span class="card-tag">🛡 ڤيپيئن · ٦ نامێر · تيمى</span>
-          <div class="card-title">NordVPN 2 ساڵ</div>
-          <div class="card-desc">پاريزگاى ئينتەرنێت لە ٥٠٠٠+ سێرفەر لە ٦٠ وڵات، Kill Switch و DNS لیك پارێزراو.</div>
-          <div class="stars">
-            <span class="r-cnt">(67)</span>
-            <span class="star-ico">★★★★★</span>
-            <span class="r-num">4.9</span>
-          </div>
-          <button class="buy-btn">
-            <div class="price-side"><span class="p-now">$18</span><span class="p-old">$24</span></div>
-            <div class="btn-right">
-              <div class="btn-label"><span class="btn-title">ئۆردەر بدە</span><span class="btn-sub">زوو دەگات</span></div>
-              <div class="btn-icon">🛒</div>
+      </div>
+
+      <!-- کاتێگۆری -->
+      <div class="sidebar-box">
+        <div class="sidebar-title"><i class="fa-solid fa-layer-group"></i> جۆر</div>
+        <button class="sb-chip active" data-filter="all">🔷 هەموویان</button>
+        <button class="sb-chip" data-filter="gaming"><i class="fa-solid fa-gamepad"></i> گەیمینگ</button>
+        <button class="sb-chip" data-filter="social"><i class="fa-solid fa-hashtag"></i> سۆشیال میدیا</button>
+        <button class="sb-chip" data-filter="streaming"><i class="fa-solid fa-tv"></i> ستریمینگ</button>
+        <button class="sb-chip" data-filter="education"><i class="fa-solid fa-graduation-cap"></i> فێرکاری</button>
+      </div>
+
+      <!-- ریزکردن -->
+      <div class="sidebar-box">
+        <div class="sidebar-title"><i class="fa-solid fa-arrow-up-wide-short"></i> ریزکردن بە نرخ</div>
+        <button class="sb-chip sort-active" data-sort="none">⬜ بێ ریزکردن</button>
+        <button class="sb-chip" data-sort="desc">💰 گرانترین</button>
+        <button class="sb-chip" data-sort="asc">🟢 هەرزانترین</button>
+      </div>
+
+    </aside>
+
+    <!-- ── MAIN ── -->
+    <div class="market-main">
+
+      <!-- ژمارەی ئەنجام -->
+      <div class="results-row">
+        <span class="results-lbl">ئەنجامەکان</span>
+        <span class="results-badge" id="results-count">6</span>
+      </div>
+
+      <!-- CARDS -->
+      <div class="cards">
+
+        <!-- کارتی ١ - گەیمینگ -->
+        <div class="card" data-product="Steam Account" data-price="12.00" data-category="gaming">
+          <div class="img-wrap" id="c1-wrap">
+            <div class="slides" id="c1-slides">
+              <div class="slide bg0"><i class="fa-brands fa-steam" style="font-size:80px;color:#4d8bff"></i></div>
+              <div class="slide bg1"><i class="fa-solid fa-gamepad" style="font-size:80px;color:#7ba0c0"></i></div>
+              <div class="slide bg2"><i class="fa-solid fa-trophy" style="font-size:80px;color:#ffd700"></i></div>
             </div>
-          </button>
-        </div>
-      </div>
-
-      <div class="card" data-product="Xbox Game Pass Ultimate" data-price="14">
-        <div class="img-wrap" id="c2-wrap">
-          <div class="slides" id="c2-slides">
-            <div class="slide bg0">🎮</div>
-            <div class="slide bg1">🕹️</div>
-          </div>
-          <button class="arr arr-l" data-c="c2" data-dir="-1">&#8249;</button>
-          <button class="arr arr-r" data-c="c2" data-dir="1">&#8250;</button>
-          <div class="dot-strip" id="c2-dots">
-            <div class="dot on" data-c="c2" data-i="0"></div>
-            <div class="dot"    data-c="c2" data-i="1"></div>
-          </div>
-        </div>
-        <div class="card-body">
-          <span class="card-tag">🎮 گەيمنگ · PC + Console · ٣ مانگ</span>
-          <div class="card-title">Xbox Game Pass Ultimate</div>
-          <div class="card-desc">دەستگەيشتن بە زياتر لە ١٠٠ يارى بۆ Xbox و PC، EA Play و يارىكردنى ئەبرى.</div>
-          <div class="stars">
-            <span class="r-cnt">(91)</span>
-            <span class="star-ico">★★★★★</span>
-            <span class="r-num">4.8</span>
-          </div>
-          <button class="buy-btn">
-            <div class="price-side"><span class="p-now">$14</span><span class="p-old">$20</span></div>
-            <div class="btn-right">
-              <div class="btn-label"><span class="btn-title">ئۆردەر بدە</span><span class="btn-sub">زوو دەگات</span></div>
-              <div class="btn-icon">🛒</div>
+            <button class="arr arr-l" data-c="c1" data-dir="-1">&#8250;</button>
+            <button class="arr arr-r" data-c="c1" data-dir="1">&#8249;</button>
+            <div class="dot-strip" id="c1-dots">
+              <div class="dot on" data-c="c1" data-i="0"></div>
+              <div class="dot"    data-c="c1" data-i="1"></div>
+              <div class="dot"    data-c="c1" data-i="2"></div>
             </div>
-          </button>
-        </div>
-      </div>
-
-      <div class="card" data-product="Netflix Premium" data-price="22">
-        <div class="img-wrap" id="c3-wrap">
-          <div class="slides" id="c3-slides">
-            <div class="slide bg0">🎬</div>
-            <div class="slide bg1">📺</div>
-            <div class="slide bg2">🍿</div>
           </div>
-          <button class="arr arr-l" data-c="c3" data-dir="-1">&#8249;</button>
-          <button class="arr arr-r" data-c="c3" data-dir="1">&#8250;</button>
-          <div class="dot-strip" id="c3-dots">
-            <div class="dot on" data-c="c3" data-i="0"></div>
-            <div class="dot"    data-c="c3" data-i="1"></div>
-            <div class="dot"    data-c="c3" data-i="2"></div>
-          </div>
-        </div>
-        <div class="card-body">
-          <span class="card-tag">🎬 ستريمنگ · ١ ساڵ · شەخسى</span>
-          <div class="card-title">Netflix Premium</div>
-          <div class="card-desc">چوار شاشە لەيەكدا، كوالێتى 4K+HDR، بە هەموو فيلم و زنجيرەفيلمەكان.</div>
-          <div class="stars">
-            <span class="r-cnt">(134)</span>
-            <span class="star-ico">★★★★★</span>
-            <span class="r-num">4.7</span>
-          </div>
-          <button class="buy-btn">
-            <div class="price-side"><span class="p-now">$22</span><span class="p-old">$30</span></div>
-            <div class="btn-right">
-              <div class="btn-label"><span class="btn-title">ئۆردەر بدە</span><span class="btn-sub">زوو دەگات</span></div>
-              <div class="btn-icon">🛒</div>
+          <div class="card-body">
+            <span class="card-tag">گەیمینگ</span>
+            <div class="card-title">Steam Account</div>
+            <div class="card-desc">ئەکاونتی ستیم بە گەیمی زۆر — لەوەل ٥٠٠٠+ کاتژمێر گەیم</div>
+            <div class="stars">
+              <span class="star-ico"><i class="fa-solid fa-star"></i></span>
+              <span class="r-num">4.8</span>
+              <span class="r-cnt">(٢٣ کڕیار)</span>
             </div>
-          </button>
+            <button class="buy-btn">
+              <div class="btn-right">
+                <div class="btn-icon"><i class="fa-brands fa-steam"></i></div>
+                <div class="btn-label">
+                  <span class="btn-title">بکرە ئێستا</span>
+                  <span class="btn-sub">گەرەنتی ١٢ کاتژمێر</span>
+                </div>
+              </div>
+              <div class="price-side">
+                <span class="p-now">$12.00</span>
+                <span class="p-old">$18.00</span>
+              </div>
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="card" data-product="Spotify Premium" data-price="8">
-        <div class="img-wrap" id="c4-wrap">
-          <div class="slides" id="c4-slides">
-            <div class="slide bg0">🎵</div>
-            <div class="slide bg1">🎧</div>
-          </div>
-          <button class="arr arr-l" data-c="c4" data-dir="-1">&#8249;</button>
-          <button class="arr arr-r" data-c="c4" data-dir="1">&#8250;</button>
-          <div class="dot-strip" id="c4-dots">
-            <div class="dot on" data-c="c4" data-i="0"></div>
-            <div class="dot"    data-c="c4" data-i="1"></div>
-          </div>
-        </div>
-        <div class="card-body">
-          <span class="card-tag">🎵 موزيك · ٦ مانگ · شەخسى</span>
-          <div class="card-title">Spotify Premium</div>
-          <div class="card-desc">گوێگرتن بەبێ ئاگەدار، داگرتنى ئۆفلاين و كوالێتى دەنگى بەرز بەبێ بڕين.</div>
-          <div class="stars">
-            <span class="r-cnt">(88)</span>
-            <span class="star-ico">★★★★☆</span>
-            <span class="r-num">4.5</span>
-          </div>
-          <button class="buy-btn">
-            <div class="price-side"><span class="p-now">$8</span><span class="p-old">$12</span></div>
-            <div class="btn-right">
-              <div class="btn-label"><span class="btn-title">ئۆردەر بدە</span><span class="btn-sub">زوو دەگات</span></div>
-              <div class="btn-icon">🛒</div>
+        <!-- کارتی ٢ - ستریمینگ -->
+        <div class="card" data-product="Netflix Premium" data-price="8.50" data-category="streaming">
+          <div class="img-wrap" id="c2-wrap">
+            <div class="slides" id="c2-slides">
+              <div class="slide bg0"><i class="fa-brands fa-netflix" style="font-size:80px;color:#e50914"></i></div>
+              <div class="slide bg1"><i class="fa-solid fa-film" style="font-size:80px;color:#7ba0c0"></i></div>
             </div>
-          </button>
-        </div>
-      </div>
-
-      <div class="card" data-product="TikTok Creator Pro" data-price="35">
-        <div class="img-wrap" id="c5-wrap">
-          <div class="slides" id="c5-slides">
-            <div class="slide bg0">📱</div>
-            <div class="slide bg1">💬</div>
-          </div>
-          <button class="arr arr-l" data-c="c5" data-dir="-1">&#8249;</button>
-          <button class="arr arr-r" data-c="c5" data-dir="1">&#8250;</button>
-          <div class="dot-strip" id="c5-dots">
-            <div class="dot on" data-c="c5" data-i="0"></div>
-            <div class="dot"    data-c="c5" data-i="1"></div>
-          </div>
-        </div>
-        <div class="card-body">
-          <span class="card-tag">📱 سۆشياڵ · تيك تۆك · ١ مانگ</span>
-          <div class="card-title">TikTok Creator Pro</div>
-          <div class="card-desc">ئەكاونتى ڤيريفايد كراو بە فۆلۆوەرى زياد و دەستگەيشتن بە ئامرازى كرياتەر.</div>
-          <div class="stars">
-            <span class="r-cnt">(42)</span>
-            <span class="star-ico">★★★★☆</span>
-            <span class="r-num">4.3</span>
-          </div>
-          <button class="buy-btn">
-            <div class="price-side"><span class="p-now">$35</span><span class="p-old">$50</span></div>
-            <div class="btn-right">
-              <div class="btn-label"><span class="btn-title">ئۆردەر بدە</span><span class="btn-sub">زوو دەگات</span></div>
-              <div class="btn-icon">🛒</div>
+            <button class="arr arr-l" data-c="c2" data-dir="-1">&#8250;</button>
+            <button class="arr arr-r" data-c="c2" data-dir="1">&#8249;</button>
+            <div class="dot-strip" id="c2-dots">
+              <div class="dot on" data-c="c2" data-i="0"></div>
+              <div class="dot"    data-c="c2" data-i="1"></div>
             </div>
-          </button>
-        </div>
-      </div>
-
-      <div class="card" data-product="iCloud+ 2TB" data-price="11">
-        <div class="img-wrap" id="c6-wrap">
-          <div class="slides" id="c6-slides">
-            <div class="slide bg0">☁️</div>
-            <div class="slide bg1">💾</div>
           </div>
-          <button class="arr arr-l" data-c="c6" data-dir="-1">&#8249;</button>
-          <button class="arr arr-r" data-c="c6" data-dir="1">&#8250;</button>
-          <div class="dot-strip" id="c6-dots">
-            <div class="dot on" data-c="c6" data-i="0"></div>
-            <div class="dot"    data-c="c6" data-i="1"></div>
-          </div>
-        </div>
-        <div class="card-body">
-          <span class="card-tag">☁️ كلاود · ١ ساڵ · 2TB</span>
-          <div class="card-title">iCloud+ 2TB</div>
-          <div class="card-desc">٢ تيرابايت ئەكسترا، پشتگيرى ئۆتۆماتيكى، هاوبەشكردن لەگەڵ فامىل.</div>
-          <div class="stars">
-            <span class="r-cnt">(55)</span>
-            <span class="star-ico">★★★★★</span>
-            <span class="r-num">4.6</span>
-          </div>
-          <button class="buy-btn">
-            <div class="price-side"><span class="p-now">$11</span><span class="p-old">$16</span></div>
-            <div class="btn-right">
-              <div class="btn-label"><span class="btn-title">ئۆردەر بدە</span><span class="btn-sub">زوو دەگات</span></div>
-              <div class="btn-icon">🛒</div>
+          <div class="card-body">
+            <span class="card-tag">ستریمینگ</span>
+            <div class="card-title">Netflix Premium</div>
+            <div class="card-desc">نێتفلیکس پریمیەم — ٤K — بە ماوەی یەک مانگ</div>
+            <div class="stars">
+              <span class="star-ico"><i class="fa-solid fa-star"></i></span>
+              <span class="r-num">4.9</span>
+              <span class="r-cnt">(٤١ کڕیار)</span>
             </div>
-          </button>
+            <button class="buy-btn">
+              <div class="btn-right">
+                <div class="btn-icon"><i class="fa-brands fa-netflix"></i></div>
+                <div class="btn-label">
+                  <span class="btn-title">بکرە ئێستا</span>
+                  <span class="btn-sub">گەرەنتی ١٢ کاتژمێر</span>
+                </div>
+              </div>
+              <div class="price-side">
+                <span class="p-now">$8.50</span>
+                <span class="p-old">$15.00</span>
+              </div>
+            </button>
+          </div>
         </div>
-      </div>
 
-    </div>
-  </div>
+        <!-- کارتی ٣ - سۆشیال میدیا -->
+        <div class="card" data-product="Instagram Account" data-price="5.00" data-category="social">
+          <div class="img-wrap" id="c3-wrap">
+            <div class="slides" id="c3-slides">
+              <div class="slide bg0"><i class="fa-brands fa-instagram" style="font-size:80px;color:#e1306c"></i></div>
+              <div class="slide bg1"><i class="fa-solid fa-camera" style="font-size:80px;color:#7ba0c0"></i></div>
+            </div>
+            <button class="arr arr-l" data-c="c3" data-dir="-1">&#8250;</button>
+            <button class="arr arr-r" data-c="c3" data-dir="1">&#8249;</button>
+            <div class="dot-strip" id="c3-dots">
+              <div class="dot on" data-c="c3" data-i="0"></div>
+              <div class="dot"    data-c="c3" data-i="1"></div>
+            </div>
+          </div>
+          <div class="card-body">
+            <span class="card-tag">سۆشیال میدیا</span>
+            <div class="card-title">Instagram Account</div>
+            <div class="card-desc">ئەکاونتی ئینستاگرام بە فۆلۆوەری زۆر — ڤێرفای بوو</div>
+            <div class="stars">
+              <span class="star-ico"><i class="fa-solid fa-star"></i></span>
+              <span class="r-num">4.7</span>
+              <span class="r-cnt">(١٨ کڕیار)</span>
+            </div>
+            <button class="buy-btn">
+              <div class="btn-right">
+                <div class="btn-icon"><i class="fa-brands fa-instagram"></i></div>
+                <div class="btn-label">
+                  <span class="btn-title">بکرە ئێستا</span>
+                  <span class="btn-sub">گەرەنتی ١٢ کاتژمێر</span>
+                </div>
+              </div>
+              <div class="price-side">
+                <span class="p-now">$5.00</span>
+                <span class="p-old">$9.00</span>
+              </div>
+            </button>
+          </div>
+        </div>
 
-  <!-- TRUST SECTION -->
-  <div class="trust-section">
-    <h2 class="section-title">چەرا بە ئێمە باوەڕ هەيە؟</h2>
-    <div class="trust-badges">
-      <div class="badge">✅ 100% دڵنيايى</div>
-      <div class="badge">⚡ دوای پارەدان ئەكاونتەكەت وەردەگرێت</div>
-      <div class="badge">🛡 پارێزراو</div>
-      <div class="badge">💰 گەڕاندنەوەى پارە دوای هەر كێشەيەك</div>
-    </div>
-    <h3 class="subsection-title">شێوازى پارەدان</h3>
-    <div class="payment-methods">
-      <span>💳 ماستەركارت</span>
-      <span>🏦 FIB</span>
-      <span>⚡ Fastpay</span>
-    </div>
-  </div>
+        <!-- کارتی ٤ - گەیمینگ -->
+        <div class="card" data-product="PlayStation Account" data-price="20.00" data-category="gaming">
+          <div class="img-wrap" id="c4-wrap">
+            <div class="slides" id="c4-slides">
+              <div class="slide bg0"><i class="fa-brands fa-playstation" style="font-size:80px;color:#003087"></i></div>
+              <div class="slide bg1"><i class="fa-solid fa-compact-disc" style="font-size:80px;color:#7ba0c0"></i></div>
+              <div class="slide bg2"><i class="fa-solid fa-star" style="font-size:80px;color:#ffd700"></i></div>
+            </div>
+            <button class="arr arr-l" data-c="c4" data-dir="-1">&#8250;</button>
+            <button class="arr arr-r" data-c="c4" data-dir="1">&#8249;</button>
+            <div class="dot-strip" id="c4-dots">
+              <div class="dot on" data-c="c4" data-i="0"></div>
+              <div class="dot"    data-c="c4" data-i="1"></div>
+              <div class="dot"    data-c="c4" data-i="2"></div>
+            </div>
+          </div>
+          <div class="card-body">
+            <span class="card-tag">گەیمینگ</span>
+            <div class="card-title">PlayStation Account</div>
+            <div class="card-desc">ئەکاونتی PS5 بە گەیمی زۆر و PS Plus چالاک</div>
+            <div class="stars">
+              <span class="star-ico"><i class="fa-solid fa-star"></i></span>
+              <span class="r-num">4.6</span>
+              <span class="r-cnt">(١٢ کڕیار)</span>
+            </div>
+            <button class="buy-btn">
+              <div class="btn-right">
+                <div class="btn-icon"><i class="fa-brands fa-playstation"></i></div>
+                <div class="btn-label">
+                  <span class="btn-title">بکرە ئێستا</span>
+                  <span class="btn-sub">گەرەنتی ١٢ کاتژمێر</span>
+                </div>
+              </div>
+              <div class="price-side">
+                <span class="p-now">$20.00</span>
+                <span class="p-old">$30.00</span>
+              </div>
+            </button>
+          </div>
+        </div>
 
-  <!-- LEADERBOARD -->
-  <div class="leaderboard-section">
-    <h2 class="section-title">🏆 كڕيارە پێشەنگەكانى ئەم هەفتەيە</h2>
-    <div class="leaderboard">
-      <div class="leader-item silver">
-        <div class="rank">🥈</div>
-        <div class="name">ڕێباز</div>
-        <div class="count">8 كڕين</div>
-      </div>
-      <div class="leader-item gold">
-        <div class="rank">🥇</div>
-        <div class="name">ئەحمەد</div>
-        <div class="count">12 كڕين</div>
-      </div>
-      <div class="leader-item bronze">
-        <div class="rank">🥉</div>
-        <div class="name">زەكەريا</div>
-        <div class="count">5 كڕين</div>
-      </div>
-    </div>
-  </div>
+        <!-- کارتی ٥ - ستریمینگ -->
+        <div class="card" data-product="Spotify Premium" data-price="4.00" data-category="streaming">
+          <div class="img-wrap" id="c5-wrap">
+            <div class="slides" id="c5-slides">
+              <div class="slide bg0"><i class="fa-brands fa-spotify" style="font-size:80px;color:#1db954"></i></div>
+              <div class="slide bg1"><i class="fa-solid fa-music" style="font-size:80px;color:#7ba0c0"></i></div>
+            </div>
+            <button class="arr arr-l" data-c="c5" data-dir="-1">&#8250;</button>
+            <button class="arr arr-r" data-c="c5" data-dir="1">&#8249;</button>
+            <div class="dot-strip" id="c5-dots">
+              <div class="dot on" data-c="c5" data-i="0"></div>
+              <div class="dot"    data-c="c5" data-i="1"></div>
+            </div>
+          </div>
+          <div class="card-body">
+            <span class="card-tag">ستریمینگ</span>
+            <div class="card-title">Spotify Premium</div>
+            <div class="card-desc">سپۆتیفای پریمیەم — بێ ریکلام — یەک مانگ</div>
+            <div class="stars">
+              <span class="star-ico"><i class="fa-solid fa-star"></i></span>
+              <span class="r-num">5.0</span>
+              <span class="r-cnt">(٣٣ کڕیار)</span>
+            </div>
+            <button class="buy-btn">
+              <div class="btn-right">
+                <div class="btn-icon"><i class="fa-brands fa-spotify"></i></div>
+                <div class="btn-label">
+                  <span class="btn-title">بکرە ئێستا</span>
+                  <span class="btn-sub">گەرەنتی ١٢ کاتژمێر</span>
+                </div>
+              </div>
+              <div class="price-side">
+                <span class="p-now">$4.00</span>
+                <span class="p-old">$7.00</span>
+              </div>
+            </button>
+          </div>
+        </div>
 
-  <!-- MODAL -->
-  <div id="imageModal" class="modal">
+        <!-- کارتی ٦ - سۆشیال میدیا -->
+        <div class="card" data-product="YouTube Premium" data-price="6.00" data-category="social">
+          <div class="img-wrap" id="c6-wrap">
+            <div class="slides" id="c6-slides">
+              <div class="slide bg0"><i class="fa-brands fa-youtube" style="font-size:80px;color:#ff0000"></i></div>
+              <div class="slide bg1"><i class="fa-solid fa-play" style="font-size:80px;color:#7ba0c0"></i></div>
+            </div>
+            <button class="arr arr-l" data-c="c6" data-dir="-1">&#8250;</button>
+            <button class="arr arr-r" data-c="c6" data-dir="1">&#8249;</button>
+            <div class="dot-strip" id="c6-dots">
+              <div class="dot on" data-c="c6" data-i="0"></div>
+              <div class="dot"    data-c="c6" data-i="1"></div>
+            </div>
+          </div>
+          <div class="card-body">
+            <span class="card-tag">سۆشیال میدیا</span>
+            <div class="card-title">YouTube Premium</div>
+            <div class="card-desc">یوتیوب پریمیەم بێ ریکلام — بە ماوەی یەک مانگ</div>
+            <div class="stars">
+              <span class="star-ico"><i class="fa-solid fa-star"></i></span>
+              <span class="r-num">4.5</span>
+              <span class="r-cnt">(٩ کڕیار)</span>
+            </div>
+            <button class="buy-btn">
+              <div class="btn-right">
+                <div class="btn-icon"><i class="fa-brands fa-youtube"></i></div>
+                <div class="btn-label">
+                  <span class="btn-title">بکرە ئێستا</span>
+                  <span class="btn-sub">گەرەنتی ١٢ کاتژمێر</span>
+                </div>
+              </div>
+              <div class="price-side">
+                <span class="p-now">$6.00</span>
+                <span class="p-old">$11.00</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+      </div><!-- /cards -->
+    </div><!-- /market-main -->
+  </div><!-- /market-layout -->
+
+  <!-- ── مۆداڵ ── -->
+  <div class="modal" id="imageModal">
     <div class="modal-content">
-      <button class="modal-close" id="closeModal">✕</button>
       <div class="modal-img">
         <div class="modal-slides" id="modalSlides"></div>
-        <button class="modal-arr modal-arr-l" id="modalPrev">&#8249;</button>
-        <button class="modal-arr modal-arr-r" id="modalNext">&#8250;</button>
+        <button class="modal-close" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
+        <button class="modal-arr modal-arr-l" id="modalPrev">&#8250;</button>
+        <button class="modal-arr modal-arr-r" id="modalNext">&#8249;</button>
       </div>
       <div class="modal-dots" id="modalDots"></div>
     </div>
   </div>
 
-  <!-- COPYRIGHT -->
-  <div class="copyright">© 2025 KurdAccount — هەموو مافەكان پارێزراون</div>
-
-  <script src="assect/java/market.js"></script>
+  <script src="assect/java/script.js"></script>
 </body>
 </html>
