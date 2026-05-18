@@ -18,6 +18,15 @@ fetch(base + 'assect/navbar/nav.html')
     navLinks.forEach(link => {
       if (link.getAttribute('href') === currentPage) {
         link.classList.add('active');
+        
+        setTimeout(() => {
+  link.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest',
+    inline: 'center'
+  });
+}, 100);
+
       }
     });
 
