@@ -1,4 +1,3 @@
-// ── دۆخی سڵایدەکان ──
 const st = {};
 
 // ── گۆڕینی سڵاید ──
@@ -34,61 +33,38 @@ document.querySelectorAll('.dot').forEach(el => {
   });
 });
 
-// ── تاچ + ماوس (سوايپ + تاپ بۆ مۆداڵ) ──
+// ── تاچ + ماوس سوايپ ──
 document.querySelectorAll('.img-wrap').forEach(wrap => {
   const id = wrap.id.replace('-wrap', '');
   st[id] = 0;
+  let sx = 0, dragging = false;
 
-  let startX = 0;
-  let moved  = false;
-
+  // تاچ (مۆبايل)
   wrap.addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX;
-    moved  = false;
-  }, { passive: true });
-
-  wrap.addEventListener('touchmove', e => {
-    if (Math.abs(e.touches[0].clientX - startX) > 8) moved = true;
+    sx = e.touches[0].clientX;
   }, { passive: true });
 
   wrap.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - startX;
-    if (!moved) {
-      openModal(id);
-    } else {
-      const n = document.getElementById(id + '-slides').children.length;
-      if (dx < -40 && st[id] < n - 1) go(id, st[id] + 1);
-      if (dx >  40 && st[id] > 0)     go(id, st[id] - 1);
-    }
+    const dx = e.changedTouches[0].clientX - sx;
+    const n  = document.getElementById(id + '-slides').children.length;
+    if (dx < -40 && st[id] < n - 1) go(id, st[id] + 1);
+    if (dx >  40 && st[id] > 0)     go(id, st[id] - 1);
   }, { passive: true });
 
+  // ماوس (دێسكتۆپ)
   wrap.addEventListener('mousedown', e => {
-    if (e.target.closest('.arr') || e.target.closest('.dot')) return;
-    startX = e.clientX;
-    moved  = false;
-    wrap.style.userSelect = 'none';
+    sx = e.clientX;
+    dragging = true;
   });
-
-  wrap.addEventListener('mousemove', e => {
-    if (Math.abs(e.clientX - startX) > 8) moved = true;
-  });
-
   wrap.addEventListener('mouseup', e => {
-    if (e.target.closest('.arr') || e.target.closest('.dot')) return;
-    wrap.style.userSelect = '';
-    const dx = e.clientX - startX;
-    if (!moved) {
-      openModal(id);
-    } else {
-      const n = document.getElementById(id + '-slides').children.length;
-      if (dx < -40 && st[id] < n - 1) go(id, st[id] + 1);
-      if (dx >  40 && st[id] > 0)     go(id, st[id] - 1);
-    }
+    if (!dragging) return;
+    dragging = false;
+    const dx = e.clientX - sx;
+    const n  = document.getElementById(id + '-slides').children.length;
+    if (dx < -40 && st[id] < n - 1) go(id, st[id] + 1);
+    if (dx >  40 && st[id] > 0)     go(id, st[id] - 1);
   });
-
-  wrap.addEventListener('mouseleave', () => {
-    wrap.style.userSelect = '';
-  });
+  wrap.addEventListener('mouseleave', () => { dragging = false; });
 });
 
 // ── مۆداڵ ──
@@ -98,28 +74,42 @@ const modalDots   = document.getElementById('modalDots');
 let curCard = null;
 let curIdx  = 0;
 
-function openModal(id) {
-  const srcSlides = Array.from(document.getElementById(id + '-slides').children);
-  modalSlides.innerHTML = '';
-  modalDots.innerHTML   = '';
+// كليك لە img-wrap بۆ كردنەوەى مۆداڵ
+document.querySelectorAll('.img-wrap').forEach(wrap => {
+  wrap.addEventListener('click', e => {
+    // ئەگەر كليك لە دوگمەى ئارۆ بوو، مۆداڵ نەكرێتەوە
+    if (e.target.classList.contains('arr') || e.target.classList.contains('dot')) return;
 
-  srcSlides.forEach((slide, i) => {
-    const clone = slide.cloneNode(true);
-    clone.classList.add('modal-slide');
-    modalSlides.appendChild(clone);
+    const id = wrap.id.replace('-wrap', '');
+    const srcSlides = Array.from(
+      document.getElementById(id + '-slides').children
+    );
 
-    const dot = document.createElement('div');
-    dot.className = 'modal-dot' + (i === (st[id] || 0) ? ' on' : '');
-    dot.addEventListener('click', ev => { ev.stopPropagation(); goModal(i); });
-    modalDots.appendChild(dot);
+    modalSlides.innerHTML = '';
+    modalDots.innerHTML   = '';
+
+    srcSlides.forEach((slide, i) => {
+      // كلۆنى سڵايد
+      const clone = slide.cloneNode(true);
+      clone.classList.add('modal-slide');
+      modalSlides.appendChild(clone);
+
+      // خاڵى مۆداڵ
+      const dot = document.createElement('div');
+      dot.className = 'modal-dot' + (i === (st[id] || 0) ? ' on' : '');
+      dot.addEventListener('click', ev => {
+        ev.stopPropagation();
+        goModal(i);
+      });
+      modalDots.appendChild(dot);
+    });
+
+    curCard = id;
+    curIdx  = st[id] || 0;
+    goModal(curIdx);
+    modal.classList.add('show');
   });
-
-  curCard = id;
-  curIdx  = st[id] || 0;
-  goModal(curIdx);
-  modal.classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
+});
 
 function goModal(idx) {
   const n = modalSlides.children.length;
@@ -130,29 +120,40 @@ function goModal(idx) {
     .forEach((d, i) => d.classList.toggle('on', i === idx));
 }
 
-function closeModal() {
+// دوگمەى ئارۆى مۆداڵ
+document.getElementById('modalPrev').addEventListener('click', e => {
+  e.stopPropagation();
+  goModal(curIdx - 1);
+});
+document.getElementById('modalNext').addEventListener('click', e => {
+  e.stopPropagation();
+  goModal(curIdx + 1);
+});
+
+// داخستنى مۆداڵ
+document.getElementById('closeModal').addEventListener('click', () => {
   modal.classList.remove('show');
-  document.body.style.overflow = '';
-}
+});
+modal.addEventListener('click', e => {
+  if (e.target === modal) modal.classList.remove('show');
+});
 
-document.getElementById('modalPrev').addEventListener('click', e => { e.stopPropagation(); goModal(curIdx - 1); });
-document.getElementById('modalNext').addEventListener('click', e => { e.stopPropagation(); goModal(curIdx + 1); });
-document.getElementById('closeModal').addEventListener('click', closeModal);
-modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-
-// سوايپى مۆبايل لە مۆداڵ
+// سوايپ لە ناو مۆداڵ (مۆبايل)
 let msx = 0;
-modalSlides.addEventListener('touchstart', e => { msx = e.touches[0].clientX; }, { passive: true });
-modalSlides.addEventListener('touchend',   e => {
+modalSlides.addEventListener('touchstart', e => {
+  msx = e.touches[0].clientX;
+}, { passive: true });
+modalSlides.addEventListener('touchend', e => {
   const dx = e.changedTouches[0].clientX - msx;
   if (Math.abs(dx) > 50) goModal(dx < 0 ? curIdx + 1 : curIdx - 1);
 }, { passive: true });
 
-// ماوس سوايپ لە مۆداڵ
+// ماوس سوايپ لە ناو مۆداڵ (دێسكتۆپ)
 let mdragging = false, mmsx = 0;
-modalSlides.addEventListener('mousedown',  e => { mmsx = e.clientX; mdragging = true; });
-modalSlides.addEventListener('mouseup',    e => {
-  if (!mdragging) return; mdragging = false;
+modalSlides.addEventListener('mousedown', e => { mmsx = e.clientX; mdragging = true; });
+modalSlides.addEventListener('mouseup', e => {
+  if (!mdragging) return;
+  mdragging = false;
   const dx = e.clientX - mmsx;
   if (Math.abs(dx) > 50) goModal(dx < 0 ? curIdx + 1 : curIdx - 1);
 });
@@ -163,14 +164,16 @@ document.addEventListener('keydown', e => {
   if (!modal.classList.contains('show')) return;
   if (e.key === 'ArrowLeft')  goModal(curIdx + 1);
   if (e.key === 'ArrowRight') goModal(curIdx - 1);
-  if (e.key === 'Escape')     closeModal();
+  if (e.key === 'Escape')     modal.classList.remove('show');
 });
 
 // ── كڕين — واتساپ ──
 function buyProduct(name, price) {
   if (confirm(`تۆ دەتەوێت "${name}" بە $${price} بكڕيت؟`)) {
-    const phone   = "964XXXXXXXXX";
-    const message = encodeURIComponent(`سڵاو، من حەز بە كڕينى ${name} بە $${price} دەكەم`);
+    const phone   = "964XXXXXXXXX"; // ژمارەى واتساپت لێرە بنوسە
+    const message = encodeURIComponent(
+      `سڵاو، من حەز بە كڕينى ${name} بە $${price} دەكەم`
+    );
     window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
   }
 }
@@ -183,67 +186,19 @@ document.querySelectorAll('.buy-btn').forEach(btn => {
   });
 });
 
-// ── فلتەر + ريزكردن ──
-let activeCategory = 'all';
-let activeSort     = 'none';
-
-function allCards() { return Array.from(document.querySelectorAll('.card')); }
-
-function applyFilters() {
-  const grid = document.querySelector('.cards');
-
-  allCards().forEach(card => {
-    const cat   = (card.dataset.category || '').toLowerCase();
-    const catOk = activeCategory === 'all' || cat === activeCategory;
-    card.style.display = catOk ? '' : 'none';
-  });
-
-  if (activeSort !== 'none' && grid) {
-    const visible = allCards().filter(c => c.style.display !== 'none');
-    visible.sort((a, b) => {
-      const pa = parseFloat(a.dataset.price) || 0;
-      const pb = parseFloat(b.dataset.price) || 0;
-      return activeSort === 'asc' ? pa - pb : pb - pa;
-    });
-    visible.forEach(c => grid.appendChild(c));
-  }
-
-  const countEl = document.getElementById('results-count');
-  if (countEl) countEl.textContent = allCards().filter(c => c.style.display !== 'none').length;
-}
-
-// دوگمەكانى [data-filter]
-document.querySelectorAll('[data-filter]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('[data-filter]').forEach(x => x.classList.remove('active', 'active-blue'));
-    btn.classList.add('active', 'active-blue');
-    activeCategory = btn.dataset.filter;
-    applyFilters();
+// ── چيپەكان ──
+document.querySelectorAll('#cat-chips .chip').forEach(c => {
+  c.addEventListener('click', () => {
+    document.querySelectorAll('#cat-chips .chip')
+      .forEach(x => x.classList.remove('active-blue'));
+    c.classList.add('active-blue');
   });
 });
 
-// دوگمەكانى [data-sort]
-document.querySelectorAll('[data-sort]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('[data-sort]').forEach(x => x.classList.remove('active', 'active-green', 'sort-active'));
-    btn.classList.add('active', 'sort-active');
-    activeSort = btn.dataset.sort;
-    applyFilters();
+document.querySelectorAll('#sort-chips .chip').forEach(c => {
+  c.addEventListener('click', () => {
+    document.querySelectorAll('#sort-chips .chip')
+      .forEach(x => x.classList.remove('active-green'));
+    c.classList.add('active-green');
   });
 });
-
-// ── گەڕان ──
-const searchInput = document.querySelector('.search-box input');
-if (searchInput) {
-  searchInput.addEventListener('input', () => {
-    const q = searchInput.value.trim().toLowerCase();
-    allCards().forEach(card => {
-      const title = (card.dataset.product || card.querySelector('.card-title')?.textContent || '').toLowerCase();
-      const cat   = (card.dataset.category || '').toLowerCase();
-      const catOk = activeCategory === 'all' || cat === activeCategory;
-      card.style.display = (catOk && (!q || title.includes(q))) ? '' : 'none';
-    });
-    const countEl = document.getElementById('results-count');
-    if (countEl) countEl.textContent = allCards().filter(c => c.style.display !== 'none').length;
-  });
-}
