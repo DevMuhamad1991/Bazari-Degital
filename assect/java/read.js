@@ -98,8 +98,8 @@ function setStars(n) {
 function submitReview() {
   const txt = document.querySelector('.write-input').value.trim();
   if (!selStars) { showToast('⚠️ تکایە ئەستێرە هەڵبژێرە!'); return; }
-  if (!txt)      { showToast('⚠️ تکایە رێتینگەکەت بنووسە!'); return; }
-  showToast('✅ رێتینگەکەت بە سەرکەوتوویی نێردرا!');
+  if (!txt)      { showToast('⚠️ تکایە ئەزموونی خۆت بنووسە!'); return; }
+  showToast('✅ ئەزموونەکەت بە سەرکەوتوویی نێردرا!');
   document.querySelector('.write-input').value = '';
   setStars(0);
 }
