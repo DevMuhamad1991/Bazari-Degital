@@ -153,13 +153,10 @@
 
 /* ─────────────────────────────────────────
    3.  CURSOR GLOW — تەنها دێسکتۆپ
-       🔧 چاکسازی: دووجار نادروستێتەوە
+       نەرم بەدوای ماوسدا دەچێت (lerp)
 ───────────────────────────────────────── */
 (function initCursorGlow() {
-  // تاچ دیڤایس: دەرچێ
   if (window.matchMedia('(pointer: coarse)').matches) return;
-
-  // ✅ ئەگەر پێشتر هەبوو، دووبارە نادروستێتەوە
   if (document.getElementById('cursor-glow')) return;
 
   const glow = document.createElement('div');
@@ -173,35 +170,47 @@
     background:   'radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%)',
     pointerEvents:'none',
     zIndex:       '9999',
-    transform:    'translate(-50%,-50%)',
-    transition:   'opacity .4s ease',
-    opacity:      '0',
     top:          '0',
     left:         '0',
-    willChange:   'left, top',
+    willChange:   'transform',
+    opacity:      '0',
+    transition:   'opacity .4s ease',
   });
 
   document.body.appendChild(glow);
 
-  let mx = 0, my = 0, cx = 0, cy = 0;
+  let mx = window.innerWidth  / 2;
+  let my = window.innerHeight / 2;
+  let cx = mx, cy = my;
+  let running = false;
 
   document.addEventListener('mousemove', e => {
     mx = e.clientX;
     my = e.clientY;
     glow.style.opacity = '1';
+
+    if (!running) {
+      running = true;
+      requestAnimationFrame(loop);
+    }
   }, { passive: true });
 
   document.addEventListener('mouseleave', () => {
     glow.style.opacity = '0';
   });
 
-  (function loop() {
-    cx += (mx - cx) * 0.12;
-    cy += (my - cy) * 0.12;
-    glow.style.left = cx + 'px';
-    glow.style.top  = cy + 'px';
-    requestAnimationFrame(loop);
-  })();
+  function loop() {
+    cx += (mx - cx) * 0.1;
+    cy += (my - cy) * 0.1;
+
+    glow.style.transform = `translate(calc(${cx}px - 50%), calc(${cy}px - 50%))`;
+
+    if (Math.abs(mx - cx) > 0.5 || Math.abs(my - cy) > 0.5) {
+      requestAnimationFrame(loop);
+    } else {
+      running = false;
+    }
+  }
 })();
 
 
