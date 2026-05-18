@@ -247,3 +247,120 @@ document.querySelectorAll('#sort-chips .chip').forEach(c => {
     c.classList.add('active-green');
   });
 });
+// ── فەنکشنی گەڕان ──
+function searchAccounts() {
+  const searchTerm = document.querySelector('.search-box input').value.trim().toLowerCase();
+  const cards = document.querySelectorAll('.card');
+  let visibleCount = 0;
+  
+  cards.forEach(card => {
+    const title = card.querySelector('.card-title').innerText.toLowerCase();
+    const desc = card.querySelector('.card-desc').innerText.toLowerCase();
+    const tag = card.querySelector('.card-tag').innerText.toLowerCase();
+    
+    if (title.includes(searchTerm) || desc.includes(searchTerm) || tag.includes(searchTerm) || searchTerm === '') {
+      card.style.display = 'flex';
+      visibleCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  
+  const resultsBadge = document.querySelector('.results-badge');
+  if (resultsBadge) {
+    resultsBadge.innerText = visibleCount + ' ئەكاونت';
+  }
+}
+
+// ── گوێگرتن لە ڕووداوی نووسین لە بۆکسی گەڕان ──
+const searchInput = document.querySelector('.search-box input');
+if (searchInput) {
+  searchInput.addEventListener('input', searchAccounts);
+}
+
+// ── فەنکشنی پاڵاوتن بە پێی چەنداییەتی ──
+function filterByCategory(category) {
+  const cards = document.querySelectorAll('.card');
+  let visibleCount = 0;
+  
+  cards.forEach(card => {
+    const tag = card.querySelector('.card-tag').innerText;
+    
+    if (category === 'هەموو' || tag.includes(category)) {
+      card.style.display = 'flex';
+      visibleCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  
+  const resultsBadge = document.querySelector('.results-badge');
+  if (resultsBadge) {
+    resultsBadge.innerText = visibleCount + ' ئەكاونت';
+  }
+}
+
+// ── پاڵاوتن بە پێی چیپەکان (Category) ──
+document.querySelectorAll('#cat-chips .chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('#cat-chips .chip').forEach(c => c.classList.remove('active-blue'));
+    chip.classList.add('active-blue');
+    
+    const category = chip.innerText.replace(/[🎮📱🎬🛡🎵]/g, '').trim();
+    filterByCategory(category === 'هەموو' ? 'هەموو' : category);
+  });
+});
+
+// ── ڕیزکردن بە پێی سۆرت چیپەکان ──
+function sortCards(sortType) {
+  const cardsGrid = document.querySelector('.cards');
+  const cards = Array.from(document.querySelectorAll('.card'));
+  
+  let sortedCards = [];
+  
+  switch(sortType) {
+    case 'نوێترين':
+      sortedCards = cards.sort((a, b) => {
+        const priceA = parseInt(a.dataset.price);
+        const priceB = parseInt(b.dataset.price);
+        return priceB - priceA;
+      });
+      break;
+    case 'ئارزانترين':
+      sortedCards = cards.sort((a, b) => {
+        const priceA = parseInt(a.dataset.price);
+        const priceB = parseInt(b.dataset.price);
+        return priceA - priceB;
+      });
+      break;
+    case 'گرانترين':
+      sortedCards = cards.sort((a, b) => {
+        const priceA = parseInt(a.dataset.price);
+        const priceB = parseInt(b.dataset.price);
+        return priceB - priceA;
+      });
+      break;
+    case 'هەڵسەنگاندن':
+      sortedCards = cards.sort((a, b) => {
+        const ratingA = parseFloat(a.querySelector('.r-num').innerText);
+        const ratingB = parseFloat(b.querySelector('.r-num').innerText);
+        return ratingB - ratingA;
+      });
+      break;
+    default:
+      sortedCards = cards;
+  }
+  
+  sortedCards.forEach(card => cardsGrid.appendChild(card));
+}
+
+// ── گوێگرتن لە کلیکی سۆرت چیپەکان ──
+document.querySelectorAll('#sort-chips .chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('#sort-chips .chip').forEach(c => c.classList.remove('active-green'));
+    chip.classList.add('active-green');
+    
+    const sortType = chip.innerText;
+    sortCards(sortType);
+  });
+});
