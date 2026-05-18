@@ -1,11 +1,17 @@
 const st = {};
 
-// ── گۆڕینی سڵاید ──
+// ── گۆڕینی سڵاید (بە لوبڕانەوە) ──
 function go(id, idx) {
   const slidesEl = document.getElementById(id + '-slides');
   if (!slidesEl) return;
   const n = slidesEl.children.length;
-  if (idx < 0 || idx >= n) return;
+  if (n === 0) return;
+  
+  // ئەگەر گەیشتە کۆتایی، بڕۆ یەکەم
+  if (idx >= n) idx = 0;
+  // ئەگەر گەیشتە یەکەم و بچێتە دواوە، بڕۆ کۆتایی
+  if (idx < 0) idx = n - 1;
+  
   st[id] = idx;
   slidesEl.style.transform = `translateX(-${idx * 100}%)`;
   const dotsEl = document.getElementById(id + '-dots');
@@ -21,7 +27,8 @@ document.querySelectorAll('.arr').forEach(btn => {
     e.stopPropagation();
     const id  = btn.dataset.c;
     const dir = +btn.dataset.dir;
-    go(id, (st[id] || 0) + dir);
+    const currentIdx = st[id] || 0;
+    go(id, currentIdx + dir);
   });
 });
 
@@ -33,22 +40,32 @@ document.querySelectorAll('.dot').forEach(el => {
   });
 });
 
-// ── تاچ + ماوس سوايپ ──
+// ── تاچ + ماوس سوايپ (بە لوبڕانەوە) ──
 document.querySelectorAll('.img-wrap').forEach(wrap => {
   const id = wrap.id.replace('-wrap', '');
   st[id] = 0;
   let sx = 0, dragging = false;
+  let touchStartTime = 0;
 
   // تاچ (مۆبايل)
   wrap.addEventListener('touchstart', e => {
     sx = e.touches[0].clientX;
+    touchStartTime = Date.now();
   }, { passive: true });
 
   wrap.addEventListener('touchend', e => {
     const dx = e.changedTouches[0].clientX - sx;
     const n  = document.getElementById(id + '-slides').children.length;
-    if (dx < -40 && st[id] < n - 1) go(id, st[id] + 1);
-    if (dx >  40 && st[id] > 0)     go(id, st[id] - 1);
+    const currentIdx = st[id] || 0;
+    
+    if (dx < -40) {
+      // سوایپ بۆ چەپ - بڕۆ دواتر
+      go(id, currentIdx + 1);
+    }
+    if (dx > 40) {
+      // سوایپ بۆ ڕاست - بڕۆ پێشتر
+      go(id, currentIdx - 1);
+    }
   }, { passive: true });
 
   // ماوس (دێسكتۆپ)
@@ -61,8 +78,14 @@ document.querySelectorAll('.img-wrap').forEach(wrap => {
     dragging = false;
     const dx = e.clientX - sx;
     const n  = document.getElementById(id + '-slides').children.length;
-    if (dx < -40 && st[id] < n - 1) go(id, st[id] + 1);
-    if (dx >  40 && st[id] > 0)     go(id, st[id] - 1);
+    const currentIdx = st[id] || 0;
+    
+    if (dx < -40) {
+      go(id, currentIdx + 1);
+    }
+    if (dx > 40) {
+      go(id, currentIdx - 1);
+    }
   });
   wrap.addEventListener('mouseleave', () => { dragging = false; });
 });
@@ -77,7 +100,7 @@ let curIdx  = 0;
 // كليك لە img-wrap بۆ كردنەوەى مۆداڵ
 document.querySelectorAll('.img-wrap').forEach(wrap => {
   wrap.addEventListener('click', e => {
-    // ئەگەر كليك لە دوگمەى ئارۆ بوو، مۆداڵ نەكرێتەوە
+    // ئەگەر كليک لە دوگمەى ئارۆ بوو، مۆداڵ نەكرێتەوە
     if (e.target.classList.contains('arr') || e.target.classList.contains('dot')) return;
 
     const id = wrap.id.replace('-wrap', '');
@@ -113,7 +136,12 @@ document.querySelectorAll('.img-wrap').forEach(wrap => {
 
 function goModal(idx) {
   const n = modalSlides.children.length;
-  if (idx < 0 || idx >= n) return;
+  if (n === 0) return;
+  
+  // لوبڕانەوە بۆ مۆداڵ
+  if (idx >= n) idx = 0;
+  if (idx < 0) idx = n - 1;
+  
   curIdx = idx;
   modalSlides.style.transform = `translateX(-${idx * 100}%)`;
   modalDots.querySelectorAll('.modal-dot')
@@ -138,28 +166,45 @@ modal.addEventListener('click', e => {
   if (e.target === modal) modal.classList.remove('show');
 });
 
-// سوايپ لە ناو مۆداڵ (مۆبايل)
+// سوايپ لە ناو مۆداڵ (مۆبايل) - بە لوبڕانەوە
 let msx = 0;
+let modalTouchStartTime = 0;
 modalSlides.addEventListener('touchstart', e => {
   msx = e.touches[0].clientX;
+  modalTouchStartTime = Date.now();
 }, { passive: true });
 modalSlides.addEventListener('touchend', e => {
   const dx = e.changedTouches[0].clientX - msx;
-  if (Math.abs(dx) > 50) goModal(dx < 0 ? curIdx + 1 : curIdx - 1);
+  if (Math.abs(dx) > 50) {
+    if (dx < 0) {
+      goModal(curIdx + 1);
+    } else {
+      goModal(curIdx - 1);
+    }
+  }
 }, { passive: true });
 
 // ماوس سوايپ لە ناو مۆداڵ (دێسكتۆپ)
 let mdragging = false, mmsx = 0;
-modalSlides.addEventListener('mousedown', e => { mmsx = e.clientX; mdragging = true; });
+modalSlides.addEventListener('mousedown', e => { 
+  mmsx = e.clientX; 
+  mdragging = true; 
+});
 modalSlides.addEventListener('mouseup', e => {
   if (!mdragging) return;
   mdragging = false;
   const dx = e.clientX - mmsx;
-  if (Math.abs(dx) > 50) goModal(dx < 0 ? curIdx + 1 : curIdx - 1);
+  if (Math.abs(dx) > 50) {
+    if (dx < 0) {
+      goModal(curIdx + 1);
+    } else {
+      goModal(curIdx - 1);
+    }
+  }
 });
 modalSlides.addEventListener('mouseleave', () => { mdragging = false; });
 
-// كيبۆرد
+// كيبۆرد - بە لوبڕانەوە
 document.addEventListener('keydown', e => {
   if (!modal.classList.contains('show')) return;
   if (e.key === 'ArrowLeft')  goModal(curIdx + 1);
