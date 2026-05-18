@@ -11,6 +11,15 @@ const currentPage = window.location.pathname.split('/').pop() || 'read.html';
     navLinks.forEach(link => {
       if (link.getAttribute('href') === currentPage) {
         link.classList.add('active');
+        setTimeout(() => {
+  link.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest',
+    inline: 'center'
+  });
+}, 100);
+
+        
       }
     });
 
