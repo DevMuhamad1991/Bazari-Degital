@@ -45,6 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const href = link.getAttribute('href');
     if (href === currentPage) {
       link.classList.add('active');
+      
+      setTimeout(() => {
+  link.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest',
+    inline: 'center'
+  });
+}, 100);
+
+      
     }
 
     link.addEventListener('mouseenter', function () {
