@@ -45,9 +45,10 @@ document.getElementById('registerBtn').addEventListener('click', async function(
     return;
   }
 
-  try {
+try {
     await createUserWithEmailAndPassword(auth, email, password);
     alert('هەژمارەکەت بەسەرکەوتوویی دروستکرا ✅');
+    window.location.href = 'market.html'; // ← 
     showPanel('login');
   } catch (error) {
     if (error.code === 'auth/email-already-in-use') {
