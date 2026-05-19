@@ -344,9 +344,6 @@ body {
 }
 
 
-
-
-
 .page {
   width: 100%;
   max-width: 400px;
@@ -469,9 +466,8 @@ body {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.38);
   margin-bottom: 22px;
-  padding-right: 3px;
-  border-right: 2px solid #3b82f6;
   padding-right: 8px;
+  border-right: 2px solid #3b82f6;
 }
 
 /* Fields */
@@ -497,7 +493,8 @@ body {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
-  padding: 12px 16px 12px 44px;
+  /* ✅ گۆڕاو: padding راست بۆ ئایکۆن، چەپ ئازاد */
+  padding: 12px 44px 12px 16px;
   color: #fff;
   font-size: 13px;
   font-family: 'Tajawal', sans-serif;
@@ -515,9 +512,10 @@ body {
   color: rgba(255, 255, 255, 0.2);
 }
 
+/* ✅ گۆڕاو: ئایکۆن چووە لای راست */
 .inp-icon {
   position: absolute;
-  left: 14px;
+  right: 14px;
   top: 50%;
   transform: translateY(-50%);
   color: rgba(255, 255, 255, 0.28);
