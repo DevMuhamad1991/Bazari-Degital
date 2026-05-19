@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ckb" dir="rtl">
 <head>
   <meta charset="UTF-8" />
@@ -8,13 +9,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="assets/navbar/nav.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assect/css/profile.css" />
 </head>
 <body>
 
   <!-- NAVBAR -->
+
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="index.html" class="logo">
@@ -32,73 +33,110 @@
     </div>
   </nav>
 
+  <!-- BACKGROUND -->
+
+  <div class="profile-bg">
+    <div class="grid-lines"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+  </div>
+
   <!-- PROFILE PAGE -->
+
   <div class="profile-page">
 
-    <div class="profile-card">
+```
+<!-- LEFT: Avatar Card -->
+<div class="avatar-card">
+  <div class="avatar-wrap">
+    <img id="profileAvatar" src="" alt="پرۆفایل" />
+    <label class="avatar-edit-btn" for="avatarInput">
+      <i class="fa-solid fa-camera"></i>
+    </label>
+    <input type="file" id="avatarInput" accept="image/*" hidden />
+    <div class="avatar-ring"></div>
+  </div>
+  <h2 id="profileFullName" class="avatar-name">...</h2>
+  <span id="profileUsername" class="avatar-username">@...</span>
+  <div class="avatar-email-row">
+    <i class="fa-solid fa-envelope"></i>
+    <span id="profileEmail">...</span>
+  </div>
+  <button class="logout-btn" id="logoutBtn">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    دەرچوون
+  </button>
+</div>
 
-      <!-- Avatar -->
-      <div class="avatar-section">
-        <div class="avatar-wrap">
-          <img id="profileAvatar" src="" alt="پرۆفایل" />
-          <label class="avatar-edit" for="avatarInput" title="گۆڕینی وێنە">
-            <i class="fa-solid fa-camera"></i>
-          </label>
-          <input type="file" id="avatarInput" accept="image/*" hidden />
-        </div>
-        <div class="avatar-info">
-          <h2 id="profileFullName">...</h2>
-          <span id="profileUsername" class="username-badge">@...</span>
-        </div>
+<!-- RIGHT: Edit Cards -->
+<div class="edit-section">
+
+  <!-- Username Card -->
+  <div class="edit-card">
+    <div class="edit-card-header">
+      <div class="edit-card-icon">
+        <i class="fa-solid fa-at"></i>
       </div>
-
-      <div class="divider"></div>
-
-      <!-- Info Fields -->
-      <div class="profile-fields">
-
-        <div class="field-group">
-          <label><i class="fa-solid fa-envelope"></i> ئیمەیڵ</label>
-          <div class="field-value" id="profileEmail">...</div>
-        </div>
-
-        <div class="field-group">
-          <label><i class="fa-solid fa-at"></i> یوزەرنەیم</label>
-          <div class="field-edit-row">
-            <input type="text" id="usernameInput" placeholder="یوزەرنەیمەکەت بنووسە" />
-            <button class="save-btn" id="saveUsernameBtn">
-              <i class="fa-solid fa-check"></i>
-            </button>
-          </div>
-        </div>
-
-        <div class="field-group">
-          <label><i class="fa-solid fa-user"></i> ناوی تەواو</label>
-          <div class="field-edit-row">
-            <input type="text" id="fullNameInput" placeholder="ناوی تەواوت بنووسە" />
-            <button class="save-btn" id="saveNameBtn">
-              <i class="fa-solid fa-check"></i>
-            </button>
-          </div>
-        </div>
-
+      <div>
+        <h3>یوزەرنەیم</h3>
+        <p>یوزەرنەیمەکەت بگۆڕە</p>
       </div>
-
-      <div class="divider"></div>
-
-      <!-- Logout -->
-      <button class="logout-btn" id="logoutBtn">
-        <i class="fa-solid fa-right-from-bracket"></i>
-        دەرچوون
-      </button>
-
     </div>
+    <div class="edit-field">
+      <input type="text" id="usernameInput" placeholder="یوزەرنەیمی نوێ بنووسە" />
+      <button class="edit-save-btn" id="saveUsernameBtn">
+        <i class="fa-solid fa-check"></i>
+        پاشەکەوبکە
+      </button>
+    </div>
+  </div>
+
+  <!-- Full Name Card -->
+  <div class="edit-card">
+    <div class="edit-card-header">
+      <div class="edit-card-icon">
+        <i class="fa-solid fa-user"></i>
+      </div>
+      <div>
+        <h3>ناوی تەواو</h3>
+        <p>ناوی تەواوت بگۆڕە</p>
+      </div>
+    </div>
+    <div class="edit-field">
+      <input type="text" id="fullNameInput" placeholder="ناوی تەواوی نوێ بنووسە" />
+      <button class="edit-save-btn" id="saveNameBtn">
+        <i class="fa-solid fa-check"></i>
+        پاشەکەوبکە
+      </button>
+    </div>
+  </div>
+
+  <!-- Forgot Password Card -->
+  <div class="edit-card forgot-card">
+    <div class="edit-card-header">
+      <div class="edit-card-icon danger-icon">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+      <div>
+        <h3>ئیمەیڵی بیرهاتووی وشەی نهێنی</h3>
+        <p>لینکی ڕیسێت بۆ ئیمەیڵەکەت دەنێردرێت</p>
+      </div>
+    </div>
+    <div class="edit-field">
+      <input type="email" id="resetEmailInput" placeholder="ئیمەیڵەکەت بنووسە" />
+      <button class="edit-save-btn danger-btn" id="resetPasswordBtn">
+        <i class="fa-solid fa-paper-plane"></i>
+        ناردن
+      </button>
+    </div>
+  </div>
+
+</div>
+```
 
   </div>
 
-  <!-- Notification -->
-  <div id="notifContainer"></div>
-
   <script type="module" src="assect/java/profile.js"></script>
+
 </body>
 </html>
