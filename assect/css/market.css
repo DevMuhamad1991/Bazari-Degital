@@ -4,17 +4,22 @@ html {
 }
 
 :root {
-  
-  /* ── زیادکراو بۆ ناڤبار ── */
-  --nav-h: 64px;
-  --blue: #1a8cff;
-  --blue-light: #00d4ff;
-  --blue-glow: #60cfff;
-  --text-muted: #7a93c8;
-  --border-bright: rgba(26,140,255,0.4);
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --blue-glow: #60a5fa;
+  --dark: #020817;
+  --dark-2: #0a1628;
+  --dark-3: #0f1f3d;
+  --card: #0d1b33;
+  --border: rgba(59,130,246,0.2);
+  --border-bright: rgba(59,130,246,0.5);
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --accent: #38bdf8;
+  --radius: 16px;
+  --shadow: 0 4px 30px rgba(37,99,235,0.15);
   --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
-  --dark: #060d1f;
-  --dark-2: #0c1a35;
+  --nav-h: 64px;
 }
 
 * {
