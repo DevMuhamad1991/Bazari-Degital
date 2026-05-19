@@ -76,7 +76,7 @@ document.getElementById('loginBtn').addEventListener('click', async function() {
     await signInWithEmailAndPassword(auth, email, password);
     alert('بەخێربێیت! ✅');
     // ئێرە بنووسە بەکارهێنەر بۆ کوێ بڕوات دوای چوونەژوورەوە
-    // window.location.href = 'dashboard.html';
+    window.location.href = 'market.html';
   } catch (error) {
     if (error.code === 'auth/user-not-found') {
       alert('ئەم بەکارهێنەرە نەدۆزرایەوە ❌');
