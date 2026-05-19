@@ -131,6 +131,12 @@ function showPanel(name) {
 }
 window.showPanel = showPanel;
 
+// ── یوزەرنەیم ئۆتۆماتیکی دروست بکە ──
+function generateUsername(firstName, lastName) {
+  const random = Math.floor(1000 + Math.random() * 9000);
+  return (firstName + lastName + random).toLowerCase().replace(/\s/g, '');
+}
+
 // ── بینینی وشەی نهێنی (Toggle Password Visibility) ──
 function togglePasswordVisibility(inputElement, buttonElement) {
   const type = inputElement.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -228,6 +234,42 @@ document.getElementById('registerBtn').addEventListener('click', async function 
   if (password.length < 8) {
     showNotif('وشەی نهێنی دەبێت لانی کەم ٨ پیت بێت', 'warning'); return;
   }
+  
+    try {
+    // ١ — هەژمار دروست بکە
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    // ٢ — یوزەرنەیم ئۆتۆماتیکی
+    const username = generateUsername(firstName, lastName);
+
+    // ٣ — ناو لە Auth دا بنێ
+    await updateProfile(user, {
+      displayName: firstName + ' ' + lastName,
+      photoURL: 'https://ui-avatars.com/api/?name=' + firstName + '+' + lastName + '&background=2563eb&color=fff&size=200'
+    });
+
+    // ٤ — زانیاری لە Firestore دا پاشەکەو بکە
+    await setDoc(doc(db, 'users', user.uid), {
+      uid: user.uid,
+      firstName: firstName,
+      lastName: lastName,
+      username: username,
+      email: email,
+      photoURL: 'https://ui-avatars.com/api/?name=' + firstName + '+' + lastName + '&background=2563eb&color=fff&size=200',
+      createdAt: new Date().toISOString()
+    });
+
+    showNotif('هەژمارەکەت بەسەرکەوتوویی دروستکرا ✅', 'success');
+    setTimeout(() => { window.location.href = 'profile.html'; }, 1500);
+
+  } catch (error) {
+    if (error.code === 'auth/email-already-in-use') showNotif('ئەم ئیمەیڵە پێشتر تۆماركراوە', 'error');
+    else if (error.code === 'auth/invalid-email')   showNotif('ئیمەیڵەکە دروست نییە', 'error');
+    else if (error.code === 'auth/weak-password')   showNotif('وشەی نهێنی قەولەیە', 'error');
+    else showNotif(error.message, 'error');
+  }
+});
 
   try {
     await createUserWithEmailAndPassword(auth, email, password);
