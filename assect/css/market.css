@@ -30,7 +30,7 @@ html {
 
 body {
   background: #070d1f;
-  font-family: system-ui, sans-serif;
+font-family: 'Noto Kufi Arabic', 'Cairo', sans-serif;
   color: #e2e8f0;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
