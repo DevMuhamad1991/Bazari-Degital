@@ -274,7 +274,7 @@ document.getElementById('registerBtn').addEventListener('click', async function 
   try {
     await createUserWithEmailAndPassword(auth, email, password);
     showNotif('هەژمارەکەت بەسەرکەوتوویی دروستکرا', 'success');
-    setTimeout(() => { window.location.href = 'market.html'; }, 1500);
+    setTimeout(() => { window.location.href = 'profile.html'; }, 1500);
   } catch (error) {
     if (error.code === 'auth/email-already-in-use') showNotif('ئەم ئیمەیڵە پێشتر تۆماركراوە', 'error');
     else if (error.code === 'auth/invalid-email')   showNotif('ئیمەیڵەکە دروست نییە', 'error');
@@ -295,7 +295,7 @@ document.getElementById('loginBtn').addEventListener('click', async function () 
   try {
     await signInWithEmailAndPassword(auth, email, password);
     showNotif('بەخێربێیت! 👋', 'success');
-    setTimeout(() => { window.location.href = 'market.html'; }, 1500);
+    setTimeout(() => { window.location.href = 'profile.html'; }, 1500);
   } catch (error) {
     if (error.code === 'auth/user-not-found')        showNotif('ئەم بەکارهێنەرە نەدۆزرایەوە', 'error');
     else if (error.code === 'auth/wrong-password')   showNotif('وشەی نهێنی هەڵەیە', 'error');
