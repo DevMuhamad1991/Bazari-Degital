@@ -515,7 +515,7 @@ body {
 /* ✅ گۆڕاو: ئایکۆن چووە لای راست */
 .inp-icon {
   position: absolute;
-  right: 14px;
+  left: 14px;
   top: 50%;
   transform: translateY(-50%);
   color: rgba(255, 255, 255, 0.28);
