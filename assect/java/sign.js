@@ -55,6 +55,81 @@ function showPanel(name) {
 }
 window.showPanel = showPanel;
 
+// ── بینینی وشەی نهێنی (Toggle Password Visibility) ──
+function togglePasswordVisibility(inputElement, buttonElement) {
+  const type = inputElement.getAttribute('type') === 'password' ? 'text' : 'password';
+  inputElement.setAttribute('type', type);
+  
+  // گۆڕینی ئایکۆن
+  if (type === 'password') {
+    buttonElement.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
+  } else {
+    buttonElement.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><line x1="1" y1="1" l2="22" x2="22" y2="22"/></svg>`;
+  }
+}
+
+// ── زیادکردنی دوگمەی بینین بۆ هەموو فۆڕمەکانی وشەی نهێنی ──
+function addPasswordToggles() {
+  // بۆ چوونەژوورەوە
+  const loginPasswordField = document.getElementById('loginPassword');
+  const loginWrap = loginPasswordField.closest('.inp-wrap');
+  const loginToggleBtn = document.createElement('button');
+  loginToggleBtn.type = 'button';
+  loginToggleBtn.className = 'password-toggle-btn';
+  loginToggleBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
+  loginToggleBtn.style.cssText = `
+    position: absolute;
+    left: 45px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.2s;
+    z-index: 2;
+  `;
+  loginToggleBtn.addEventListener('mouseenter', () => loginToggleBtn.style.color = '#3b82f6');
+  loginToggleBtn.addEventListener('mouseleave', () => loginToggleBtn.style.color = 'rgba(255, 255, 255, 0.4)');
+  loginToggleBtn.addEventListener('click', () => togglePasswordVisibility(loginPasswordField, loginToggleBtn));
+  loginWrap.appendChild(loginToggleBtn);
+
+  // بۆ تۆمارکردن
+  const registerPasswordField = document.getElementById('registerPassword');
+  const registerWrap = registerPasswordField.closest('.inp-wrap');
+  const registerToggleBtn = document.createElement('button');
+  registerToggleBtn.type = 'button';
+  registerToggleBtn.className = 'password-toggle-btn';
+  registerToggleBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
+  registerToggleBtn.style.cssText = `
+    position: absolute;
+    left: 45px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.2s;
+    z-index: 2;
+  `;
+  registerToggleBtn.addEventListener('mouseenter', () => registerToggleBtn.style.color = '#3b82f6');
+  registerToggleBtn.addEventListener('mouseleave', () => registerToggleBtn.style.color = 'rgba(255, 255, 255, 0.4)');
+  registerToggleBtn.addEventListener('click', () => togglePasswordVisibility(registerPasswordField, registerToggleBtn));
+  registerWrap.appendChild(registerToggleBtn);
+}
+
+// ── بانگی فانکشنەکە دوای باربوونی پەڕە ──
+document.addEventListener('DOMContentLoaded', () => {
+  addPasswordToggles();
+});
+
 // ── تۆماركردن ──
 document.getElementById('registerBtn').addEventListener('click', async function () {
   const firstName = document.getElementById('firstName').value.trim();
