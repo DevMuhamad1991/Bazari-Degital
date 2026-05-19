@@ -742,196 +742,121 @@ body::before {
     font-size: 8px;
   }
 }
-/* =====================================================
-   LAPTOP & DESKTOP RESPONSIVE FIX
-===================================================== */
+/* =========================================
+   LAPTOP UI FIX
+========================================= */
 
-/* Laptop */
-@media (min-width: 769px) and (max-width: 1400px) {
-
-  .container{
-    max-width: 1100px;
-    padding: 2rem 1.5rem 5rem;
-  }
-
-  .nav-container{
-    max-width: 1200px;
-    padding: 0 18px;
-  }
-
-  .nav-links{
-    gap: 2px;
-  }
-
-  .nav-link{
-    font-size: 0.82rem;
-    padding: 8px 11px;
-  }
-
-  .logo{
-    font-size: 1.15rem;
-  }
-
-  .logo-icon{
-    width: 36px;
-    height: 36px;
-  }
-
-  .card{
-    padding: 1.5rem;
-    border-radius: 22px;
-  }
-
-  .grid-2{
-    grid-template-columns: repeat(2,minmax(0,1fr));
-    gap: 1rem;
-  }
-
-  .platform-grid{
-    grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
-    gap: 12px;
-  }
-
-  .plat-btn{
-    min-height: 95px;
-  }
-
-  .plat-btn span{
-    font-size: 11px;
-  }
-
-  .badge-row{
-    gap: 10px;
-  }
-
-  .badge-check{
-    font-size: 11px;
-    padding: 8px 12px;
-  }
-
-  .submit-btn{
-    width: 420px;
-    max-width: 100%;
-  }
-
-}
-
-
-/* Small Laptop */
-@media (min-width: 769px) and (max-width: 1024px){
-
-  .nav-container{
-    gap: 10px;
-  }
-
-  .logo-text{
-    font-size: 1rem;
-  }
-
-  .nav-links{
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    scrollbar-width: none;
-  }
-
-  .nav-links::-webkit-scrollbar{
-    display: none;
-  }
-
-  .nav-link{
-    white-space: nowrap;
-    font-size: 0.76rem;
-    padding: 7px 9px;
-  }
+@media (min-width: 769px){
 
   .container{
     max-width: 950px;
-  }
-
-  .card{
-    padding: 1.25rem;
-  }
-
-  .platform-grid{
-    grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
-  }
-
-}
-
-
-/* Large Desktop */
-@media (min-width: 1401px){
-
-  .container{
-    max-width: 1250px;
-    padding: 2.5rem 2rem 6rem;
-  }
-
-  .nav-container{
-    max-width: 1320px;
-  }
-
-  .card{
-    padding: 2rem;
-  }
-
-  .grid-2{
-    gap: 1.4rem;
-  }
-
-  .platform-grid{
-    grid-template-columns: repeat(auto-fit,minmax(130px,1fr));
-    gap: 14px;
-  }
-
-  .plat-btn{
-    padding: 14px 10px;
-  }
-
-  .plat-btn .plat-ico{
-    width: 42px;
-    height: 42px;
-  }
-
-  .plat-btn span{
-    font-size: 12px;
-  }
-
-  .submit-btn{
-    width: 460px;
-  }
-
-}
-
-
-/* Extra Fixes */
-@media (min-width: 769px){
-
-  body{
-    overflow-x: hidden;
+    margin: auto;
+    padding: 1rem 1.2rem 4rem;
   }
 
   form{
-    width: 100%;
+    max-width: 950px;
+    margin: auto;
   }
 
   .card{
-    backdrop-filter: blur(12px);
+    padding: 1.2rem;
+    border-radius: 18px;
   }
 
-  .navbar{
-    width: 100%;
+  .card-header{
+    margin-bottom: 1rem;
   }
 
-  .progress-track{
+  .card-header h2{
+    font-size: 14px;
+  }
+
+  .card-sub{
+    font-size: 10px;
+  }
+
+  .field{
+    margin-bottom: .8rem;
+  }
+
+  .field label{
+    font-size: 11px;
+  }
+
+  .input-wrap input,
+  .input-wrap select,
+  .textarea-wrap textarea{
+    font-size: 12px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+  }
+
+  .grid-2{
+    gap: .8rem;
+  }
+
+  .platform-grid{
+    grid-template-columns: repeat(auto-fit,minmax(95px,1fr));
+    gap: 8px;
+  }
+
+  .plat-btn{
+    padding: 8px 4px;
+  }
+
+  .plat-btn .plat-ico{
+    width: 30px;
+    height: 30px;
+  }
+
+  .plat-btn span{
+    font-size: 9px;
+  }
+
+  .badge-check{
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+
+  .tag{
+    font-size: 10px;
+    padding: 4px 10px;
+  }
+
+  .submit-btn{
+    width: 320px;
+    font-size: 13px;
+    padding: 11px;
+  }
+
+  .hero h1,
+  .container h1{
+    font-size: 38px;
+  }
+
+  .hero p,
+  .container p{
+    font-size: 13px;
+  }
+
+  .nav-container{
     max-width: 1100px;
-    margin-inline: auto;
-    margin-bottom: 2rem;
+    padding: 0 14px;
   }
 
-  .success-box{
-    max-width: 700px;
-    margin-inline: auto;
+  .nav-link{
+    font-size: .78rem;
+    padding: 7px 10px;
+  }
+
+  .logo{
+    font-size: 1rem;
+  }
+
+  .logo-icon{
+    width: 34px;
+    height: 34px;
   }
 
 }
