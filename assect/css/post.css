@@ -742,3 +742,196 @@ body::before {
     font-size: 8px;
   }
 }
+/* =====================================================
+   LAPTOP & DESKTOP RESPONSIVE FIX
+===================================================== */
+
+/* Laptop */
+@media (min-width: 769px) and (max-width: 1400px) {
+
+  .container{
+    max-width: 1100px;
+    padding: 2rem 1.5rem 5rem;
+  }
+
+  .nav-container{
+    max-width: 1200px;
+    padding: 0 18px;
+  }
+
+  .nav-links{
+    gap: 2px;
+  }
+
+  .nav-link{
+    font-size: 0.82rem;
+    padding: 8px 11px;
+  }
+
+  .logo{
+    font-size: 1.15rem;
+  }
+
+  .logo-icon{
+    width: 36px;
+    height: 36px;
+  }
+
+  .card{
+    padding: 1.5rem;
+    border-radius: 22px;
+  }
+
+  .grid-2{
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 1rem;
+  }
+
+  .platform-grid{
+    grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
+    gap: 12px;
+  }
+
+  .plat-btn{
+    min-height: 95px;
+  }
+
+  .plat-btn span{
+    font-size: 11px;
+  }
+
+  .badge-row{
+    gap: 10px;
+  }
+
+  .badge-check{
+    font-size: 11px;
+    padding: 8px 12px;
+  }
+
+  .submit-btn{
+    width: 420px;
+    max-width: 100%;
+  }
+
+}
+
+
+/* Small Laptop */
+@media (min-width: 769px) and (max-width: 1024px){
+
+  .nav-container{
+    gap: 10px;
+  }
+
+  .logo-text{
+    font-size: 1rem;
+  }
+
+  .nav-links{
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar{
+    display: none;
+  }
+
+  .nav-link{
+    white-space: nowrap;
+    font-size: 0.76rem;
+    padding: 7px 9px;
+  }
+
+  .container{
+    max-width: 950px;
+  }
+
+  .card{
+    padding: 1.25rem;
+  }
+
+  .platform-grid{
+    grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
+  }
+
+}
+
+
+/* Large Desktop */
+@media (min-width: 1401px){
+
+  .container{
+    max-width: 1250px;
+    padding: 2.5rem 2rem 6rem;
+  }
+
+  .nav-container{
+    max-width: 1320px;
+  }
+
+  .card{
+    padding: 2rem;
+  }
+
+  .grid-2{
+    gap: 1.4rem;
+  }
+
+  .platform-grid{
+    grid-template-columns: repeat(auto-fit,minmax(130px,1fr));
+    gap: 14px;
+  }
+
+  .plat-btn{
+    padding: 14px 10px;
+  }
+
+  .plat-btn .plat-ico{
+    width: 42px;
+    height: 42px;
+  }
+
+  .plat-btn span{
+    font-size: 12px;
+  }
+
+  .submit-btn{
+    width: 460px;
+  }
+
+}
+
+
+/* Extra Fixes */
+@media (min-width: 769px){
+
+  body{
+    overflow-x: hidden;
+  }
+
+  form{
+    width: 100%;
+  }
+
+  .card{
+    backdrop-filter: blur(12px);
+  }
+
+  .navbar{
+    width: 100%;
+  }
+
+  .progress-track{
+    max-width: 1100px;
+    margin-inline: auto;
+    margin-bottom: 2rem;
+  }
+
+  .success-box{
+    max-width: 700px;
+    margin-inline: auto;
+  }
+
+}
