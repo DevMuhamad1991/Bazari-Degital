@@ -15,6 +15,104 @@ body {
   padding: 20px;
 }
 
+/* ── Notification ── */
+.notif {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  direction: rtl;
+  z-index: 9999;
+  min-width: 270px;
+  max-width: 340px;
+  opacity: 0;
+  transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid transparent;
+  overflow: hidden;
+}
+
+.notif-show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.notif-success {
+  background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(5,150,105,0.22));
+  border-color: rgba(16,185,129,0.25);
+  color: #6ee7b7;
+  box-shadow: 0 8px 32px rgba(16,185,129,0.15);
+}
+
+.notif-error {
+  background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(220,38,38,0.22));
+  border-color: rgba(239,68,68,0.25);
+  color: #fca5a5;
+  box-shadow: 0 8px 32px rgba(239,68,68,0.15);
+}
+
+.notif-warning {
+  background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(217,119,6,0.22));
+  border-color: rgba(245,158,11,0.25);
+  color: #fcd34d;
+  box-shadow: 0 8px 32px rgba(245,158,11,0.15);
+}
+
+.notif-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.notif-msg {
+  flex: 1;
+}
+
+.notif-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+
+.notif-close:hover { opacity: 1; }
+
+.notif-bar {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 3px;
+  width: 100%;
+  border-radius: 0 0 16px 16px;
+  animation: notif-timer 3.5s linear forwards;
+}
+
+.notif-success .notif-bar { background: #10b981; }
+.notif-error   .notif-bar { background: #ef4444; }
+.notif-warning .notif-bar { background: #f59e0b; }
+
+@keyframes notif-timer {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+
+
+
+
+
 .page {
   width: 100%;
   max-width: 400px;
