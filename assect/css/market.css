@@ -31,7 +31,10 @@ html {
 body {
   background: #070d1f;
   font-family: system-ui, sans-serif;
-  color: #fff;
+  color: #e2e8f0;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+
   min-height: 100vh;
   direction: rtl;
   overflow-x: hidden; /* ← چارەسەرى سەرەکی: دەوەستێنێت لە جوڵانی ڕاست-چەپ */
