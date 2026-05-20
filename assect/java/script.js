@@ -1,3 +1,31 @@
+mport { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyASJbu_rNecyaHi9gqrE9PSOwyA7pvq92E",
+  authDomain: "kurd-account.firebaseapp.com",
+  projectId: "kurd-account",
+  storageBucket: "kurd-account.firebasestorage.app",
+  messagingSenderId: "325274297633",
+  appId: "1:325274297633:web:04f9b4b209d3d0f6a90a60"
+};
+
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// ── Profile Redirect ──
+onAuthStateChanged(auth, (user) => {
+  const signupLink = document.querySelector('a[href="sign.html"]');
+  if (!signupLink) return;
+  if (user) {
+    signupLink.href = 'profile.html';
+    signupLink.textContent = 'Profile';
+  } else {
+    signupLink.href = 'sign.html';
+    signupLink.textContent = 'SignUp';
+  }
+});
+
 
 // ===== NAVBAR SCROLL =====
 const navbar = document.getElementById('navbar');
@@ -66,34 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  // ── Profile Redirect ──
-import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyASJbu_rNecyaHi9gqrE9PSOwyA7pvq92E",
-  authDomain: "kurd-account.firebaseapp.com",
-  projectId: "kurd-account",
-  storageBucket: "kurd-account.firebasestorage.app",
-  messagingSenderId: "325274297633",
-  appId: "1:325274297633:web:04f9b4b209d3d0f6a90a60"
-};
-
-// ── دووجار دەستپێنەکات ──
-const app  = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
-const auth = getAuth(app);
-
-onAuthStateChanged(auth, (user) => {
-  const signupLink = document.querySelector('a[href="sign.html"]');
-  if (!signupLink) return;
-  if (user) {
-    signupLink.href = 'profile.html';
-    signupLink.textContent = 'Profile';
-  } else {
-    signupLink.href = 'sign.html';
-    signupLink.textContent = 'SignUp';
-  }
-});
 
 
 
