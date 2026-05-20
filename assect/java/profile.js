@@ -24,8 +24,12 @@ if (navbar) {
 }
 
 // ── Navbar Profile Redirect ──
+// ── چاوەڕێ بکە تا Firebase session بارکات ──
+let authResolved = false;
+
 onAuthStateChanged(auth, async (user) => {
-  // ── ناڤبار ──
+  authResolved = true;
+
   const signupLink = document.querySelector('a[href="sign.html"]');
   if (signupLink) {
     if (user) {
@@ -37,13 +41,14 @@ onAuthStateChanged(auth, async (user) => {
     }
   }
 
-  // ── ئەگەر لۆگین نەبوو ──
   if (!user) {
     window.location.href = 'sign.html';
     return;
   }
 
-  // ── زانیاری لە Firestore ──
+  // بەشی ناوەرۆک نیشان بدە
+  document.querySelector('.profile-page').style.opacity = '1';
+
   const userSnap = await getDoc(doc(db, 'users', user.uid));
   const userData = userSnap.exists() ? userSnap.data() : {};
 
@@ -62,6 +67,7 @@ onAuthStateChanged(auth, async (user) => {
   document.getElementById('fullNameInput').value         = fullName;
   document.getElementById('resetEmailInput').value       = user.email;
 });
+
 
 // ── Notification ──
 function showNotif(message, type = 'success') {
