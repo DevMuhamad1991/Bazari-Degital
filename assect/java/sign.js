@@ -74,6 +74,35 @@ function showNotif(message, type = 'success') {
   setTimeout(() => { notif.classList.remove('notif-show'); setTimeout(() => notif.remove(), 400); }, 3500);
 }
 
+// ── Profile Redirect ──
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyASJbu_rNecyaHi9gqrE9PSOwyA7pvq92E",
+  authDomain: "kurd-account.firebaseapp.com",
+  projectId: "kurd-account",
+  storageBucket: "kurd-account.firebasestorage.app",
+  messagingSenderId: "325274297633",
+  appId: "1:325274297633:web:04f9b4b209d3d0f6a90a60"
+};
+
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+onAuthStateChanged(auth, (user) => {
+  const signupLink = document.querySelector('a[href="sign.html"]');
+  if (!signupLink) return;
+  if (user) {
+    signupLink.href = 'profile.html';
+    signupLink.textContent = 'Profile';
+  } else {
+    signupLink.href = 'sign.html';
+    signupLink.textContent = 'SignUp';
+  }
+});
+
+
 // ── Tab Panel ──
 function showPanel(name) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
