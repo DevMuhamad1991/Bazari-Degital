@@ -23,34 +23,30 @@ if (navbar) {
   });
 }
 
-// ── Navbar Profile Redirect ──
-// ── چاوەڕێ بکە تا Firebase session بارکات ──
-let authResolved = false;
-
+// ── Auth Check ──
 onAuthStateChanged(auth, async (user) => {
-  document.getElementById('loadingScreen').style.display = 'none';
-document.querySelector('.profile-page').style.opacity = '1';
-  authResolved = true;
 
-  const signupLink = document.querySelector('a[href="sign.html"]');
-  if (signupLink) {
-    if (user) {
-      signupLink.href = 'profile.html';
-      signupLink.textContent = 'Profile';
-    } else {
-      signupLink.href = 'sign.html';
-      signupLink.textContent = 'SignUp';
-    }
-  }
-
+  // ئەگەر لۆگین نەبوو — ئەوکات بگوازرێتەوە
   if (!user) {
     window.location.href = 'sign.html';
     return;
   }
 
-  // بەشی ناوەرۆک نیشان بدە
-  document.querySelector('.profile-page').style.opacity = '1';
+  // لۆگین بووە — loadingScreen داخە
+  const loadingScreen = document.getElementById('loadingScreen');
+  if (loadingScreen) loadingScreen.style.display = 'none';
+  
+  const profilePage = document.querySelector('.profile-page');
+  if (profilePage) profilePage.style.opacity = '1';
 
+  // ── ناڤبار ──
+  const signupLink = document.querySelector('a[href="sign.html"]');
+  if (signupLink) {
+    signupLink.href = 'profile.html';
+    signupLink.textContent = 'Profile';
+  }
+
+  // ── زانیاری لە Firestore ──
   const userSnap = await getDoc(doc(db, 'users', user.uid));
   const userData = userSnap.exists() ? userSnap.data() : {};
 
@@ -69,7 +65,6 @@ document.querySelector('.profile-page').style.opacity = '1';
   document.getElementById('fullNameInput').value         = fullName;
   document.getElementById('resetEmailInput').value       = user.email;
 });
-
 
 // ── Notification ──
 function showNotif(message, type = 'success') {
@@ -140,7 +135,7 @@ document.getElementById('resetPasswordBtn').addEventListener('click', async () =
     await sendPasswordResetEmail(auth, email);
     showNotif('ئیمەیڵی ڕیسێت نێردرا ✅ سەیری ئیمەیڵەکەت بکە', 'success');
   } catch (error) {
-    if (error.code === 'auth/user-not-found')  showNotif('ئەم ئیمەیڵە تۆمارنەکراوە', 'error');
+    if (error.code === 'auth/user-not-found')     showNotif('ئەم ئیمەیڵە تۆمارنەکراوە', 'error');
     else if (error.code === 'auth/invalid-email') showNotif('ئیمەیڵەکە دروست نییە', 'error');
     else showNotif('کێشەیەک هەبوو', 'error');
   }
