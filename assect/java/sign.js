@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -14,6 +14,19 @@ const firebaseConfig = {
 const app  = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db   = getFirestore(app);
+
+// ── Profile Redirect ──
+onAuthStateChanged(auth, (user) => {
+  const signupLink = document.querySelector('a[href="sign.html"]');
+  if (!signupLink) return;
+  if (user) {
+    signupLink.href = 'profile.html';
+    signupLink.textContent = 'Profile';
+  } else {
+    signupLink.href = 'sign.html';
+    signupLink.textContent = 'SignUp';
+  }
+});
 
 // ── Navbar Scroll ──
 const navbar = document.getElementById('navbar');
@@ -48,6 +61,15 @@ document.addEventListener('DOMContentLoaded', () => {
   addPasswordToggles();
 });
 
+// ── Tab Panel ──
+function showPanel(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+window.showPanel = showPanel;
+
 // ── Notification ──
 function showNotif(message, type = 'success') {
   const old = document.querySelector('.notif');
@@ -74,44 +96,6 @@ function showNotif(message, type = 'success') {
   setTimeout(() => { notif.classList.remove('notif-show'); setTimeout(() => notif.remove(), 400); }, 3500);
 }
 
-// ── Profile Redirect ──
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyASJbu_rNecyaHi9gqrE9PSOwyA7pvq92E",
-  authDomain: "kurd-account.firebaseapp.com",
-  projectId: "kurd-account",
-  storageBucket: "kurd-account.firebasestorage.app",
-  messagingSenderId: "325274297633",
-  appId: "1:325274297633:web:04f9b4b209d3d0f6a90a60"
-};
-
-const app  = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-onAuthStateChanged(auth, (user) => {
-  const signupLink = document.querySelector('a[href="sign.html"]');
-  if (!signupLink) return;
-  if (user) {
-    signupLink.href = 'profile.html';
-    signupLink.textContent = 'Profile';
-  } else {
-    signupLink.href = 'sign.html';
-    signupLink.textContent = 'SignUp';
-  }
-});
-
-
-// ── Tab Panel ──
-function showPanel(name) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('panel-' + name).classList.add('active');
-  document.getElementById('tab-' + name).classList.add('active');
-}
-window.showPanel = showPanel;
-
 // ── یوزەرنەیم ئۆتۆماتیکی ──
 function generateUsername(firstName, lastName) {
   const random = Math.floor(1000 + Math.random() * 9000);
@@ -134,7 +118,6 @@ function addPasswordToggles() {
     const wrap = input.closest('.inp-wrap');
     const oldIcon = wrap.querySelector('.inp-icon');
     if (oldIcon) oldIcon.remove();
-
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'password-toggle-btn';
@@ -172,11 +155,7 @@ document.getElementById('registerBtn').addEventListener('click', async function 
     });
 
     await setDoc(doc(db, 'users', user.uid), {
-      uid: user.uid,
-      firstName,
-      lastName,
-      username,
-      email,
+      uid: user.uid, firstName, lastName, username, email,
       photoURL: 'https://ui-avatars.com/api/?name=' + firstName + '+' + lastName + '&background=2563eb&color=fff&size=200',
       createdAt: new Date().toISOString()
     });
