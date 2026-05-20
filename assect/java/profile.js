@@ -28,6 +28,8 @@ if (navbar) {
 let authResolved = false;
 
 onAuthStateChanged(auth, async (user) => {
+  document.getElementById('loadingScreen').style.display = 'none';
+document.querySelector('.profile-page').style.opacity = '1';
   authResolved = true;
 
   const signupLink = document.querySelector('a[href="sign.html"]');
