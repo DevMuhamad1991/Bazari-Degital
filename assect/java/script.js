@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   // ── Profile Redirect ──
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const firebaseConfig = {
@@ -79,7 +79,8 @@ const firebaseConfig = {
   appId: "1:325274297633:web:04f9b4b209d3d0f6a90a60"
 };
 
-const app  = initializeApp(firebaseConfig);
+// ── دووجار دەستپێنەکات ──
+const app  = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 const auth = getAuth(app);
 
 onAuthStateChanged(auth, (user) => {
@@ -93,6 +94,7 @@ onAuthStateChanged(auth, (user) => {
     signupLink.textContent = 'SignUp';
   }
 });
+
 
 
   // ===== NAVBAR DRAG SCROLL =====
