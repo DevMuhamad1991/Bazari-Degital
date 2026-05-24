@@ -247,46 +247,6 @@ button { font-family: inherit; cursor: pointer; }
   position: fixed; inset: 0; z-index: 0;
   pointer-events: none; opacity: .5;
 }
-
-
-/* =====================================================
-   MOBILE DRAWER
-   ===================================================== */
-.mob-overlay {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,.75); backdrop-filter: blur(4px);
-  z-index: 200; opacity: 0; pointer-events: none; transition: opacity .3s;
-}
-.mob-overlay.open { opacity: 1; pointer-events: all; }
-
-.mob-drawer {
-  position: fixed; top: 0; left: 0;
-  width: 255px; height: 100%;
-  background: #070f1f;
-  border-right: 1px solid var(--b);
-  z-index: 201; padding: 18px 0;
-  transform: translateX(-100%);
-  transition: transform .32s cubic-bezier(.25,.8,.25,1);
-}
-.mob-drawer.open { transform: translateX(0); }
-
-.md-head {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 18px 18px;
-  border-bottom: 1px solid var(--b); margin-bottom: 10px;
-}
-.md-head span { font-size: .95rem; font-weight: 900; color: var(--blue); }
-.md-head button { background: none; border: none; color: var(--tx2); font-size: 18px; padding: 4px 8px; }
-
-.md-nav { display: flex; flex-direction: column; gap: 2px; padding: 0 10px; }
-.md-nav a {
-  display: flex; align-items: center; gap: 11px;
-  padding: 11px 14px; border-radius: var(--r-sm);
-  font-size: .88rem; font-weight: 600; color: var(--tx2); transition: all .2s;
-}
-.md-nav a:hover { color: var(--tx); background: rgba(255,255,255,.05); }
-.md-nav a i { color: var(--blue); width: 17px; text-align: center; }
-
 /* =====================================================
    PAGE WRAPPER
    ===================================================== */
