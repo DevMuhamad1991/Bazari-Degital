@@ -6,372 +6,282 @@
   <title>پرۆفایل — KurdAccount</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;600;700;900&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="assect/css/profile.css" />
+  <link rel="stylesheet" href="profile.css" />
 </head>
 <body>
 
-  <!-- ░░ LOADING SCREEN ░░ -->
+  <!-- LOADING -->
   <div id="loadingScreen" class="loading-screen">
-    <div class="loader-wrap">
-      <div class="loader-ring"></div>
-      <div class="loader-ring loader-ring--2"></div>
-      <span class="loader-logo">KA</span>
+    <div class="loader-box">
+      <div class="l-ring"></div>
+      <div class="l-ring l-ring--2"></div>
+      <span class="l-ka">KA</span>
     </div>
-    <p class="loader-text">چاوەڕێ بکە...</p>
+    <p class="l-txt">چاوەڕێ بکە...</p>
   </div>
 
-  <!-- ░░ BACKGROUND CANVAS ░░ -->
+  <!-- BACKGROUND CANVAS -->
   <canvas id="bgCanvas"></canvas>
 
-  <!-- ░░ NAVBAR ░░ -->
-  <nav class="navbar" id="navbar">
+  <!-- NAVBAR -->
+  <nav class="navbar">
     <div class="nav-inner">
-      <a href="index.html" class="logo">
-        <div class="logo-shield">
-          <i class="fa-solid fa-shield-halved"></i>
-        </div>
-        <span>Kurd<em>Account</em></span>
-      </a>
-      <div class="nav-center">
-        <a href="index.html"   class="nav-pill">ماڵەوە</a>
-        <a href="market.html"  class="nav-pill">مارکێت</a>
-        <a href="post.html"    class="nav-pill">فرۆشتن</a>
-        <a href="team.html"    class="nav-pill">تیم</a>
-        <a href="read.html"    class="nav-pill">ڕیڤیو</a>
-        <a href="profile.html" class="nav-pill nav-pill--active">پرۆفایل</a>
-      </div>
-      <button class="nav-menu-btn" id="navMenuBtn">
+      <button class="hamburger" id="hamburger" aria-label="menu">
         <i class="fa-solid fa-bars"></i>
       </button>
+      <a href="index.html" class="logo">
+        <div class="logo-ico"><i class="fa-solid fa-shield-halved"></i></div>
+        <span>Kurd<em>Account</em></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html"   class="nl">ماڵەوە</a></li>
+        <li><a href="market.html"  class="nl">مارکێت</a></li>
+        <li><a href="post.html"    class="nl">فرۆشتن</a></li>
+        <li><a href="team.html"    class="nl">تیم</a></li>
+        <li><a href="read.html"    class="nl">ڕیڤیو</a></li>
+        <li><a href="profile.html" class="nl nl--on">پرۆفایل</a></li>
+      </ul>
     </div>
   </nav>
 
-  <!-- ░░ MOBILE DRAWER ░░ -->
-  <div class="drawer-overlay" id="drawerOverlay"></div>
-  <aside class="mobile-drawer" id="mobileDrawer">
-    <div class="drawer-header">
-      <span class="logo-text-sm">KurdAccount</span>
-      <button id="drawerClose"><i class="fa-solid fa-xmark"></i></button>
+  <!-- MOBILE DRAWER -->
+  <div class="mob-overlay" id="mobOverlay"></div>
+  <aside class="mob-drawer" id="mobDrawer">
+    <div class="md-head">
+      <span>KurdAccount</span>
+      <button id="mdClose"><i class="fa-solid fa-xmark"></i></button>
     </div>
-    <nav class="drawer-nav">
+    <nav class="md-nav">
       <a href="index.html">  <i class="fa-solid fa-house"></i>       ماڵەوە</a>
       <a href="market.html"> <i class="fa-solid fa-store"></i>       مارکێت</a>
-      <a href="post.html">   <i class="fa-solid fa-plus-circle"></i> فرۆشتن</a>
+      <a href="post.html">   <i class="fa-solid fa-circle-plus"></i> فرۆشتن</a>
       <a href="team.html">   <i class="fa-solid fa-users"></i>       تیم</a>
       <a href="read.html">   <i class="fa-solid fa-star"></i>        ڕیڤیو</a>
     </nav>
   </aside>
 
-  <!-- ░░ PAGE WRAPPER ░░ -->
-  <main class="page-wrap">
+  <!-- MAIN PAGE -->
+  <main class="page">
 
-    <!-- ── HERO / COVER ── -->
-    <section class="profile-hero">
+    <!-- HERO CARD -->
+    <section class="hero-card">
+
+      <!-- Cover image area -->
       <div class="hero-cover" id="heroCover">
-        <div class="hero-cover-noise"></div>
-        <div class="hero-cover-lines"></div>
-        <!-- Camera overlay to change cover -->
-        <label class="cover-change-btn" for="coverInput" title="کاڤەری بگۆڕە">
-          <i class="fa-solid fa-image"></i>
+        <div class="cover-grid"></div>
+        <div class="cover-glow-a"></div>
+        <div class="cover-glow-b"></div>
+        <label class="cover-cam" for="coverInput">
+          <i class="fa-solid fa-image"></i> گۆڕینی کاڤەر
         </label>
         <input type="file" id="coverInput" accept="image/*" hidden />
       </div>
 
-      <div class="hero-content">
-        <!-- Avatar -->
-        <div class="hero-avatar-wrap">
-          <div class="avatar-hex-ring">
-            <svg viewBox="0 0 120 120" class="hex-svg">
-              <defs>
-                <linearGradient id="hexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%"   stop-color="#38bdf8"/>
-                  <stop offset="50%"  stop-color="#818cf8"/>
-                  <stop offset="100%" stop-color="#06b6d4"/>
-                </linearGradient>
-              </defs>
-              <polygon points="60,4 112,32 112,88 60,116 8,88 8,32"
-                fill="none" stroke="url(#hexGrad)" stroke-width="2.5"
-                class="hex-poly"/>
-            </svg>
-          </div>
-          <img id="profileAvatar" class="hero-avatar-img" src="" alt="پرۆفایل" />
-          <label class="avatar-cam" for="avatarInput">
+      <!-- Body row: avatar + info + buttons -->
+      <div class="hero-body">
+
+        <!-- Avatar — simple circle, no hex ring -->
+        <div class="av-wrap">
+          <img id="profileAvatar" class="av-img" src="" alt="avatar" />
+          <label class="av-cam" for="avatarInput">
             <i class="fa-solid fa-camera"></i>
           </label>
           <input type="file" id="avatarInput" accept="image/*" hidden />
-          <div class="avatar-online"></div>
+          <div class="av-online"></div>
         </div>
 
-        <!-- Info -->
+        <!-- Name & details -->
         <div class="hero-info">
-          <div class="hero-name-row">
+          <div class="name-row">
             <h1 id="profileFullName" class="hero-name">—</h1>
-            <span class="verified-chip">
-              <i class="fa-solid fa-shield-check"></i> دڵنیابووە
+            <span class="chip chip--green"><i class="fa-solid fa-shield-check"></i> دڵنیابووە</span>
+          </div>
+          <div class="sub-row">
+            <span id="profileUsername" class="chip chip--blue">@—</span>
+            <span class="hero-email">
+              <i class="fa-solid fa-envelope"></i>
+              <span id="profileEmail">—</span>
             </span>
           </div>
-          <div class="hero-handle-row">
-            <span id="profileUsername" class="hero-handle">@—</span>
-            <span class="hero-sep">·</span>
-            <span id="profileEmail" class="hero-email">
-              <i class="fa-solid fa-envelope"></i> —
-            </span>
-          </div>
-          <div class="hero-tags" id="heroTags">
-            <span class="htag htag--blue"><i class="fa-solid fa-gamepad"></i> گەیمەر</span>
-            <span class="htag htag--cyan"><i class="fa-solid fa-star"></i> فرۆشیار</span>
+          <div class="hero-tags">
+            <span class="htag htag--cyan"><i class="fa-solid fa-gamepad"></i> گەیمەر</span>
+            <span class="htag htag--violet"><i class="fa-solid fa-tag"></i> فرۆشیار</span>
           </div>
         </div>
 
-        <!-- Stats -->
-        <div class="hero-stats">
-          <div class="hstat">
-            <div class="hstat-num" id="statPosts">0</div>
-            <div class="hstat-lbl">پۆست</div>
-          </div>
-          <div class="hstat-divider"></div>
-          <div class="hstat">
-            <div class="hstat-num" id="statSold">0</div>
-            <div class="hstat-lbl">فرۆشراو</div>
-          </div>
-          <div class="hstat-divider"></div>
-          <div class="hstat">
-            <div class="hstat-num" id="statRating">—</div>
-            <div class="hstat-lbl">هەڵسەنگاندن</div>
-          </div>
-          <div class="hstat-divider"></div>
-          <div class="hstat">
-            <div class="hstat-num hstat-num--gold" id="statEarned">$0</div>
-            <div class="hstat-lbl">گشت کڕین</div>
-          </div>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="hero-actions">
-          <button class="btn-logout" id="logoutBtn">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            دەرچوون
-          </button>
-          <a href="post.html" class="btn-newpost">
-            <i class="fa-solid fa-plus"></i>
-            ئەکاونتی نوێ
+        <!-- Buttons -->
+        <div class="hero-btns">
+          <a href="post.html" class="btn-primary">
+            <i class="fa-solid fa-plus"></i> ئەکاونتی نوێ
           </a>
+          <button class="btn-danger" id="logoutBtn">
+            <i class="fa-solid fa-right-from-bracket"></i> دەرچوون
+          </button>
         </div>
+
       </div>
     </section>
 
-    <!-- ── TABS ── -->
-    <div class="tabs-bar">
-      <button class="tab-btn tab-btn--active" data-tab="edit">
+    <!-- TABS ROW — text labels + icons -->
+    <div class="tabs-row">
+      <button class="tab tab--active" data-tab="edit">
         <i class="fa-solid fa-sliders"></i>
         <span>دەستکاری پرۆفایل</span>
       </button>
-      <button class="tab-btn" data-tab="listings">
+      <button class="tab" data-tab="listings">
         <i class="fa-solid fa-layer-group"></i>
         <span>ئەکاونتەکانم</span>
-        <span class="tab-count" id="listingsCount">0</span>
+        <span class="tab-badge" id="listingsCount">0</span>
       </button>
-      <button class="tab-btn" data-tab="reviews">
+      <button class="tab" data-tab="reviews">
         <i class="fa-solid fa-star-half-stroke"></i>
         <span>ڕیڤیوەکان</span>
       </button>
     </div>
 
-    <!-- ── PANEL: EDIT PROFILE ── -->
-    <section class="tab-panel active" id="panel-edit">
+    <!-- PANEL: EDIT PROFILE -->
+    <section class="panel panel--active" id="panel-edit">
       <div class="edit-grid">
 
-        <!-- Username -->
-        <div class="glass-card">
-          <div class="gc-header">
-            <div class="gc-icon gc-icon--blue">
-              <i class="fa-solid fa-at"></i>
-            </div>
+        <!-- Username card -->
+        <div class="gc">
+          <div class="gc-head">
+            <div class="gc-ico ico--blue"><i class="fa-solid fa-at"></i></div>
             <div>
-              <h3 class="gc-title">یوزەرنەیم</h3>
-              <p class="gc-sub">یوزەرنەیمەکەت بگۆڕە</p>
+              <h3>یوزەرنەیم</h3>
+              <p>یوزەرنەیمەکەت بگۆڕە</p>
             </div>
           </div>
-          <div class="field-wrap">
-            <div class="float-input">
+          <div class="gc-field">
+            <div class="fi-wrap">
               <input type="text" id="usernameInput" placeholder=" " autocomplete="off" />
               <label>یوزەرنەیمی نوێ</label>
             </div>
-            <button class="save-btn" id="saveUsernameBtn">
-              <i class="fa-solid fa-check"></i>
-              <span>پاشەکەوبکە</span>
+            <button class="sbtn" id="saveUsernameBtn">
+              <i class="fa-solid fa-check"></i><span>پاشەکەوبکە</span>
             </button>
           </div>
-          <p class="field-hint"><i class="fa-solid fa-circle-info"></i> تەنها پیت، ژمارە و _ بەکارهێنە</p>
+          <p class="hint"><i class="fa-solid fa-circle-info"></i> تەنها پیت، ژمارە و _ بەکارهێنە</p>
         </div>
 
-        <!-- Full Name -->
-        <div class="glass-card">
-          <div class="gc-header">
-            <div class="gc-icon gc-icon--violet">
-              <i class="fa-solid fa-user-pen"></i>
-            </div>
+        <!-- Full Name card -->
+        <div class="gc">
+          <div class="gc-head">
+            <div class="gc-ico ico--violet"><i class="fa-solid fa-user-pen"></i></div>
             <div>
-              <h3 class="gc-title">ناوی تەواو</h3>
-              <p class="gc-sub">ناوی نیشاندراوت بگۆڕە</p>
+              <h3>ناوی تەواو</h3>
+              <p>ناوی نیشاندراوت بگۆڕە</p>
             </div>
           </div>
-          <div class="field-wrap">
-            <div class="float-input">
+          <div class="gc-field">
+            <div class="fi-wrap">
               <input type="text" id="fullNameInput" placeholder=" " autocomplete="off" />
               <label>ناوی تەواوی نوێ</label>
             </div>
-            <button class="save-btn" id="saveNameBtn">
-              <i class="fa-solid fa-check"></i>
-              <span>پاشەکەوبکە</span>
+            <button class="sbtn" id="saveNameBtn">
+              <i class="fa-solid fa-check"></i><span>پاشەکەوبکە</span>
             </button>
           </div>
         </div>
 
-        <!-- Password Reset -->
-        <div class="glass-card glass-card--danger">
-          <div class="gc-header">
-            <div class="gc-icon gc-icon--red">
-              <i class="fa-solid fa-lock-open"></i>
-            </div>
+        <!-- Password Reset card -->
+        <div class="gc gc--red">
+          <div class="gc-head">
+            <div class="gc-ico ico--red"><i class="fa-solid fa-lock-open"></i></div>
             <div>
-              <h3 class="gc-title">گۆڕینی پاسوۆرد</h3>
-              <p class="gc-sub">لینکی ڕیسێت بۆ ئیمەیڵت دەنێردرێت</p>
+              <h3>گۆڕینی پاسوۆرد</h3>
+              <p>لینکی ڕیسێت بۆ ئیمەیڵت دەنێردرێت</p>
             </div>
           </div>
-          <div class="field-wrap">
-            <div class="float-input">
-              <input type="email" id="resetEmailInput" placeholder=" " autocomplete="email" dir="ltr" />
+          <div class="gc-field">
+            <div class="fi-wrap">
+              <input type="email" id="resetEmailInput" placeholder=" " dir="ltr" />
               <label dir="rtl">ئیمەیڵەکەت</label>
             </div>
-            <button class="save-btn save-btn--red" id="resetPasswordBtn">
-              <i class="fa-solid fa-paper-plane"></i>
-              <span>ناردن</span>
+            <button class="sbtn sbtn--red" id="resetPasswordBtn">
+              <i class="fa-solid fa-paper-plane"></i><span>ناردن</span>
             </button>
-          </div>
-        </div>
-
-        <!-- Account Info (read-only) -->
-        <div class="glass-card">
-          <div class="gc-header">
-            <div class="gc-icon gc-icon--teal">
-              <i class="fa-solid fa-id-card"></i>
-            </div>
-            <div>
-              <h3 class="gc-title">زانیاریەکانم</h3>
-              <p class="gc-sub">وردەکاریی ئەکاونتت</p>
-            </div>
-          </div>
-          <div class="info-rows">
-            <div class="info-row">
-              <span class="ir-lbl"><i class="fa-solid fa-calendar-days"></i> بەرواری تۆمارکردن</span>
-              <span class="ir-val" id="infoJoinDate">—</span>
-            </div>
-            <div class="info-row">
-              <span class="ir-lbl"><i class="fa-solid fa-check-double"></i> دۆخ</span>
-              <span class="ir-val ir-val--green">
-                <i class="fa-solid fa-circle" style="font-size:7px"></i> چالاک
-              </span>
-            </div>
-            <div class="info-row">
-              <span class="ir-lbl"><i class="fa-solid fa-shield"></i> ئاستی باوەڕپێکراوی</span>
-              <span class="ir-val" id="infoTrust">دڵنیابووە ✓</span>
-            </div>
-            <div class="info-row">
-              <span class="ir-lbl"><i class="fa-solid fa-star"></i> ئەستێرەی بەرزترین</span>
-              <span class="ir-val ir-val--gold">★ ٤.٩</span>
-            </div>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- ── PANEL: MY LISTINGS ── -->
-    <section class="tab-panel" id="panel-listings">
-      <div class="listings-toolbar">
-        <div class="filter-chips" id="filterChips">
-          <button class="fchip fchip--active" data-filter="all">هەموو</button>
-          <button class="fchip" data-filter="available">بەردەستە</button>
-          <button class="fchip" data-filter="sold">فرۆشراو</button>
-          <button class="fchip" data-filter="pending">چاوەڕوان</button>
+    <!-- PANEL: MY LISTINGS -->
+    <section class="panel" id="panel-listings">
+      <div class="lst-bar">
+        <div class="fchips" id="filterChips">
+          <button class="fc fc--on" data-filter="all">هەموو</button>
+          <button class="fc" data-filter="available">بەردەستە</button>
+          <button class="fc" data-filter="sold">فرۆشراو</button>
+          <button class="fc" data-filter="pending">چاوەڕوان</button>
         </div>
-        <a href="post.html" class="btn-newpost btn-newpost--sm">
+        <a href="post.html" class="btn-primary btn-sm">
           <i class="fa-solid fa-plus"></i> نوێ
         </a>
       </div>
-      <div class="listings-grid" id="postsGrid">
-        <!-- JS injects cards here -->
-        <div class="skeleton-card"></div>
-        <div class="skeleton-card"></div>
-        <div class="skeleton-card"></div>
+      <!-- Cards injected by JS here -->
+      <div class="lst-grid" id="postsGrid">
+        <div class="skel"></div>
+        <div class="skel"></div>
+        <div class="skel"></div>
       </div>
     </section>
 
-    <!-- ── PANEL: REVIEWS ── -->
-    <section class="tab-panel" id="panel-reviews">
-      <div class="reviews-summary">
-        <div class="rs-score">
-          <div class="rs-big">٤.٩</div>
-          <div class="rs-stars">★★★★★</div>
-          <div class="rs-total">لە ٦٣ ڕیڤیو</div>
+    <!-- PANEL: REVIEWS -->
+    <section class="panel" id="panel-reviews">
+      <div class="rv-sum">
+        <div class="rv-score">
+          <div class="rv-big">٤.٩</div>
+          <div class="rv-stars">★★★★★</div>
+          <div class="rv-total">لە ٦٣ ڕیڤیو</div>
         </div>
-        <div class="rs-bars">
-          <div class="rs-bar-row"><span>٥★</span><div class="rs-bar"><div class="rs-fill" style="width:88%"></div></div><span>٨٨٪</span></div>
-          <div class="rs-bar-row"><span>٤★</span><div class="rs-bar"><div class="rs-fill rs-fill--4" style="width:9%"></div></div><span>٩٪</span></div>
-          <div class="rs-bar-row"><span>٣★</span><div class="rs-bar"><div class="rs-fill rs-fill--3" style="width:3%"></div></div><span>٣٪</span></div>
-          <div class="rs-bar-row"><span>٢★</span><div class="rs-bar"><div class="rs-fill rs-fill--2" style="width:0%"></div></div><span>٠٪</span></div>
-          <div class="rs-bar-row"><span>١★</span><div class="rs-bar"><div class="rs-fill rs-fill--1" style="width:0%"></div></div><span>٠٪</span></div>
+        <div class="rv-bars">
+          <div class="rb"><span>٥★</span><div class="rb-t"><div class="rb-f" style="width:88%"></div></div><span>٨٨٪</span></div>
+          <div class="rb"><span>٤★</span><div class="rb-t"><div class="rb-f rf4" style="width:9%"></div></div><span>٩٪</span></div>
+          <div class="rb"><span>٣★</span><div class="rb-t"><div class="rb-f rf3" style="width:3%"></div></div><span>٣٪</span></div>
+          <div class="rb"><span>٢★</span><div class="rb-t"><div class="rb-f rf2" style="width:0%"></div></div><span>٠٪</span></div>
+          <div class="rb"><span>١★</span><div class="rb-t"><div class="rb-f rf1" style="width:0%"></div></div><span>٠٪</span></div>
         </div>
       </div>
-      <div class="reviews-list" id="reviewsList">
-        <!-- Sample Reviews -->
-        <div class="review-card">
+      <div id="reviewsList" class="rv-list">
+        <div class="rv-card">
           <div class="rv-top">
-            <div class="rv-avatar" style="background:rgba(99,102,241,0.25);color:#a5b4fc">KA</div>
-            <div class="rv-meta">
-              <strong>Karwan Ali</strong>
-              <span>٢٠٢٥/٠٥/١٢</span>
-            </div>
-            <div class="rv-stars">★★★★★</div>
+            <div class="rv-av" style="background:rgba(99,102,241,.18);color:#a5b4fc">KA</div>
+            <div class="rv-meta"><strong>Karwan Ali</strong><span>٢٠٢٥/٠٥/١٢</span></div>
+            <div class="rv-st">★★★★★</div>
           </div>
-          <p class="rv-text">فرۆشیاری زۆر باش و پشتیوانیکراوە! ئەکاونتەکە وەک وصفکرا بوو. خێرا و دڵسۆزە. پێشنیاری دەکەم.</p>
+          <p>فرۆشیاری زۆر باش و پشتیوانیکراوە! ئەکاونتەکە وەک وصفکرا بوو. پێشنیاری دەکەم.</p>
         </div>
-        <div class="review-card">
+        <div class="rv-card">
           <div class="rv-top">
-            <div class="rv-avatar" style="background:rgba(245,158,11,0.2);color:#fbbf24">SR</div>
-            <div class="rv-meta">
-              <strong>Sarwar R.</strong>
-              <span>٢٠٢٥/٠٤/٢٨</span>
-            </div>
-            <div class="rv-stars">★★★★★</div>
+            <div class="rv-av" style="background:rgba(245,158,11,.12);color:#fbbf24">SR</div>
+            <div class="rv-meta"><strong>Sarwar R.</strong><span>٢٠٢٥/٠٤/٢٨</span></div>
+            <div class="rv-st">★★★★★</div>
           </div>
-          <p class="rv-text">Account was exactly as described. Very trustworthy seller. Will buy again! ✅</p>
+          <p>Account was exactly as described. Very trustworthy seller. Will buy again! ✅</p>
         </div>
-        <div class="review-card">
+        <div class="rv-card">
           <div class="rv-top">
-            <div class="rv-avatar" style="background:rgba(34,197,94,0.2);color:#4ade80">HB</div>
-            <div class="rv-meta">
-              <strong>Heval B.</strong>
-              <span>٢٠٢٥/٠٤/١٥</span>
-            </div>
-            <div class="rv-stars" style="color:#f59e0b">★★★★<span style="color:#334155">★</span></div>
+            <div class="rv-av" style="background:rgba(34,197,94,.12);color:#4ade80">HB</div>
+            <div class="rv-meta"><strong>Heval B.</strong><span>٢٠٢٥/٠٤/١٥</span></div>
+            <div class="rv-st">★★★★<span style="color:#1e2d4a">★</span></div>
           </div>
-          <p class="rv-text">زۆر باشە وەک فرۆشیار! تەنها هێندێک دوورەنگی لە فەرەکاندا بوو بەڵام خزمەتگوزاری گشتی خۆشە.</p>
+          <p>زۆر باشە وەک فرۆشیار! خزمەتگوزاری گشتی خۆشە.</p>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- ░░ TOAST ░░ -->
+  <!-- TOAST -->
   <div class="toast" id="toast">
-    <i class="fa-solid fa-circle-check toast-icon" id="toastIcon"></i>
-    <span id="toastMsg">—</span>
+    <i id="toastIco" class="fa-solid fa-circle-check"></i>
+    <span id="toastMsg"></span>
   </div>
 
-  <script type="module" src="assect/java/profile.js"></script>
+  <script type="module" src="profile.js"></script>
 </body>
 </html>
