@@ -1,40 +1,38 @@
 // ========== DOM Elements ==========
-const avatarInput = document.getElementById('avatarInput');
-const profileAvatar = document.getElementById('profileAvatar');
-const usernameInput = document.getElementById('usernameInput');
-const fullNameInput = document.getElementById('fullNameInput');
-const saveUsernameBtn = document.getElementById('saveUsernameBtn');
-const saveNameBtn = document.getElementById('saveNameBtn');
-const resetPasswordBtn = document.getElementById('resetPasswordBtn');
-const resetEmailInput = document.getElementById('resetEmailInput');
-const logoutBtn = document.getElementById('logoutBtn');
-const toast = document.getElementById('toast');
-const toastMsg = document.getElementById('toastMsg');
-const toastIco = document.getElementById('toastIco');
-const listingsCountSpan = document.getElementById('listingsCount');
-const postsGrid = document.getElementById('postsGrid');
+const avatarInput        = document.getElementById('avatarInput');
+const profileAvatar      = document.getElementById('profileAvatar');
+const usernameInput      = document.getElementById('usernameInput');
+const fullNameInput      = document.getElementById('fullNameInput');
+const saveUsernameBtn    = document.getElementById('saveUsernameBtn');
+const saveNameBtn        = document.getElementById('saveNameBtn');
+const resetPasswordBtn   = document.getElementById('resetPasswordBtn');
+const resetEmailInput    = document.getElementById('resetEmailInput');
+const logoutBtn          = document.getElementById('logoutBtn');
+const coverImage         = document.getElementById('coverImage');
+const coverInput         = document.getElementById('coverInput');
+const toast              = document.getElementById('toast');
+const toastMsg           = document.getElementById('toastMsg');
+const toastIco           = document.getElementById('toastIco');
+const listingsCountSpan  = document.getElementById('listingsCount');
+const postsGrid          = document.getElementById('postsGrid');
+const navbar             = document.getElementById('navbar');
 
-// ========== Helper Functions ==========
+// ========== Toast ==========
 function showToast(message, type = 'ok') {
   toastMsg.innerText = message;
-  toast.className = 'toast show';
-  if (type === 'err') {
-    toast.classList.add('err');
-    toastIco.className = 'fa-solid fa-circle-exclamation';
-  } else {
-    toast.classList.add('ok');
-    toastIco.className = 'fa-solid fa-circle-check';
-  }
-  setTimeout(() => {
-    toast.classList.remove('show', 'err', 'ok');
-  }, 3000);
+  toast.className = 'toast show ' + (type === 'err' ? 'err' : 'ok');
+  toastIco.className = type === 'err'
+    ? 'fa-solid fa-circle-exclamation'
+    : 'fa-solid fa-circle-check';
+  setTimeout(() => { toast.className = 'toast'; }, 3000);
 }
 
+// ========== Helpers ==========
 function escapeHtml(str) {
   if (!str) return '';
-  return str.replace(/[&<>"']/g, function(m) {
-    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
-  });
+  return str.replace(/[&<>"']/g, m =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m])
+  );
 }
 
 // ========== User Data ==========
@@ -49,10 +47,10 @@ function loadUserData() {
   try {
     const saved = localStorage.getItem('kurdaccount_user');
     if (saved) currentUser = { ...currentUser, ...JSON.parse(saved) };
-  } catch(e) {}
+  } catch (e) {}
 
-  if (usernameInput) usernameInput.value = currentUser.username;
-  if (fullNameInput) fullNameInput.value = currentUser.fullName;
+  if (usernameInput)   usernameInput.value   = currentUser.username;
+  if (fullNameInput)   fullNameInput.value   = currentUser.fullName;
   if (resetEmailInput) resetEmailInput.value = currentUser.email;
 
   if (profileAvatar) {
@@ -62,65 +60,56 @@ function loadUserData() {
 }
 
 function saveUserData() {
-  try {
-    localStorage.setItem('kurdaccount_user', JSON.stringify(currentUser));
-  } catch(e) {}
+  try { localStorage.setItem('kurdaccount_user', JSON.stringify(currentUser)); } catch (e) {}
 }
 
 // ========== Posts Data ==========
 let userPosts = [
-  { id: '1', title: 'ئەکاونت فەیسبوک', description: 'ئەکاونتێکی کۆن و باوەرپێکراو', price: 25, status: 'available', platform: 'facebook', tags: ['فەیسبوک', 'باوەرپێکراو'], views: 45, createdAt: '2025-05-20' },
-  { id: '2', title: 'ئەکاونت ئینستاگرام', description: 'ئەکاونت بە 10k فۆڵۆوەر', price: 120, status: 'available', platform: 'instagram', tags: ['ئینستاگرام', 'فۆڵۆوەر'], views: 128, createdAt: '2025-05-18' },
-  { id: '3', title: 'ئەکاونت تویتر', description: 'ئەکاونتێکی چالاک', price: 45, status: 'sold', platform: 'twitter', tags: ['تویتر', 'چالاک'], views: 67, createdAt: '2025-05-10' }
+  { id: '1', title: 'ئەکاونت فەیسبوک',   description: 'ئەکاونتێکی کۆن و باوەرپێکراو', price: 25,  status: 'available', platform: 'facebook',  tags: ['فەیسبوک',  'باوەرپێکراو'], views: 45,  createdAt: '2025-05-20' },
+  { id: '2', title: 'ئەکاونت ئینستاگرام', description: 'ئەکاونت بە 10k فۆڵۆوەر',       price: 120, status: 'available', platform: 'instagram', tags: ['ئینستاگرام','فۆڵۆوەر'],    views: 128, createdAt: '2025-05-18' },
+  { id: '3', title: 'ئەکاونت تویتر',      description: 'ئەکاونتێکی چالاک',              price: 45,  status: 'sold',      platform: 'twitter',   tags: ['تویتر',    'چالاک'],        views: 67,  createdAt: '2025-05-10' }
 ];
 
 let currentFilter = 'all';
 
 function savePosts() {
-  try {
-    localStorage.setItem('kurdaccount_posts', JSON.stringify(userPosts));
-  } catch(e) {}
+  try { localStorage.setItem('kurdaccount_posts', JSON.stringify(userPosts)); } catch (e) {}
 }
 
 function loadPosts() {
   try {
     const saved = localStorage.getItem('kurdaccount_posts');
     if (saved) userPosts = JSON.parse(saved);
-  } catch(e) {}
+  } catch (e) {}
 }
 
 // ========== Platform Helpers ==========
 function getPlatformIcon(platform) {
-  const icons = { facebook: 'fab fa-facebook-f', instagram: 'fab fa-instagram', twitter: 'fab fa-twitter', discord: 'fab fa-discord', tiktok: 'fab fa-tiktok', telegram: 'fab fa-telegram' };
-  return icons[platform] || 'fas fa-gamepad';
+  return ({ facebook: 'fab fa-facebook-f', instagram: 'fab fa-instagram', twitter: 'fab fa-twitter', discord: 'fab fa-discord', tiktok: 'fab fa-tiktok', telegram: 'fab fa-telegram' })[platform] || 'fas fa-gamepad';
 }
 
 function getPlatformColor(platform) {
-  const colors = { facebook: '#1877f2', instagram: '#e4405f', twitter: '#1da1f2', discord: '#5865f2', tiktok: '#00f2ea', telegram: '#26a5e4' };
-  return colors[platform] || '#38bdf8';
+  return ({ facebook: '#1877f2', instagram: '#e4405f', twitter: '#1da1f2', discord: '#5865f2', tiktok: '#00f2ea', telegram: '#26a5e4' })[platform] || '#38bdf8';
 }
 
 function getStatusBadge(status) {
-  const map = {
-    available: { class: 'pc-badge--ok', icon: 'fa-solid fa-circle-check', text: 'بەردەستە' },
+  return ({
+    available: { class: 'pc-badge--ok',   icon: 'fa-solid fa-circle-check', text: 'بەردەستە' },
     sold:      { class: 'pc-badge--sold', icon: 'fa-solid fa-circle-xmark', text: 'فرۆشراو' },
-    pending:   { class: 'pc-badge--wait', icon: 'fa-solid fa-clock', text: 'چاوەڕوان' }
-  };
-  return map[status] || map.available;
+    pending:   { class: 'pc-badge--wait', icon: 'fa-solid fa-clock',        text: 'چاوەڕوان' }
+  })[status] || { class: 'pc-badge--ok', icon: 'fa-solid fa-circle-check', text: 'بەردەستە' };
 }
 
-// ========== Update Badge Count ==========
+// ========== Listings ==========
 function updateListingsCount() {
   if (!listingsCountSpan) return;
-  let filtered = currentFilter === 'all' ? userPosts : userPosts.filter(p => p.status === currentFilter);
+  const filtered = currentFilter === 'all' ? userPosts : userPosts.filter(p => p.status === currentFilter);
   listingsCountSpan.innerText = filtered.length;
 }
 
-// ========== Render Listings ==========
 function renderListings() {
   if (!postsGrid) return;
-
-  let filtered = currentFilter === 'all' ? userPosts : userPosts.filter(p => p.status === currentFilter);
+  const filtered = currentFilter === 'all' ? userPosts : userPosts.filter(p => p.status === currentFilter);
   updateListingsCount();
 
   if (filtered.length === 0) {
@@ -170,11 +159,10 @@ function renderListings() {
       </div>`;
   }).join('');
 
-  // Event listeners for edit/delete
   postsGrid.querySelectorAll('.edit-post').forEach(btn => {
     btn.addEventListener('click', e => {
       e.stopPropagation();
-      showToast('وێستگەی دەستکاری کردن بەم زوانە دادەخرێت', 'ok');
+      showToast('وێستگەی دەستکاری کردن بەم زوانە دادەخرێت');
     });
   });
 
@@ -205,6 +193,24 @@ if (avatarInput) {
       saveUserData();
       showToast('وێنەکەت گۆڕا ✅');
     };
+    reader.readAsDataURL(file);
+  });
+}
+
+// ========== Cover Image Upload ==========
+if (coverInput) {
+  coverInput.addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (!file.type.startsWith('image/')) { showToast('تکایە فایلێکی وێنە هەڵبژێرە', 'err'); return; }
+    if (file.size > 5 * 1024 * 1024) { showToast('قەبارەی وێنە دەبێت کەمتر بێت لە 5MB', 'err'); return; }
+    const reader = new FileReader();
+    reader.onload = ev => {
+      if (coverImage) coverImage.src = ev.target.result;
+      try { localStorage.setItem('kurdaccount_cover', ev.target.result); } catch (e) {}
+      showToast('وێنەی کاڤەر بەسەرکەوتوویی گۆڕا ✅');
+    };
+    reader.onerror = () => showToast('هەڵە لە خوێندنەوەی فایل', 'err');
     reader.readAsDataURL(file);
   });
 }
@@ -245,7 +251,7 @@ if (resetPasswordBtn) {
 if (logoutBtn) {
   logoutBtn.addEventListener('click', () => {
     if (confirm('دڵنیای دەتەوێ دەربچیت؟')) {
-      try { localStorage.removeItem('kurdaccount_user'); } catch(e) {}
+      try { localStorage.removeItem('kurdaccount_user'); } catch (e) {}
       showToast('دەرچوویت 👋');
       setTimeout(() => { window.location.href = 'index.html'; }, 1000);
     }
@@ -275,11 +281,11 @@ document.querySelectorAll('.fc').forEach(chip => {
   });
 });
 
-// ========== BG Canvas ==========
+// ========== Background Canvas ==========
 const canvas = document.getElementById('bgCanvas');
 if (canvas) {
   const ctx = canvas.getContext('2d');
-  let W = window.innerWidth, H = window.innerHeight, particles = [];
+  let W, H, particles = [];
 
   function resizeCanvas() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
 
@@ -310,7 +316,6 @@ if (canvas) {
 }
 
 // ========== Navbar Scroll ==========
-const navbar = document.getElementById('navbar');
 if (navbar) {
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 20);
@@ -320,79 +325,8 @@ if (navbar) {
 // ========== Initialize ==========
 loadUserData();
 loadPosts();
-updateListingsCount(); // badge دروست نیشان بدە بەبێ کردنەوەی listings tab
-// گرفتن ئێلێمێنتەکان
-const coverImage = document.getElementById('coverImage');
-const coverInput = document.getElementById('coverInput');
-const toast = document.getElementById('toast');
-const toastMsg = document.getElementById('toastMsg');
-const toastIco = document.getElementById('toastIco');
+updateListingsCount();
 
-// نیشاندانی تۆاست
-function showToast(message, isError = false) {
-  toastMsg.innerText = message;
-  toast.classList.add('show');
-  
-  if (isError) {
-    toast.style.borderColor = '#ef4444';
-    toastIco.style.color = '#ef4444';
-    toastIco.className = 'fa-solid fa-circle-exclamation';
-  } else {
-    toast.style.borderColor = '#22c55e';
-    toastIco.style.color = '#22c55e';
-    toastIco.className = 'fa-solid fa-circle-check';
-  }
-  
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, 2500);
-}
-
-// کردنەوەی دیالۆگی هەڵبژاردنی وێنە
-document.querySelector('.cover-cam').addEventListener('click', () => {
-  coverInput.click();
-});
-
-// گۆڕینی وێنە کاتێک فایلێک هەڵبژێردرا
-coverInput.addEventListener('change', (e) => {
-  const file = e.target.files[0];
-  
-  if (!file) return;
-  
-  // پشکنینی جۆری فایل
-  if (!file.type.startsWith('image/')) {
-    showToast('تکایە فایلێکی وێنە هەڵبژێرە', true);
-    return;
-  }
-  
-  // پشکنینی قەبارە (حداکثر 5MB)
-  if (file.size > 5 * 1024 * 1024) {
-    showToast('قەبارەی وێنە دەبێت کەمتر بێت لە 5MB', true);
-    return;
-  }
-  
-  // خوێندنەوە و نیشاندانی وێنە
-  const reader = new FileReader();
-  
-  reader.onload = (event) => {
-    coverImage.src = event.target.result;
-    showToast('وێنەی کاڤەر بەسەرکەوتوویی گۆڕا ✓');
-    
-    // هەڵگرتنی وێنە لە localStorage بۆ ماوەی دواتر
-    localStorage.setItem('savedCoverImage', event.target.result);
-  };
-  
-  reader.onerror = () => {
-    showToast('هەڵە لە خوێندنەوەی فایل', true);
-  };
-  
-  reader.readAsDataURL(file);
-});
-
-// بارکردنی وێنەی پاشەکەوتکراو کە پەڕەکە بار دەبێت
-window.addEventListener('DOMContentLoaded', () => {
-  const savedImage = localStorage.getItem('savedCoverImage');
-  if (savedImage) {
-    coverImage.src = savedImage;
-  }
-});
+// بارکردنی کاڤەری پاشەکەوتکراو
+const savedCover = localStorage.getItem('kurdaccount_cover');
+if (savedCover && coverImage) coverImage.src = savedCover;
