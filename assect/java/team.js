@@ -1,330 +1,294 @@
 /* =====================================================
-       ULTRA PRO TEAM SECTION — main.js
-       v2.0 — چاکسازیکراو و بێ‌کێشە
+   KURDACCOUNT — TEAM PAGE  ·  team.js
+   ✔ AOS scroll animations
+   ✔ Animated counters (Kurdish/Arabic numerals)
+   ✔ Cursor glow (desktop only)
+   ✔ Card 3D tilt on hover
+   ✔ Ripple effect on buttons
+   ✔ Stat particle burst on hover
+   ✔ Navbar scroll shadow
+   ✔ Active nav link highlight
 ===================================================== */
 
 'use strict';
 
-/* ─────────────────────────────────────────
-   0.  LOAD NAVBAR
-───────────────────────────────────────── */
+/* ─────────────────────────────────────────────────
+   0. NAVBAR — scroll shadow + active link
+───────────────────────────────────────────────── */
 (function initNavbar() {
-  const base = window.location.pathname.includes('Bazari-Degital') ? '/Bazari-Degital' : '';
+  const navbar = document.getElementById('navbar');
+  if (!navbar) return;
 
-  fetch(base + 'assect/navbar/nav.html')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('navbar-placeholder').innerHTML = html;
+  // scroll shadow
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
 
-      // ── Active link ──────────────────────────────
-      const navLinks   = document.querySelectorAll('.nav-link');
-      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  // highlight current page in nav
+  const navLinks = document.querySelectorAll('.nav-link');
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href') || '';
+    if (href === currentPage || href === window.location.pathname) {
+      link.classList.add('active');
+    }
+  });
 
-      navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPage) {
-          link.classList.add('active');
-          setTimeout(() => {
-            link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-          }, 100);
-        }
-      });
+  // smooth hover spring transition
+  navLinks.forEach(link => {
+    link.addEventListener('mouseenter', function () {
+      this.style.transition = 'color .3s ease,background .3s ease,transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s ease';
+    });
+    link.addEventListener('mouseleave', function () {
+      this.style.transition = 'color .3s ease,background .3s ease,transform .3s ease,box-shadow .3s ease';
+    });
+  });
 
-      // ── Navbar scroll class ──────────────────────
-      const navbar = document.getElementById('navbar');
-      if (navbar) {
-        window.addEventListener('scroll', () => {
-          navbar.classList.toggle('scrolled', window.scrollY > 40);
-        }, { passive: true });
-      }
+  // drag-to-scroll nav on mobile & desktop
+  const navList = document.querySelector('.nav-links');
+  if (!navList) return;
+  let isDown = false, startX = 0, scrollLeft = 0;
 
-      // ── Smooth hover transitions ─────────────────
-      navLinks.forEach(link => {
-        link.addEventListener('mouseenter', function () {
-          this.style.transition = 'color .3s ease, background .3s ease, transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease';
-        });
-        link.addEventListener('mouseleave', function () {
-          this.style.transition = 'color .3s ease, background .3s ease, transform .3s ease, box-shadow .3s ease';
-        });
-      });
+  navList.addEventListener('touchstart', e => {
+    isDown = true;
+    startX = e.touches[0].pageX - navList.offsetLeft;
+    scrollLeft = navList.scrollLeft;
+  }, { passive: true });
+  navList.addEventListener('touchend',  () => { isDown = false; }, { passive: true });
+  navList.addEventListener('touchmove', e => {
+    if (!isDown) return;
+    const x = e.touches[0].pageX - navList.offsetLeft;
+    navList.scrollLeft = scrollLeft - (x - startX) * 1.5;
+  }, { passive: true });
 
-      // ── Drag / touch scroll (mobile navbar) ─────
-      const navList = document.querySelector('.nav-links');
-      if (!navList) return;
-
-      let isDown = false, startX, scrollLeft;
-
-      navList.addEventListener('touchstart', e => {
-        isDown    = true;
-        startX    = e.touches[0].pageX - navList.offsetLeft;
-        scrollLeft = navList.scrollLeft;
-      }, { passive: true });
-
-      navList.addEventListener('touchend',  () => { isDown = false; }, { passive: true });
-
-      navList.addEventListener('touchmove', e => {
-        if (!isDown) return;
-        const x = e.touches[0].pageX - navList.offsetLeft;
-        navList.scrollLeft = scrollLeft - (x - startX) * 1.5;
-      }, { passive: true });
-
-      navList.addEventListener('mousedown', e => {
-        isDown      = true;
-        startX      = e.pageX - navList.offsetLeft;
-        scrollLeft  = navList.scrollLeft;
-        navList.style.cursor = 'grabbing';
-      });
-
-      navList.addEventListener('mouseleave', () => { isDown = false; navList.style.cursor = 'default'; });
-      navList.addEventListener('mouseup',    () => { isDown = false; navList.style.cursor = 'default'; });
-
-      navList.addEventListener('mousemove', e => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - navList.offsetLeft;
-        navList.scrollLeft = scrollLeft - (x - startX) * 1.5;
-      });
-    })
-    .catch(err => console.warn('[Navbar] فێچ سەرکەوتوو نەبوو:', err));
+  navList.addEventListener('mousedown', e => {
+    isDown = true;
+    startX = e.pageX - navList.offsetLeft;
+    scrollLeft = navList.scrollLeft;
+    navList.style.cursor = 'grabbing';
+  });
+  navList.addEventListener('mouseleave', () => { isDown = false; navList.style.cursor = 'default'; });
+  navList.addEventListener('mouseup',    () => { isDown = false; navList.style.cursor = 'default'; });
+  navList.addEventListener('mousemove',  e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - navList.offsetLeft;
+    navList.scrollLeft = scrollLeft - (x - startX) * 1.5;
+  });
 })();
 
 
-// ── Profile Redirect ──
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyASJbu_rNecyaHi9gqrE9PSOwyA7pvq92E",
-  authDomain: "kurd-account.firebaseapp.com",
-  projectId: "kurd-account",
-  storageBucket: "kurd-account.firebasestorage.app",
-  messagingSenderId: "325274297633",
-  appId: "1:325274297633:web:04f9b4b209d3d0f6a90a60"
-};
-
-const app  = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-onAuthStateChanged(auth, (user) => {
-  const signupLink = document.querySelector('a[href="sign.html"]');
-  if (!signupLink) return;
-  if (user) {
-    signupLink.href = 'profile.html';
-    signupLink.textContent = 'Profile';
-  } else {
-    signupLink.href = 'sign.html';
-    signupLink.textContent = 'SignUp';
-  }
-});
-
-
-/* ─────────────────────────────────────────
-   1.  AOS — Animate On Scroll (سووکەلەی)
-───────────────────────────────────────── */
+/* ─────────────────────────────────────────────────
+   1. AOS — Animate On Scroll (lightweight)
+───────────────────────────────────────────────── */
 (function initAOS() {
   const items = document.querySelectorAll('[data-aos]');
   if (!items.length) return;
 
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
         const el    = entry.target;
         const delay = parseInt(el.dataset.aosDelay || 0, 10);
         setTimeout(() => el.classList.add('aos-animate'), delay);
         observer.unobserve(el);
-      });
-    },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-  );
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
   items.forEach(el => observer.observe(el));
 })();
 
 
-/* ─────────────────────────────────────────
-   2.  COUNTER — ئەنیمەیشنی ژمارەی ستات
-───────────────────────────────────────── */
+/* ─────────────────────────────────────────────────
+   2. COUNTER ANIMATION — ستاتەکان
+───────────────────────────────────────────────── */
 (function initCounters() {
   const nums = document.querySelectorAll('.stat-num[data-count]');
   if (!nums.length) return;
 
-  const ease = t => 1 - Math.pow(1 - t, 3); // easeOutCubic
+  // easeOutCubic
+  function ease(t) { return 1 - Math.pow(1 - t, 3); }
 
   function animateCounter(el) {
     const target   = parseInt(el.dataset.count, 10);
     const duration = 2000;
     const start    = performance.now();
 
-    const tick = now => {
-      const progress = Math.min((now - start) / duration, 1);
-      el.textContent = Math.floor(ease(progress) * target).toLocaleString('ar-EG');
+    (function tick(now) {
+      const elapsed  = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const value    = Math.floor(ease(progress) * target);
+      el.textContent = value.toLocaleString('ar-EG');
       if (progress < 1) requestAnimationFrame(tick);
       else el.textContent = target.toLocaleString('ar-EG');
-    };
-
-    requestAnimationFrame(tick);
+    })(performance.now());
   }
 
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
         animateCounter(entry.target);
         observer.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.5 }
-  );
+      }
+    });
+  }, { threshold: 0.5 });
 
   nums.forEach(el => observer.observe(el));
 })();
 
 
-/* ─────────────────────────────────────────
-   3.  CURSOR GLOW — تەنها دێسکتۆپ
-       نەرم بەدوای ماوسدا دەچێت (lerp)
-───────────────────────────────────────── */
+/* ─────────────────────────────────────────────────
+   3. CURSOR GLOW — تەنها دێسکتۆپ
+      ✔ گلۆوەکە لەگەڵ ماوس دەجولێ
+      ✔ بە ئاهەستەیی Lerp دەگاتێ
+───────────────────────────────────────────────── */
 (function initCursorGlow() {
+  // تەنها دێسکتۆپ — touch device گلۆوی ناخوازێت
   if (window.matchMedia('(pointer: coarse)').matches) return;
-  if (document.getElementById('cursor-glow')) return;
 
-  const glow = document.createElement('div');
-  glow.id    = 'cursor-glow';
+  // ئایا پێشتر هەیە؟
+  let glow = document.getElementById('cursor-glow');
+  if (!glow) {
+    glow    = document.createElement('div');
+    glow.id = 'cursor-glow';
+    document.body.appendChild(glow);
+  }
 
+  // inline style دابنێ (پشتبندی CSS هەیە ئەگەر فایل بار بووبێت)
   Object.assign(glow.style, {
-    position:     'fixed',
-    width:        '520px',
-    height:       '520px',
-    borderRadius: '50%',
-    background:   'radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%)',
-    pointerEvents:'none',
-    zIndex:       '9999',
-    top:          '0',
-    left:         '0',
-    willChange:   'transform',
-    opacity:      '0',
-    transition:   'opacity .4s ease',
+    position:      'fixed',
+    width:         '520px',
+    height:        '520px',
+    borderRadius:  '50%',
+    background:    'radial-gradient(circle, rgba(37,99,235,0.08) 0%, transparent 70%)',
+    pointerEvents: 'none',
+    zIndex:        '9999',
+    transform:     'translate(-50%,-50%)',
+    opacity:       '0',
+    top:           '0',
+    left:          '0',
+    willChange:    'left, top',
+    transition:    'opacity .4s ease',
   });
-
-  document.body.appendChild(glow);
 
   let mx = window.innerWidth  / 2;
   let my = window.innerHeight / 2;
   let cx = mx, cy = my;
-  let running = false;
+  let visible = false;
 
   document.addEventListener('mousemove', e => {
     mx = e.clientX;
     my = e.clientY;
-    glow.style.opacity = '1';
-
-    if (!running) {
-      running = true;
-      requestAnimationFrame(loop);
+    if (!visible) {
+      visible = true;
+      glow.style.opacity = '1';
     }
-  }, { passive: true });
+  });
 
   document.addEventListener('mouseleave', () => {
+    visible = false;
     glow.style.opacity = '0';
   });
 
-  function loop() {
-    cx += (mx - cx) * 0.1;
-    cy += (my - cy) * 0.1;
-
-    glow.style.transform = `translate(calc(${cx}px - 50%), calc(${cy}px - 50%))`;
-
-    if (Math.abs(mx - cx) > 0.5 || Math.abs(my - cy) > 0.5) {
-      requestAnimationFrame(loop);
-    } else {
-      running = false;
-    }
-  }
+  (function loop() {
+    // Lerp — ئاهەستەیی جولاندن
+    cx += (mx - cx) * 0.10;
+    cy += (my - cy) * 0.10;
+    glow.style.left = cx + 'px';
+    glow.style.top  = cy + 'px';
+    requestAnimationFrame(loop);
+  })();
 })();
 
 
-/* ─────────────────────────────────────────
-   4.  CARD TILT — 3D سووکەلەی بۆ کارتەکان
-───────────────────────────────────────── */
+/* ─────────────────────────────────────────────────
+   4. CARD TILT — 3D کارتەکان دەلووڕن
+───────────────────────────────────────────────── */
 (function initCardTilt() {
   if (window.matchMedia('(pointer: coarse)').matches) return;
 
-  document.querySelectorAll('.team-card').forEach(card => {
+  const cards = document.querySelectorAll('.team-card');
+
+  cards.forEach(card => {
     card.addEventListener('mousemove', e => {
       const rect  = card.getBoundingClientRect();
-      const dx    = (e.clientX - rect.left - rect.width  / 2) / (rect.width  / 2);
-      const dy    = (e.clientY - rect.top  - rect.height / 2) / (rect.height / 2);
+      const cx    = rect.left + rect.width  / 2;
+      const cy    = rect.top  + rect.height / 2;
+      const dx    = (e.clientX - cx) / (rect.width  / 2);
+      const dy    = (e.clientY - cy) / (rect.height / 2);
+      const tiltX = dy * -6;
+      const tiltY = dx *  6;
 
+      card.style.transform  = `translateY(-16px) scale(1.015) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
       card.style.transition = 'transform .1s ease';
-      card.style.transform  = `translateY(-16px) scale(1.015) rotateX(${dy * -6}deg) rotateY(${dx * 6}deg)`;
     });
 
     card.addEventListener('mouseleave', () => {
-      card.style.transition = 'transform .5s cubic-bezier(.22,1,.36,1)';
       card.style.transform  = '';
+      card.style.transition = 'transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s ease, border-color .5s ease, background .5s ease';
     });
   });
 })();
 
 
-/* ─────────────────────────────────────────
-   5.  RIPPLE — کلیک لەسەر دوگمەکان
-───────────────────────────────────────── */
+/* ─────────────────────────────────────────────────
+   5. RIPPLE — کلیک لەسەر دوگمەکان
+───────────────────────────────────────────────── */
 (function initRipple() {
-  // ── keyframe یەکجاریک زیادبکە ────────────
+  // keyframe یەک جار زیاد بکە
   if (!document.getElementById('ripple-style')) {
     const s = document.createElement('style');
     s.id = 'ripple-style';
-    s.textContent = `@keyframes rippleAnim { to { transform: scale(1); opacity: 0; } }`;
+    s.textContent = `@keyframes rippleAnim { to { transform:scale(1); opacity:0; } }`;
     document.head.appendChild(s);
   }
 
   document.querySelectorAll('.btn-cta, .btn-ghost').forEach(btn => {
-    btn.style.position = 'relative';
-    btn.style.overflow = 'hidden';
-
     btn.addEventListener('click', e => {
-      const rect = btn.getBoundingClientRect();
-      const size = Math.max(rect.width, rect.height) * 2;
+      const rect   = btn.getBoundingClientRect();
+      const size   = Math.max(rect.width, rect.height) * 2;
+      const x      = e.clientX - rect.left - size / 2;
+      const y      = e.clientY - rect.top  - size / 2;
 
       const ripple = document.createElement('span');
       Object.assign(ripple.style, {
-        position:     'absolute',
-        width:        size + 'px',
-        height:       size + 'px',
-        left:         (e.clientX - rect.left - size / 2) + 'px',
-        top:          (e.clientY - rect.top  - size / 2) + 'px',
-        borderRadius: '50%',
-        background:   'rgba(255,255,255,0.18)',
-        transform:    'scale(0)',
-        animation:    'rippleAnim .6s ease-out forwards',
-        pointerEvents:'none',
+        position:      'absolute',
+        width:         size + 'px',
+        height:        size + 'px',
+        left:          x + 'px',
+        top:           y + 'px',
+        borderRadius:  '50%',
+        background:    'rgba(255,255,255,0.18)',
+        transform:     'scale(0)',
+        animation:     'rippleAnim .6s ease-out forwards',
+        pointerEvents: 'none',
       });
 
       btn.appendChild(ripple);
-      ripple.addEventListener('animationend', () => ripple.remove());
+      ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
     });
   });
 })();
 
 
-/* ─────────────────────────────────────────
-   6.  STAT PARTICLES — ئەستێرەی بچووک
-       لەسەر هۆڤەری ستاتەکان
-───────────────────────────────────────── */
+/* ─────────────────────────────────────────────────
+   6. STAT PARTICLES — پارتیکل لەسەر ستاتەکان
+───────────────────────────────────────────────── */
 (function initStatParticles() {
-  const COLORS = ['#3b82f6', '#22d3ee', '#60a5fa', '#bfdbfe'];
+  const stats  = document.querySelectorAll('.stat-item');
+  const colors = ['#3b82f6','#22d3ee','#60a5fa','#bfdbfe'];
 
   function spawnParticles(parent) {
     for (let i = 0; i < 6; i++) {
+      const p     = document.createElement('span');
       const size  = Math.random() * 5 + 3;
       const angle = Math.random() * 360;
       const dist  = Math.random() * 60 + 30;
-      const dur   = (Math.random() * 0.4 + 0.4).toFixed(2);
-      const color = COLORS[Math.floor(Math.random() * COLORS.length)];
-      const rad   = angle * Math.PI / 180;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const dur   = (Math.random() * 0.4 + 0.4).toFixed(2) + 's';
+      const odur  = (Math.random() * 0.3 + 0.4).toFixed(2) + 's';
 
-      const p = document.createElement('span');
       Object.assign(p.style, {
         position:     'absolute',
         width:        size + 'px',
@@ -337,26 +301,27 @@ onAuthStateChanged(auth, (user) => {
         zIndex:       '10',
         opacity:      '1',
         transform:    'translate(-50%,-50%)',
-        transition:   `transform ${dur}s ease-out, opacity ${dur}s ease-out`,
+        transition:   `transform ${dur} ease-out, opacity ${odur} ease-out`,
       });
 
       parent.style.overflow = 'visible';
       parent.appendChild(p);
 
-      // یەک فریم چاوەڕوان بکە پێش ئەنیمەیشن
-      requestAnimationFrame(() => requestAnimationFrame(() => {
+      // بچووک دەمانگرێت تا browser layout بکات
+      requestAnimationFrame(() => {
+        const rad = angle * Math.PI / 180;
         p.style.transform = `translate(calc(-50% + ${Math.cos(rad) * dist}px), calc(-50% + ${Math.sin(rad) * dist}px))`;
         p.style.opacity   = '0';
-      }));
+      });
 
       setTimeout(() => {
         p.remove();
         parent.style.overflow = 'hidden';
-      }, 750);
+      }, 800);
     }
   }
 
-  document.querySelectorAll('.stat-item').forEach(item => {
+  stats.forEach(item => {
     item.addEventListener('mouseenter', () => spawnParticles(item));
   });
 })();
