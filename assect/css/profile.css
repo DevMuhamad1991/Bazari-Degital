@@ -43,23 +43,6 @@ button { font-family: inherit; cursor: pointer; }
   position: fixed; inset: 0; z-index: 0;
   pointer-events: none; opacity: .5;
 }
-
-/* =====================================================
-   NAVBAR
-   ===================================================== */
-.navbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  height: 60px;
-  background: rgba(3,7,18,.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--b);
-}
-.nav-inner {
-  max-width: 1060px; margin: 0 auto; height: 100%;
-  display: flex; align-items: center;
-  justify-content: space-between; padding: 0 18px;
-}
-
 /* Logo */
 .logo {
   display: flex; align-items: center; gap: 9px;
