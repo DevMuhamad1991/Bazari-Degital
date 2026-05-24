@@ -100,8 +100,12 @@ button { font-family: inherit; cursor: pointer; }
 /* Canvas BG */
 #bgCanvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .5; }
 
-/* Page */
-.page { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 74px 16px 56px; }
+/*  PAGE WRAPPER */
+.page {
+  position: relative; z-index: 1;
+  max-width: 980px; margin: 0 auto;
+  padding: 74px 16px 56px;
+}
 
 /* Hero Card */
 .hero-card {
