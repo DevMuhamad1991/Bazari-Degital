@@ -48,16 +48,22 @@
 
   <canvas id="bgCanvas"></canvas>
   
-              <!-- Cover image area -->
-      <div class="hero-cover" id="heroCover">
-        <div class="cover-grid"></div>
-        <div class="cover-glow-a"></div>
-        <div class="cover-glow-b"></div>
-        <label class="cover-cam" for="coverInput">
-          <i class="fa-solid fa-image"></i> گۆڕینی کاڤەر
-        </label>
-        <input type="file" id="coverInput" accept="image/*" hidden />
-      </div>
+  <!-- شوێنی کاڤەر -->
+  <div class="hero-cover" id="heroCover">
+    <img id="coverImage" class="cover-img" src="https://placehold.co/1200x300/0f172a/3b82f6?text=وێنەی+کاڤەر" alt="کاڤەر">
+    <label class="cover-cam" for="coverInput">
+      <i class="fa-solid fa-image"></i> گۆڕینی کاڤەر
+    </label>
+    <input type="file" id="coverInput" accept="image/*" hidden />
+  </div>
+
+</div>
+
+<!-- تۆاست بۆ ئاگادارکردنەوە -->
+<div class="toast" id="toast">
+  <i id="toastIco" class="fa-solid fa-circle-check"></i>
+  <span id="toastMsg"></span>
+</div>
 
   <main class="page">
     <section class="hero-card">
