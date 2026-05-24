@@ -143,63 +143,7 @@
       ✔ گلۆوەکە لەگەڵ ماوس دەجولێ
       ✔ بە ئاهەستەیی Lerp دەگاتێ
 ───────────────────────────────────────────────── */
-(function initCursorGlow() {
-  // تەنها دێسکتۆپ — touch device گلۆوی ناخوازێت
-  if (window.matchMedia('(pointer: coarse)').matches) return;
 
-  // ئایا پێشتر هەیە؟
-  let glow = document.getElementById('cursor-glow');
-  if (!glow) {
-    glow    = document.createElement('div');
-    glow.id = 'cursor-glow';
-    document.body.appendChild(glow);
-  }
-
-  // inline style دابنێ (پشتبندی CSS هەیە ئەگەر فایل بار بووبێت)
-  Object.assign(glow.style, {
-    position:      'fixed',
-    width:         '520px',
-    height:        '520px',
-    borderRadius:  '50%',
-    background:    'radial-gradient(circle, rgba(37,99,235,0.08) 0%, transparent 70%)',
-    pointerEvents: 'none',
-    zIndex:        '9999',
-    transform:     'translate(-50%,-50%)',
-    opacity:       '0',
-    top:           '0',
-    left:          '0',
-    willChange:    'left, top',
-    transition:    'opacity .4s ease',
-  });
-
-  let mx = window.innerWidth  / 2;
-  let my = window.innerHeight / 2;
-  let cx = mx, cy = my;
-  let visible = false;
-
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX;
-    my = e.clientY;
-    if (!visible) {
-      visible = true;
-      glow.style.opacity = '1';
-    }
-  });
-
-  document.addEventListener('mouseleave', () => {
-    visible = false;
-    glow.style.opacity = '0';
-  });
-
-  (function loop() {
-    // Lerp — ئاهەستەیی جولاندن
-    cx += (mx - cx) * 0.10;
-    cy += (my - cy) * 0.10;
-    glow.style.left = cx + 'px';
-    glow.style.top  = cy + 'px';
-    requestAnimationFrame(loop);
-  })();
-})();
 
 
 /* ─────────────────────────────────────────────────
