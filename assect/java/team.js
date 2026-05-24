@@ -12,11 +12,6 @@
 
 'use strict';
 
-    // Navbar scroll
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 40);
-    });
   // smooth hover spring transition
   navLinks.forEach(link => {
     link.addEventListener('mouseenter', function () {
