@@ -321,3 +321,78 @@ if (navbar) {
 loadUserData();
 loadPosts();
 updateListingsCount(); // badge دروست نیشان بدە بەبێ کردنەوەی listings tab
+// گرفتن ئێلێمێنتەکان
+const coverImage = document.getElementById('coverImage');
+const coverInput = document.getElementById('coverInput');
+const toast = document.getElementById('toast');
+const toastMsg = document.getElementById('toastMsg');
+const toastIco = document.getElementById('toastIco');
+
+// نیشاندانی تۆاست
+function showToast(message, isError = false) {
+  toastMsg.innerText = message;
+  toast.classList.add('show');
+  
+  if (isError) {
+    toast.style.borderColor = '#ef4444';
+    toastIco.style.color = '#ef4444';
+    toastIco.className = 'fa-solid fa-circle-exclamation';
+  } else {
+    toast.style.borderColor = '#22c55e';
+    toastIco.style.color = '#22c55e';
+    toastIco.className = 'fa-solid fa-circle-check';
+  }
+  
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2500);
+}
+
+// کردنەوەی دیالۆگی هەڵبژاردنی وێنە
+document.querySelector('.cover-cam').addEventListener('click', () => {
+  coverInput.click();
+});
+
+// گۆڕینی وێنە کاتێک فایلێک هەڵبژێردرا
+coverInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  
+  if (!file) return;
+  
+  // پشکنینی جۆری فایل
+  if (!file.type.startsWith('image/')) {
+    showToast('تکایە فایلێکی وێنە هەڵبژێرە', true);
+    return;
+  }
+  
+  // پشکنینی قەبارە (حداکثر 5MB)
+  if (file.size > 5 * 1024 * 1024) {
+    showToast('قەبارەی وێنە دەبێت کەمتر بێت لە 5MB', true);
+    return;
+  }
+  
+  // خوێندنەوە و نیشاندانی وێنە
+  const reader = new FileReader();
+  
+  reader.onload = (event) => {
+    coverImage.src = event.target.result;
+    showToast('وێنەی کاڤەر بەسەرکەوتوویی گۆڕا ✓');
+    
+    // هەڵگرتنی وێنە لە localStorage بۆ ماوەی دواتر
+    localStorage.setItem('savedCoverImage', event.target.result);
+  };
+  
+  reader.onerror = () => {
+    showToast('هەڵە لە خوێندنەوەی فایل', true);
+  };
+  
+  reader.readAsDataURL(file);
+});
+
+// بارکردنی وێنەی پاشەکەوتکراو کە پەڕەکە بار دەبێت
+window.addEventListener('DOMContentLoaded', () => {
+  const savedImage = localStorage.getItem('savedCoverImage');
+  if (savedImage) {
+    coverImage.src = savedImage;
+  }
+});
