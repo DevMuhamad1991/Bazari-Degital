@@ -45,34 +45,6 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* =====================================================
-   LOADING
-   ===================================================== */
-.loading-screen {
-  position: fixed; inset: 0; background: var(--bg);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 18px;
-  z-index: 9999; transition: opacity .45s, visibility .45s;
-}
-.loading-screen.hide { opacity: 0; visibility: hidden; pointer-events: none; }
-
-.loader-box {
-  position: relative; width: 68px; height: 68px;
-  display: flex; align-items: center; justify-content: center;
-}
-.l-ring {
-  position: absolute; inset: 0; border-radius: 50%;
-  border: 2.5px solid transparent;
-  border-top-color: var(--blue);
-  animation: spin .9s linear infinite;
-}
-.l-ring--2 {
-  inset: 9px; border-top-color: var(--violet);
-  animation-duration: .65s; animation-direction: reverse;
-}
-.l-ka { font-size: 17px; font-weight: 900; color: var(--blue); }
-.l-txt { font-size: .82rem; color: var(--tx2); animation: pulse 1.6s ease-in-out infinite; }
-
-/* =====================================================
    NAVBAR
    ===================================================== */
 .navbar {
