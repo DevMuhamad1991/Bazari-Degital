@@ -12,6 +12,28 @@
 
 'use strict';
 
+/* ─────────────────────────────────────────────────
+   0. NAVBAR — scroll shadow + active link
+───────────────────────────────────────────────── */
+(function initNavbar() {
+  const navbar = document.getElementById('navbar');
+  if (!navbar) return;
+
+  // scroll shadow
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // highlight current page in nav
+  const navLinks = document.querySelectorAll('.nav-link');
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href') || '';
+    if (href === currentPage || href === window.location.pathname) {
+      link.classList.add('active');
+    }
+  });
+
   // smooth hover spring transition
   navLinks.forEach(link => {
     link.addEventListener('mouseenter', function () {
