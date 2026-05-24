@@ -6,12 +6,9 @@
   <title>پرۆفایل — KurdAccount</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  
   <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  
-  <link rel="stylesheet" href="assect/css/profile.css">
+  <link rel="stylesheet" href="assect/css/profile.css" />
 
   <meta property="og:title" content="Kurd Account" />
   <meta property="og:description" content="باشترین پلاتفۆرم بۆ کرین و فرۆشتنی ئەکاونت" />
@@ -20,9 +17,10 @@
   <meta property="og:type" content="website" />
   <link rel="icon" type="image/png" href="https://devmuhamad1991.github.io/Bazari-Degital/assect/image/logo.png" />
   <link rel="apple-touch-icon" href="https://devmuhamad1991.github.io/Bazari-Degital/assect/image/logo.png" />
-  
 </head>
 <body>
+
+  <!-- Navbar -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="profile.html" class="logo">
@@ -30,42 +28,43 @@
         <span class="logo-text">Kurd<span class="accent">Account</span></span>
       </a>
       <ul class="nav-links">
-        <li><a href="sign.html" class="nav-link">Profile</a></li>
+        <li><a href="sign.html"   class="nav-link">Profile</a></li>
         <li><a href="market.html" class="nav-link">Market</a></li>
-        <li><a href="post.html" class="nav-link">Sell</a></li>
-        <li><a href="team.html" class="nav-link">Team</a></li>
-        <li><a href="read.html" class="nav-link">Review</a></li>
-        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="post.html"   class="nav-link">Sell</a></li>
+        <li><a href="team.html"   class="nav-link">Team</a></li>
+        <li><a href="read.html"   class="nav-link">Review</a></li>
+        <li><a href="index.html"  class="nav-link">Home</a></li>
       </ul>
     </div>
   </nav>
 
+  <!-- Background -->
   <div class="bg-orbs">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
   </div>
-
   <canvas id="bgCanvas"></canvas>
-  
-  <!-- شوێنی کاڤەر -->
+
+  <!-- Cover -->
   <div class="hero-cover" id="heroCover">
-    <img id="coverImage" class="cover-img" src="https://placehold.co/1200x300/0f172a/3b82f6?text=وێنەی+کاڤەر" alt="کاڤەر">
+    <img id="coverImage" class="cover-img" src="https://placehold.co/1200x300/0f172a/3b82f6?text=وێنەی+کاڤەر" alt="کاڤەر" />
     <label class="cover-cam" for="coverInput">
       <i class="fa-solid fa-image"></i> گۆڕینی کاڤەر
     </label>
     <input type="file" id="coverInput" accept="image/*" hidden />
   </div>
 
-</div>
+  <!-- Toast (یەک جار تەنها) -->
+  <div class="toast" id="toast">
+    <i id="toastIco" class="fa-solid fa-circle-check"></i>
+    <span id="toastMsg"></span>
+  </div>
 
-<!-- تۆاست بۆ ئاگادارکردنەوە -->
-<div class="toast" id="toast">
-  <i id="toastIco" class="fa-solid fa-circle-check"></i>
-  <span id="toastMsg"></span>
-</div>
-
+  <!-- Main Content -->
   <main class="page">
+
+    <!-- Hero Card -->
     <section class="hero-card">
       <div class="hero-body">
         <div class="av-wrap">
@@ -87,6 +86,7 @@
       </div>
     </section>
 
+    <!-- Tabs -->
     <div class="tabs-row">
       <button class="tab tab--active" data-tab="edit">
         <i class="fa-solid fa-sliders"></i>
@@ -106,6 +106,7 @@
     <!-- Panel: Edit Profile -->
     <section class="panel panel--active" id="panel-edit">
       <div class="edit-grid">
+
         <div class="gc">
           <div class="gc-head">
             <div class="gc-ico ico--blue"><i class="fa-solid fa-at"></i></div>
@@ -163,6 +164,7 @@
             </button>
           </div>
         </div>
+
       </div>
     </section>
 
@@ -229,12 +231,8 @@
         </div>
       </div>
     </section>
-  </main>
 
-  <div class="toast" id="toast">
-    <i id="toastIco" class="fa-solid fa-circle-check"></i>
-    <span id="toastMsg"></span>
-  </div>
+  </main>
 
   <script src="assect/java/profile.js"></script>
 </body>
