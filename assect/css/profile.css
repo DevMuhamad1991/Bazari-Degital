@@ -43,42 +43,7 @@ button { font-family: inherit; cursor: pointer; }
   position: fixed; inset: 0; z-index: 0;
   pointer-events: none; opacity: .5;
 }
-/* Logo */
-.logo {
-  display: flex; align-items: center; gap: 9px;
-  font-size: 1.05rem; font-weight: 900; color: #fff;
-}
-.logo-ico {
-  width: 33px; height: 33px;
-  background: linear-gradient(135deg, var(--blue-d), #4338ca);
-  border-radius: 9px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; color: #fff;
-  box-shadow: 0 0 14px rgba(56,189,248,.3);
-}
-.logo em { color: var(--blue); font-style: normal; }
 
-/* Nav links */
-.nav-links {
-  list-style: none; display: flex; gap: 2px; align-items: center;
-}
-.nl {
-  padding: 6px 13px; border-radius: 20px;
-  font-size: .8rem; font-weight: 600; color: var(--tx2);
-  transition: all .2s;
-}
-.nl:hover { color: var(--tx); background: rgba(255,255,255,.05); }
-.nl--on { color: var(--blue); background: rgba(56,189,248,.1); border: 1px solid rgba(56,189,248,.2); }
-
-/* Hamburger */
-.hamburger {
-  display: none; background: rgba(255,255,255,.05);
-  border: 1px solid var(--b); color: var(--tx2);
-  width: 35px; height: 35px; border-radius: 9px;
-  align-items: center; justify-content: center;
-  font-size: 14px; transition: all .2s;
-}
-.hamburger:hover { color: var(--blue); border-color: var(--bh); }
 
 /* =====================================================
    MOBILE DRAWER
