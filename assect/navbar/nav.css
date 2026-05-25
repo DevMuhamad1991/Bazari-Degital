@@ -14,7 +14,6 @@
   background: rgba(2,8,23,0.98);
   box-shadow: 0 2px 40px rgba(37,99,235,0.15);
 }
-
 .nav-container {
   max-width: 1400px; margin: 0 auto;
   height: 100%;
@@ -22,18 +21,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: row-reverse;
   gap: 16px;
 }
 
 /* Logo */
-.logo {
-  display: flex; align-items: center; gap: 10px;
-  text-decoration: none; color: var(--text);
-  font-size: 1.25rem; font-weight: 900;
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-.logo/* Logo */
 .logo {
   display: flex; align-items: center; gap: 10px;
   text-decoration: none; color: var(--text);
@@ -51,37 +43,17 @@
 }
 .logo .accent { color: var(--blue-light); }
 
-/* ناوی KurdAccount - بە شێوەی دیفۆڵت دیارە */
-.logo-text {
-  display: inline-flex;
-}
+.logo-text { display: inline-flex; }
 
-/* ========== موبایل (≤ 768px) ========== */
 @media (max-width: 768px) {
-  .logo-text {
-    display: none;  /* ناوەکە بەدەر دەکەوێت لە موبایل */
-  }
-  
-  .logo {
-    gap: 0; /* بۆشایی نێوان ئایکۆن و ناو لابردووە */
-  }
+  .logo-text { display: none; }
+  .logo { gap: 0; }
+}
+@media (min-width: 769px) {
+  .logo-text { display: inline-flex; }
 }
 
-/* ========== تابلێت (769px - 1024px) ========== */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .logo-text {
-    display: inline-flex; /* دیارە لە تابلێت */
-  }
-}
-
-/* ========== لاپتۆپ و ئەوەش گەورەتر (≥ 1025px) ========== */
-@media (min-width: 1025px) {
-  .logo-text {
-    display: inline-flex; /* دیارە لە لاپتۆپ */
-  }
-}
-
-/* Nav links — scrollable row */
+/* Nav links */
 .nav-links {
   display: flex;
   align-items: center;
@@ -95,7 +67,6 @@
   min-width: 0;
   padding-bottom: 2px;
 }
-
 .nav-links::-webkit-scrollbar { display: none; }
 
 .nav-link {
@@ -109,7 +80,6 @@
   position: relative;
   transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .nav-link::after {
   content: '';
   position: absolute;
@@ -120,28 +90,20 @@
   border-radius: 2px;
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .nav-link:hover {
   color: var(--text);
   background: rgba(59,130,246,0.08);
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(37,99,235,0.15);
 }
-
-.nav-link:hover::after {
-  transform: translateX(-50%) scaleX(1);
-}
+.nav-link:hover::after { transform: translateX(-50%) scaleX(1); }
 
 .nav-link.active {
   color: var(--blue-light);
   background: rgba(59,130,246,0.1);
 }
+.nav-link.active::after { transform: translateX(-50%) scaleX(1); }
 
-.nav-link.active::after {
-  transform: translateX(-50%) scaleX(1);
-}
-
-/* scroll-hint fade on right edge (optional visual cue) */
 .nav-links-wrap {
   position: relative;
   flex-shrink: 1;
