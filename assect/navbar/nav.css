@@ -43,6 +43,36 @@
 }
 .logo .accent { color: var(--blue-light); }
 
+/* ناوی KurdAccount - بە شێوەی دیفۆڵت دیارە */
+.logo-text {
+  display: inline-flex;
+}
+
+/* ========== موبایل (≤ 768px) ========== */
+@media (max-width: 768px) {
+  .logo-text {
+    display: none;  /* ناوەکە بەدەر دەکەوێت لە موبایل */
+  }
+  
+  .logo {
+    gap: 0; /* بۆشایی نێوان ئایکۆن و ناو لابردووە */
+  }
+}
+
+/* ========== تابلێت (769px - 1024px) ========== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .logo-text {
+    display: inline-flex; /* دیارە لە تابلێت */
+  }
+}
+
+/* ========== لاپتۆپ و ئەوەش گەورەتر (≥ 1025px) ========== */
+@media (min-width: 1025px) {
+  .logo-text {
+    display: inline-flex; /* دیارە لە لاپتۆپ */
+  }
+}
+
 /* Nav links — scrollable row */
 .nav-links {
   display: flex;
@@ -50,7 +80,7 @@
   gap: 4px;
   list-style: none;
   overflow-x: auto;
-  overflow-y: hidden;   /* ← ئەمە بگۆڕە */
+  overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   flex-shrink: 1;
@@ -102,8 +132,6 @@
 .nav-link.active::after {
   transform: translateX(-50%) scaleX(1);
 }
-
-
 
 /* scroll-hint fade on right edge (optional visual cue) */
 .nav-links-wrap {
