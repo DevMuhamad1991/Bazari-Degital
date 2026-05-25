@@ -24,11 +24,15 @@ function loadNavbar() {
   if (!placeholder) return;
   placeholder.innerHTML = navbarHTML;
 
-  // ===== Active =====
+  // ===== Active لەسەر پەڕەی ئێستا =====
   const path = window.location.pathname;
-  const currentPage = path.endsWith('/') || path.endsWith('/Bazari-Degital/') 
-    ? 'index.html' 
-    : path.split('/').pop() || 'index.html';
+  let currentPage;
+
+  if (path.endsWith('/') || path === '/Bazari-Degital' || path === '/Bazari-Degital/') {
+    currentPage = 'index.html';
+  } else {
+    currentPage = path.split('/').pop() || 'index.html';
+  }
 
   const navLinks = placeholder.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
@@ -42,7 +46,7 @@ function loadNavbar() {
     });
   });
 
-  // ===== Scroll =====
+  // ===== Scroll Effect =====
   window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
     if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
