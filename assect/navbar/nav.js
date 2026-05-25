@@ -9,7 +9,7 @@ function loadNavbar() {
         <div class="nav-links-wrap">
           <ul class="nav-links">
             <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="review.html" class="nav-link">Review</a></li>
+            <li><a href="read.html" class="nav-link">Review</a></li>
             <li><a href="team.html" class="nav-link">Team</a></li>
             <li><a href="sell.html" class="nav-link">Sell</a></li>
             <li><a href="market.html" class="nav-link">Market</a></li>
