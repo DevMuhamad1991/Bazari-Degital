@@ -25,3 +25,44 @@ function loadNavbar() {
   }
 }
 document.addEventListener('DOMContentLoaded', loadNavbar);
+
+// ===== Active Nav Link - بمێنێتەوە =====
+const navLinks = document.querySelectorAll('.nav-link');
+
+function setActiveLink() {
+  const currentPath = window.location.pathname + window.location.hash;
+  
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    
+    const linkPath = link.getAttribute('href');
+    if (linkPath === currentPath || 
+        (currentPath === '/' && linkPath === '/') ||
+        (linkPath !== '/' && currentPath.startsWith(linkPath))) {
+      link.classList.add('active');
+    }
+  });
+}
+
+// کاتی کلیک کردن
+navLinks.forEach(link => {
+  link.addEventListener('click', function() {
+    navLinks.forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
+    
+    // پاراستنی active state لە localStorage
+    localStorage.setItem('activeNav', this.getAttribute('href'));
+  });
+});
+
+// کاتی بارکردنی پەڕەکە — چەک بکە localStorage
+const savedActive = localStorage.getItem('activeNav');
+if (savedActive) {
+  navLinks.forEach(link => {
+    if (link.getAttribute('href') === savedActive) {
+      link.classList.add('active');
+    }
+  });
+} else {
+  setActiveLink();
+}
