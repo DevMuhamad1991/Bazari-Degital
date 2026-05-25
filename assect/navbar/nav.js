@@ -24,26 +24,28 @@ function loadNavbar() {
   if (!placeholder) return;
   placeholder.innerHTML = navbarHTML;
 
-  // ===== Active لەسەر پەڕەی ئێستا =====
-  const path = window.location.pathname;
-  let currentPage;
-  if (path.endsWith('/') || path === '/Bazari-Degital' || path === '/Bazari-Degital/') {
-    currentPage = 'index.html';
-  } else {
-    currentPage = path.split('/').pop() || 'index.html';
-  }
-
-  const navLinks = placeholder.querySelectorAll('.nav-link');
-  navLinks.forEach(link => {
-    const linkPage = link.getAttribute('href').split('/').pop();
-    if (linkPage === currentPage) {
-      link.classList.add('active');
+  setTimeout(function() {
+    const path = window.location.pathname;
+    let currentPage;
+    if (path.endsWith('/') || path === '/Bazari-Degital' || path === '/Bazari-Degital/') {
+      currentPage = 'index.html';
+    } else {
+      currentPage = path.split('/').pop() || 'index.html';
     }
-    link.addEventListener('click', function () {
-      navLinks.forEach(l => l.classList.remove('active'));
-      this.classList.add('active');
+
+    const navLinks = placeholder.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      const linkPage = link.getAttribute('href').split('/').pop();
+      if (linkPage === currentPage) {
+        link.classList.add('active');
+      }
+      link.addEventListener('click', function () {
+        navLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
     });
-  });
+  }, 200);
 
   // ===== Scroll Effect =====
   window.addEventListener('scroll', () => {
