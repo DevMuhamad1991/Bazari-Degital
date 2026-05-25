@@ -1,22 +1,21 @@
-// navbar/nav.js
 function loadNavbar() {
   const navbarHTML = `
-    <nav class="main-navbar">
+    <nav class="navbar">
       <div class="nav-container">
-        <div class="nav-logo">
-          <a href="index.html">KurdAccount</a>
+        <a href="index.html" class="logo">
+          <div class="logo-icon"><i class="fa-solid fa-kaaba"></i></div>
+          <span class="logo-text">Kurd<span class="accent">Account</span></span>
+        </a>
+        <div class="nav-links-wrap">
+          <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="review.html" class="nav-link">Review</a></li>
+            <li><a href="team.html" class="nav-link">Team</a></li>
+            <li><a href="sell.html" class="nav-link">Sell</a></li>
+            <li><a href="market.html" class="nav-link">Market</a></li>
+            <li><a href="profile.html" class="nav-link">Profile</a></li>
+          </ul>
         </div>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="review.html">Review</a></li>
-          <li><a href="team.html">Team</a></li>
-          <li><a href="sell.html">Sell</a></li>
-          <li><a href="market.html">Market</a></li>
-          <li><a href="profile.html">Profile</a></li>
-        </ul>
-        <button class="nav-mobile-btn" id="navToggleBtn">
-          <i class="fas fa-bars"></i>
-        </button>
       </div>
     </nav>
   `;
@@ -25,6 +24,4 @@ function loadNavbar() {
     placeholder.innerHTML = navbarHTML;
   }
 }
-
-// کاتێک پەڕەکە بار دەبێت، navbar load بکە
 document.addEventListener('DOMContentLoaded', loadNavbar);
