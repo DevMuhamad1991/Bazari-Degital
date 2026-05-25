@@ -2,20 +2,20 @@ function loadNavbar() {
   const navbarHTML = `
     <nav class="navbar" id="navbar">
       <div class="nav-container">
-        <div class="nav-links-wrap">
-          <ul class="nav-links">
-            <li><a href="index.html"   class="nav-link">Home</a></li>
-            <li><a href="read.html"    class="nav-link">Read</a></li>
-            <li><a href="team.html"    class="nav-link">Team</a></li>
-            <li><a href="post.html"    class="nav-link">post</a></li>
-            <li><a href="market.html"  class="nav-link">Market</a></li>
-            <li><a href="profile.html" class="nav-link">Profile</a></li>
-          </ul>
-        </div>
         <a href="index.html" class="logo">
           <span class="logo-icon"><i class="fa-solid fa-shield-halved"></i></span>
           <span class="logo-text">Kurd<span class="accent">Account</span></span>
         </a>
+        <div class="nav-links-wrap">
+          <ul class="nav-links">
+            <li><a href="index.html"   class="nav-link">Home</a></li>
+            <li><a href="post.html"    class="nav-link">post</a></li>
+            <li><a href="market.html"  class="nav-link">Market</a></li>
+            <li><a href="read.html"    class="nav-link">Read</a></li>
+            <li><a href="profile.html" class="nav-link">Profile</a></li>
+            <li><a href="team.html"    class="nav-link">Team</a></li>
+          </ul>
+        </div>
       </div>
     </nav>
   `;
@@ -27,7 +27,6 @@ function loadNavbar() {
   // ===== Active لەسەر پەڕەی ئێستا =====
   const path = window.location.pathname;
   let currentPage;
-
   if (path.endsWith('/') || path === '/Bazari-Degital' || path === '/Bazari-Degital/') {
     currentPage = 'index.html';
   } else {
