@@ -9,9 +9,9 @@ function loadNavbar() {
         <div class="nav-links-wrap">
           <ul class="nav-links">
             <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="read.html" class="nav-link">Review</a></li>
+            <li><a href="read.html" class="nav-link">Read</a></li>
             <li><a href="team.html" class="nav-link">Team</a></li>
-            <li><a href="sell.html" class="nav-link">Sell</a></li>
+            <li><a href="post.html" class="nav-link">post</a></li>
             <li><a href="market.html" class="nav-link">Market</a></li>
             <li><a href="profile.html" class="nav-link">Profile</a></li>
           </ul>
