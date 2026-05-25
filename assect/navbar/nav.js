@@ -2,10 +2,7 @@ function loadNavbar() {
   const navbarHTML = `
     <nav class="navbar" id="navbar">
       <div class="nav-container">
-        <a href="index.html" class="logo">
-          <span class="logo-icon"><i class="fa-solid fa-shield-halved"></i></span>
-          <span class="logo-text">Kurd<span class="accent">Account</span></span>
-        </a>
+        <!-- 1. لینکەکان لای چەپ (ئەمە هاتە سەرەوە) -->
         <div class="nav-links-wrap">
           <ul class="nav-links">
             <li><a href="index.html"   class="nav-link">Home</a></li>
@@ -16,6 +13,12 @@ function loadNavbar() {
             <li><a href="team.html"    class="nav-link">Team</a></li>
           </ul>
         </div>
+        
+        <!-- 2. لۆگۆ لای ڕاست (ئەمە هاتە خوارەوە) -->
+        <a href="index.html" class="logo">
+          <span class="logo-icon"><i class="fa-solid fa-shield-halved"></i></span>
+          <span class="logo-text">Kurd<span class="accent">Account</span></span>
+        </a>
       </div>
     </nav>
   `;
