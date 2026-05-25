@@ -1,6 +1,6 @@
 function loadNavbar() {
-  const navbarHTML = `
-    <nav class="navbar" id="navbar">
+const navbarHTML = `
+    <nav class="navbar" id="navbar" dir="ltr">
       <div class="nav-container">
         <div class="nav-links-wrap">
           <ul class="nav-links">
