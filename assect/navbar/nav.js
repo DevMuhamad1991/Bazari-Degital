@@ -3,10 +3,7 @@ const navbarHTML = `
     <nav class="navbar" id="navbar">
       <div class="nav-container">
         <div class="nav-links-wrap">
-                <a href="index.html" class="logo">
-          <span class="logo-icon"><i class="fa-solid fa-shield-halved"></i></span>
-          <span class="logo-text">Kurd<span class="accent">Account</span></span>
-        </a>
+
           <ul class="nav-links">
             <li><a href="team.html"    class="nav-link">Team</a></li>
             <li><a href="profile.html" class="nav-link">Profile</a></li>
@@ -16,7 +13,10 @@ const navbarHTML = `
             <li><a href="index.html"   class="nav-link">Home</a></li>
           </ul>
         </div>
-
+                <a href="index.html" class="logo">
+          <span class="logo-icon"><i class="fa-solid fa-shield-halved"></i></span>
+          <span class="logo-text">Kurd<span class="accent">Account</span></span>
+        </a>
       </div>
     </nav>
   `;
