@@ -5,21 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Team Section — KurdAccount</title>
   
-  <!-- Fonts & Icons -->
+  /* =============================================
+     [1] ── GOOGLE FONTS & EXTERNAL LIBRARIES ──
+     ============================================= */
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300&family=Playfair+Display:wght@700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous"/>
   
-  <!-- Styles -->
+  /* =============================================
+     [2] ── MAIN TEAM PAGE CSS ──
+     ============================================= */
   <link rel="stylesheet" href="assect/css/team.css"/>
+  
+  /* =============================================
+     [3] ── NAVBAR CSS (LOADED FROM EXTERNAL FILE) ──
+     ============================================= */
   <link rel="stylesheet" href="assect/navbar/nav.css"/>
 </head>
 <body>
 
-  <!-- Navbar will be loaded here by nav.js -->
+  /* =============================================
+     [4] ── NAVBAR PLACEHOLDER (CONTENT LOADED BY nav.js) ──
+     ============================================= */
   <div id="navbar-root"></div>
 
+  /* =============================================
+     [5] ── TEAM SECTION (MAIN CONTENT) ──
+     ============================================= */
   <section class="team-section" id="team">
     <div class="container">
 
@@ -43,7 +56,6 @@
       </div>
 
       <div class="team-grid">
-
         <div class="team-card" style="--i:0" data-aos="card-up" data-aos-delay="0">
           <div class="top-line"></div>
           <div class="card-number">01</div>
@@ -104,7 +116,6 @@
             <a href="https://wa.me/9647507635243" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
           </div>
         </div>
-
       </div>
 
       <div class="stats-strip" data-aos="fade-up" data-aos-delay="100">
@@ -133,7 +144,6 @@
         <div class="about-orb about-orb-1"></div>
         <div class="about-orb about-orb-2"></div>
         <div class="about-inner">
-
           <div class="about-left" data-aos="fade-right" data-aos-delay="120">
             <div class="about-tag"><i class="fa-solid fa-layer-group"></i> دەربارەی ئێمە</div>
             <h2 class="about-title">
@@ -156,7 +166,6 @@
               <a href="#" class="btn-ghost"><i class="fa-solid fa-arrow-left"></i> پرۆژەکانمان</a>
             </div>
           </div>
-
           <div class="about-right" data-aos="fade-left" data-aos-delay="180">
             <div class="feature-list">
               <div class="feature-item">
@@ -177,14 +186,20 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
     </div>
   </section>
 
+  /* =============================================
+     [6] ── TEAM PAGE CUSTOM JS ──
+     ============================================= */
   <script src="assect/java/team.js"></script>
+  
+  /* =============================================
+     [7] ── NAVBAR JS (LOADS NAVBAR CONTENT) ──
+     ============================================= */
   <script src="assect/navbar/nav.js"></script>
 </body>
 </html>
