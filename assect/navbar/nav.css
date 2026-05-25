@@ -1,3 +1,25 @@
+:root {
+  /* ── زیادکراو بۆ ناڤبار ── */
+  --nav-h: 64px;
+  --blue: #1a8cff;
+  --blue-light: #00d4ff;
+  --blue-glow: #60cfff;
+  --text-muted: #7a93c8;
+  --border-bright: rgba(26,140,255,0.4);
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+  --dark: #060d1f;
+  --dark-2: #0c1a35;
+
+  /* ── ئەمانەش بوونیانە ── */
+  --bg-deep:  #060d1f;
+  --bg-card:  #0c1a35;
+  --accent:   #1a8cff;
+  --accent2:  #00d4ff;
+  --text:     #e8f0ff;
+  --muted:    #7a93c8;
+  --border:   rgba(26,140,255,0.18);
+}
+
 /* =====================================================
    NAVBAR
 ===================================================== */
