@@ -1,11 +1,11 @@
 function loadNavbar() {
   const navbarHTML = `
-    <nav class="navbar">
-      <div class="nav-container">
-        <a href="index.html" class="logo">
-          <div class="logo-icon"><i class="fa-solid fa-kaaba"></i></div>
-          <span class="logo-text">Kurd<span class="accent">Account</span></span>
-        </a>
+   <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-shield-halved"></i></span>
+        <span class="logo-text">Kurd<span class="accent">Account</span></span>
+      </a>
         <div class="nav-links-wrap">
           <ul class="nav-links">
             <li><a href="index.html" class="nav-link">Home</a></li>
