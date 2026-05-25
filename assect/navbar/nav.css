@@ -1,25 +1,8 @@
 /* =====================================================
-   NAVBAR — KurdAccount
-   تەنها بۆ ناڤ بار، بە پاڵپشتی RTL/LTR
+   NAVBAR
 ===================================================== */
-
-:root {
-  --nav-h: 64px;
-  --blue: #1a8cff;
-  --blue-light: #00d4ff;
-  --text-muted: #7a93c8;
-  --border: rgba(26,140,255,0.18);
-  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
-  --dark: #060d1f;
-  --text: #e8f0ff;
-}
-
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   height: var(--nav-h);
   background: rgba(2,8,23,0.88);
   backdrop-filter: blur(20px);
@@ -44,7 +27,7 @@
   gap: 16px;
 }
 
-/* Logo */
+/* ── Logo ── */
 .logo {
   display: flex;
   align-items: center;
@@ -61,7 +44,7 @@
   color: var(--blue-light);
 }
 
-/* ناوی لۆگۆ - بە شێوەی دیفۆڵت دیارە */
+/* ── ناوی لۆگۆ: لاپتۆپ دیارە، موبایل شاراوەتەوە ── */
 .logo-text {
   display: inline;
 }
@@ -70,7 +53,7 @@
   width: 38px;
   height: 38px;
   flex-shrink: 0;
-  background: linear-gradient(135deg, var(--blue), #1a8cff);
+  background: linear-gradient(135deg, var(--blue), var(--accent));
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -80,7 +63,7 @@
   box-shadow: 0 0 18px rgba(59,130,246,0.45);
 }
 
-/* Nav Links Wrapper */
+/* ── Nav Links Wrapper ── */
 .nav-links-wrap {
   position: relative;
   flex: 1;
@@ -90,7 +73,7 @@
   overflow: hidden;
 }
 
-/* Nav Links */
+/* ── Nav Links ── */
 .nav-links {
   display: flex;
   align-items: center;
@@ -102,7 +85,6 @@
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding: 0 4px 2px;
-  margin: 0;
 }
 
 .nav-links::-webkit-scrollbar {
@@ -123,7 +105,11 @@
   border-radius: 8px;
   white-space: nowrap;
   position: relative;
-  transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .nav-link::after {
@@ -134,13 +120,13 @@
   transform: translateX(50%) scaleX(0);
   width: 60%;
   height: 2px;
-  background: linear-gradient(90deg, var(--blue), var(--blue-light));
+  background: linear-gradient(90deg, var(--accent), var(--blue-light));
   border-radius: 2px;
   transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
 }
 
 .nav-link:hover {
-  color: white;
+  color: var(--text);
   background: rgba(59,130,246,0.08);
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(37,99,235,0.15);
@@ -156,41 +142,34 @@
   background: rgba(59,130,246,0.1);
 }
 
-/* ── RTL (دەست ڕاست) ── */
-html[dir="rtl"] .nav-container {
-  flex-direction: row-reverse;
-}
-
-html[dir="rtl"] .nav-links {
-  flex-direction: row-reverse;
-}
-
-html[dir="rtl"] .nav-link::after {
-  right: auto;
-  left: 50%;
-  transform: translateX(-50%) scaleX(0);
-}
-
-html[dir="rtl"] .nav-link:hover::after,
-html[dir="rtl"] .nav-link.active::after {
-  transform: translateX(-50%) scaleX(1);
-}
-
-/* ── موبایل ≤ 640px: ناوی "KurdAccount" شاراوە ── */
+/* ── موبایل ≤ 640px ── */
 @media (max-width: 640px) {
   .nav-container {
     padding: 0 12px;
     gap: 8px;
   }
 
+  /* ناوی لۆگۆ شاراوەتەوە لە موبایل */
   .logo-text {
     display: none;
   }
 
   .nav-links {
     gap: 4px;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
   }
 
   .nav-link {
@@ -205,6 +184,12 @@ html[dir="rtl"] .nav-link.active::after {
     color: var(--blue-light);
     transform: none;
   }
+
+  .cta-btn {
+    padding: 7px 13px !important;
+    font-size: 0.82rem;
+    border-radius: 20px !important;
+  }
 }
 
 /* ── زۆر بچووک ≤ 380px ── */
@@ -218,12 +203,5 @@ html[dir="rtl"] .nav-link.active::after {
   .nav-link {
     font-size: 0.76rem;
     padding: 6px 10px;
-  }
-}
-
-/* ── لە لاپتۆپ/ئایپاددا ناوەکە دیارە ── */
-@media (min-width: 641px) {
-  .logo-text {
-    display: inline;
   }
 }
