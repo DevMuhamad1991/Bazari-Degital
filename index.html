@@ -27,6 +27,18 @@
 
 <!-- nav.css -->
   <link rel="stylesheet" href="assect/navbar/nav.css"/> 
+  
+  <div id="debug" style="position:fixed;bottom:0;left:0;right:0;background:red;color:white;font-size:12px;padding:8px;z-index:99999;direction:ltr"></div>
+<script>
+setTimeout(function(){
+  var d = document.getElementById('debug');
+  d.innerHTML = 
+    'path: ' + window.location.pathname + '<br>' +
+    'navlinks: ' + document.querySelectorAll('.nav-link').length + '<br>' +
+    'root: ' + (document.getElementById('navbar-root') ? 'OK' : 'NULL');
+}, 1000);
+</script>
+
 </head>
 <body>
   
