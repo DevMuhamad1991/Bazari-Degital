@@ -41,13 +41,17 @@
 }
 .logo .accent { color: var(--blue-light); }
 .logo-text { display: inline-flex; }
+
 @media (max-width: 768px) {
   .logo-text { display: none; }
   .logo { gap: 0; }
+  .nav-links-wrap { flex: 1; min-width: 0; }
+  .nav-links { justify-content: flex-start; }
 }
 @media (min-width: 769px) {
   .logo-text { display: inline-flex; }
 }
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -62,6 +66,7 @@
   padding-bottom: 2px;
 }
 .nav-links::-webkit-scrollbar { display: none; }
+
 .nav-link {
   text-decoration: none;
   color: var(--text-muted);
@@ -76,11 +81,14 @@
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: 4px; left: 50%;
-  transform: translateX(-50%) scaleX(0);
-  width: 60%; height: 2px;
+  bottom: 4px;
+  left: 14px;
+  right: 14px;
+  height: 2px;
   background: linear-gradient(90deg, var(--blue-light), var(--accent));
   border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .nav-link:hover {
@@ -89,47 +97,17 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(37,99,235,0.15);
 }
-.nav-link:hover::after { transform: translateX(-50%) scaleX(1); }
+.nav-link:hover::after { transform: scaleX(1); }
 .nav-link.active {
   color: var(--blue-light);
   background: rgba(59,130,246,0.1);
 }
-.nav-link.active::after { transform: translateX(-50%) scaleX(1); }
+.nav-link.active::after { transform: scaleX(1); }
+
 .nav-links-wrap {
   position: relative;
   flex-shrink: 1;
   min-width: 0;
   display: flex;
   align-items: center;
-}
-.nav-container{
-  flex-direction: row-reverse;
-}
-....
-/* ── جێگیرکردنی ئاڕاستەی ناڤبار بۆ زمانی/* ── ڕێکخستنی بنەڕەتی ناڤبار بۆ سەرجەم لاپەڕەکان ── */
-nav, .navbar-container {
-  display: flex !important;
-  /* ڕێگە دەدات لۆگۆ لە ڕاست و لینکەکان لە چەپ بن بەپێی زمانی کوردی */
-  flex-direction: row !important; 
-  justify-content: space-between !important; 
-  align-items: center !important;
-  width: 100% !important;
-  padding: 0 24px !important;
-  box-sizing: border-box !important;
-}
-
-/* ── ناچارکردنی بەشی لینکەکان کە هەمیشە بچنە لای چەپی شاشە ── */
-.nav-links, nav ul {
-  display: flex !important;
-  gap: 15px !important;
-  flex-direction: row !important;
-  /* ئەگەر لۆگۆ لە ڕاست بێت، ئەمە لینکەکان پاڵ دەنێت بۆ ئەوپەڕی لای چەپ */
-  margin-right: auto !important; 
-  margin-left: 0 !important;
-}
-
-/* ── ناچارکردنی لۆگۆ کە هەمیشە لە لای ڕاستی شاشە بێت ── */
-.navbar-logo, nav .logo, nav span {
-  margin-left: auto !important;
-  margin-right: 0 !important;
 }
