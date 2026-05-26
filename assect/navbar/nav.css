@@ -100,3 +100,7 @@
 .nav-link.active::after {
   transform: translateX(-50%) scaleX(1);
 }
+
+.nav-container{
+  flex-direction: row-reverse;
+}
