@@ -105,3 +105,21 @@
 .nav-container{
   flex-direction: row-reverse;
 }
+....
+/* ── جێگیرکردنی ئاڕاستەی ناڤبار بۆ زمانی کوردی ── */
+nav, .navbar-container {
+  display: flex !important;
+  flex-direction: row-reverse !important; /* لۆگۆ دەباتە ڕاست، لینکەکان لای چەپ */
+  justify-content: space-between !important; /* دروستکردنی بۆشایی لە نێوانیان */
+  align-items: center !important;
+  width: 100% !important;
+  padding: 0 24px !important; /* ڕێگری لە چەسپان بە لێوارەکان */
+  box-sizing: border-box !important;
+}
+
+/* ڕێکخستنی بەستەرەکان پێکەوە */
+.nav-links, nav ul, nav div:first-child {
+  display: flex !important;
+  gap: 15px !important; /* مەودای نێوان لینکەکان */
+  flex-direction: row !important;
+}
