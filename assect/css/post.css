@@ -54,7 +54,7 @@ body {
   font-family: 'Noto Kufi Arabic', sans-serif;
   background: var(--bg);
   color: var(--tx);
-  direction: rtl;
+
   min-height: 100vh;
   overflow-x: hidden;
   line-height: 1.65;
