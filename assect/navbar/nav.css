@@ -1,6 +1,3 @@
-/* ===================================================
-   NAVBAR
-=================================================== */
 .navbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   height: var(--nav-h);
@@ -41,7 +38,6 @@
 }
 .logo .accent { color: var(--blue-light); }
 .logo-text { display: inline-flex; }
-
 @media (max-width: 768px) {
   .logo-text { display: none; }
   .logo { gap: 0; }
@@ -51,7 +47,6 @@
 @media (min-width: 769px) {
   .logo-text { display: inline-flex; }
 }
-
 .nav-links {
   display: flex;
   align-items: center;
@@ -66,7 +61,6 @@
   padding-bottom: 2px;
 }
 .nav-links::-webkit-scrollbar { display: none; }
-
 .nav-link {
   text-decoration: none;
   color: var(--text-muted);
@@ -103,7 +97,6 @@
   background: rgba(59,130,246,0.1);
 }
 .nav-link.active::after { transform: scaleX(1); }
-
 .nav-links-wrap {
   position: relative;
   flex-shrink: 1;
