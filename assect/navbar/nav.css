@@ -106,20 +106,30 @@
   flex-direction: row-reverse;
 }
 ....
-/* ── جێگیرکردنی ئاڕاستەی ناڤبار بۆ زمانی کوردی ── */
+/* ── جێگیرکردنی ئاڕاستەی ناڤبار بۆ زمانی/* ── ڕێکخستنی بنەڕەتی ناڤبار بۆ سەرجەم لاپەڕەکان ── */
 nav, .navbar-container {
   display: flex !important;
-  flex-direction: row-reverse !important; /* لۆگۆ دەباتە ڕاست، لینکەکان لای چەپ */
-  justify-content: space-between !important; /* دروستکردنی بۆشایی لە نێوانیان */
+  /* ڕێگە دەدات لۆگۆ لە ڕاست و لینکەکان لە چەپ بن بەپێی زمانی کوردی */
+  flex-direction: row !important; 
+  justify-content: space-between !important; 
   align-items: center !important;
   width: 100% !important;
-  padding: 0 24px !important; /* ڕێگری لە چەسپان بە لێوارەکان */
+  padding: 0 24px !important;
   box-sizing: border-box !important;
 }
 
-/* ڕێکخستنی بەستەرەکان پێکەوە */
-.nav-links, nav ul, nav div:first-child {
+/* ── ناچارکردنی بەشی لینکەکان کە هەمیشە بچنە لای چەپی شاشە ── */
+.nav-links, nav ul {
   display: flex !important;
-  gap: 15px !important; /* مەودای نێوان لینکەکان */
+  gap: 15px !important;
   flex-direction: row !important;
+  /* ئەگەر لۆگۆ لە ڕاست بێت، ئەمە لینکەکان پاڵ دەنێت بۆ ئەوپەڕی لای چەپ */
+  margin-right: auto !important; 
+  margin-left: 0 !important;
+}
+
+/* ── ناچارکردنی لۆگۆ کە هەمیشە لە لای ڕاستی شاشە بێت ── */
+.navbar-logo, nav .logo, nav span {
+  margin-left: auto !important;
+  margin-right: 0 !important;
 }
