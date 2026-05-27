@@ -1,22 +1,21 @@
 function loadNavbar() {
-const navbarHTML = `
-    <nav class="navbar" id="navbar">
+  const navbarHTML = `
+    <nav class="navbar" id="navbar" dir="ltr">
       <div class="nav-container">
-        <div class="nav-links-wrap">
-
-          <ul class="nav-links">
-            <li><a href="team.html"    class="nav-link">Team</a></li>
-            <li><a href="profile.html" class="nav-link">Profile</a></li>
-            <li><a href="read.html"    class="nav-link">Read</a></li>
-            <li><a href="market.html"  class="nav-link">Market</a></li>
-            <li><a href="post.html"    class="nav-link">post</a></li>
-            <li><a href="index.html"   class="nav-link">Home</a></li>
-          </ul>
-        </div>
-                <a href="index.html" class="logo">
+        <a href="index.html" class="logo">
           <span class="logo-icon"><i class="fa-solid fa-shield-halved"></i></span>
           <span class="logo-text">Kurd<span class="accent">Account</span></span>
         </a>
+        <div class="nav-links-wrap">
+          <ul class="nav-links">
+            <li><a href="index.html"   class="nav-link">Home</a></li>
+            <li><a href="post.html"    class="nav-link">post</a></li>
+            <li><a href="market.html"  class="nav-link">Market</a></li>
+            <li><a href="read.html"    class="nav-link">Read</a></li>
+            <li><a href="profile.html" class="nav-link">Profile</a></li>
+            <li><a href="team.html"    class="nav-link">Team</a></li>
+          </ul>
+        </div>
       </div>
     </nav>
   `;
@@ -25,7 +24,7 @@ const navbarHTML = `
   if (!placeholder) return;
   placeholder.innerHTML = navbarHTML;
 
-  setTimeout(function() {
+  setTimeout(function () {
     const path = window.location.pathname;
     let currentPage;
     if (path.endsWith('/') || path === '/Bazari-Degital' || path === '/Bazari-Degital/') {
