@@ -26,12 +26,16 @@ function loadNavbar() {
 
   setTimeout(function () {
     const path = window.location.pathname;
-    let currentPage;
-    if (path.endsWith('/') || path === '/Bazari-Degital' || path === '/Bazari-Degital/') {
-      currentPage = 'index.html';
-    } else {
-      currentPage = path.split('/').pop() || 'index.html';
-    }
+    const pathParts = path.split('/').filter(Boolean);
+    const lastPart = pathParts[pathParts.length - 1] || '';
+    
+    // ئەگەر index.html یان فۆڵدەر بوو یان تاکە پەڕەی سایت
+    const isIndex = 
+      lastPart === '' || 
+      lastPart === 'index.html' || 
+      !lastPart.includes('.html');
+    
+    const currentPage = isIndex ? 'index.html' : lastPart;
 
     const navLinks = placeholder.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
@@ -40,12 +44,8 @@ function loadNavbar() {
       if (linkPage === currentPage) {
         link.classList.add('active');
       }
-      link.addEventListener('click', function () {
-        navLinks.forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-      });
     });
-  }, 200);
+  }, 0); // ← 200ms پێویست نییە، 0 بەسە
 
   window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
