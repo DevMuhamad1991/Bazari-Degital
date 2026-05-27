@@ -72,7 +72,7 @@
   color: var(--text-muted);
   font-size: 0.9rem; font-weight: 600;
   padding: 8px 14px;
-  border-radius: 8px;
+ 
   white-space: nowrap;
   flex-shrink: 0;
   position: relative;
@@ -96,12 +96,12 @@
   background: rgba(59,130,246,0.08);
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(37,99,235,0.15);
-  border-radius: 8px;
+  
 }
 .nav-link:hover::after { transform: scaleX(1); }
 .nav-link.active {
   color: var(--blue-light);
-  border-radius: 8px;
+  
   background: rgba(59,130,246,0.1);
 }
 .nav-link.active::after { transform: scaleX(1); }
