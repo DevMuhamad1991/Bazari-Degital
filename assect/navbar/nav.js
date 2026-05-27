@@ -1,6 +1,6 @@
 function loadNavbar() {
   const navbarHTML = `
-    <nav class="navbar" id="navbar" dir="ltr">
+    <nav class="navbar" id="navbar">
       <div class="nav-container">
         <a href="index.html" class="logo">
           <span class="logo-icon"><i class="fa-solid fa-shield-halved"></i></span>
