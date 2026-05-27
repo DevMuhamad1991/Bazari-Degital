@@ -65,14 +65,15 @@
   min-width: 0;
   padding-bottom: 2px;
 }
-.nav-links::-webkit-scrollbar { display: none; }
+.nav-links::-webkit-scrollbar { display: none; 
+  }
 
 .nav-link {
   text-decoration: none;
   color: var(--text-muted);
   font-size: 0.9rem; font-weight: 600;
   padding: 8px 14px;
- 
+  border-radius: 8px; /* ← زیادکراو */
   white-space: nowrap;
   flex-shrink: 0;
   position: relative;
