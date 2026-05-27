@@ -408,7 +408,7 @@ body {
   .nav-link { 
     font-size: 0.82rem; 
     padding: 7px 11px;
-    border-radius: 20px; /* ← نەرمتر */
+    border-radius: 8px; /* ← نەرمتر */
     transition: var(--transition);
   }
   .nav-link:hover, .nav-link.active {
