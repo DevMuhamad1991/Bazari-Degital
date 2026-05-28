@@ -19,29 +19,34 @@ function loadNavbar() {
       </div>
     </nav>
   `;
+
   const placeholder = document.getElementById('navbar-root');
   if (!placeholder) return;
   placeholder.innerHTML = navbarHTML;
-  setTimeout(function () {
-    const path = window.location.pathname;
-    let currentPage;
-    if (path.endsWith('/') || path === '/Bazari-Degital' || path === '/Bazari-Degital/') {
-      currentPage = 'index.html';
-    } else {
-      currentPage = path.split('/').pop() || 'index.html';
+
+  // ✅ ڕاستەوخۆ active لینک دادەنرێت — بێ setTimeout
+  const path = window.location.pathname;
+  let currentPage;
+  if (path.endsWith('/') || path === '/Bazari-Degital' || path === '/Bazari-Degital/') {
+    currentPage = 'index.html';
+  } else {
+    currentPage = path.split('/').pop() || 'index.html';
+  }
+
+  const navLinks = placeholder.querySelectorAll('.nav-link');
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    const linkPage = link.getAttribute('href').split('/').pop();
+    if (linkPage === currentPage) {
+      link.classList.add('active');
     }
-    const navLinks = placeholder.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      const linkPage = link.getAttribute('href').split('/').pop();
-      if (linkPage === currentPage) {
-        link.classList.add('active');
-      }
-    });
-  }, 0);
+  });
+
+  // scroll effect
   window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
     if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
   });
 }
+
 document.addEventListener('DOMContentLoaded', loadNavbar);
