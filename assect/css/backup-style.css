@@ -45,9 +45,6 @@
   .card-3 { bottom: 20px; }
 }
 
-
-
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -73,9 +70,7 @@ body {
   align-items: center;
 }
 
-/* ===================================================
-   HERO
-=================================================== */
+/* HERO */
 .hero {
   min-height: 100vh;
   display: flex; align-items: center;
@@ -221,9 +216,7 @@ body {
 
 
 
-/* ===================================================
-   ABOUT
-=================================================== */
+/* ABOUT */
 .about-web {
   padding: 70px 0;
   background: linear-gradient(180deg, var(--dark) 0%, var(--dark-2) 100%);
@@ -236,9 +229,7 @@ body {
   color: var(--text-muted); font-size: 1rem; line-height: 2.1;
 }
 
-/* ===================================================
-   SECTION HEADERS
-=================================================== */
+/* SECTION HEADERS */
 .section-tag {
   display: inline-block;
   background: rgba(37,99,235,0.12); border: 1px solid var(--border-bright);
@@ -254,9 +245,7 @@ body {
   color: var(--text-muted); font-size: 0.94rem; margin-bottom: 44px;
 }
 
-/* ===================================================
-   TUTORIALS
-=================================================== */
+/*  TUTORIALS */
 .tutorials { padding: 90px 0; background: var(--dark-2); }
 .tutorials .container { text-align: center; }
 .tut-grid {
@@ -290,9 +279,7 @@ body {
 .tut-card h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 10px; }
 .tut-card p  { color: var(--text-muted); font-size: 0.84rem; line-height: 1.9; }
 
-/* ===================================================
-   FOOTER
-=================================================== */
+/* FOOTER */
 .footer { background: var(--dark); border-top: 1px solid var(--border); }
 .footer-top { padding: 70px 0 50px; }
 .footer-grid {
@@ -351,9 +338,7 @@ body {
 }
 .footer-bottom p { font-size: 0.8rem; color: var(--text-muted); }
 
-/* ===================================================
-   ANIMATIONS
-=================================================== */
+/* ANIMATIONS */
 @keyframes fadeInDown {
   from { opacity: 0; transform: translateY(-20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -372,16 +357,12 @@ body {
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ===================================================
-   RESPONSIVE — TABLET  (≤ 1024px)
-=================================================== */
+/* RESPONSIVE — TABLET  (≤ 1024px) */
 @media (max-width: 1024px) {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
 }
 
-/* ===================================================
-   RESPONSIVE — SMALL TABLET / LARGE PHONE (≤ 900px)
-=================================================== */
+/* RESPONSIVE — SMALL TABLET / LARGE PHONE (≤ 900px) */
 @media (max-width: 900px) {
   .hero {
     flex-direction: column;
@@ -397,9 +378,7 @@ body {
   .hero-visual   { height: 340px; width: 100%; max-width: 420px; margin: 0 auto; }
 }
 
-/* ===================================================
-   RESPONSIVE — MOBILE (≤ 640px)
-=================================================== */
+/* RESPONSIVE — MOBILE (≤ 640px) */
 @media (max-width: 640px) {
   .nav-container { padding: 0 12px; gap: 10px; }
   .logo-text { display: none; } /* ← ناوی KurdAccount دیار نابێت */
@@ -408,7 +387,7 @@ body {
   .nav-link { 
     font-size: 0.82rem; 
     padding: 7px 11px;
-    border-radius: 8px; /* ← نەرمتر */
+    border-radius: 8px; 
     transition: var(--transition);
   }
   .nav-link:hover, .nav-link.active {
@@ -437,7 +416,7 @@ body {
 .hero-visual {
   height: 270px;
   max-width: 300px;
-  margin-top: 80px;  /* ← ئەمە زیاد بکە، 80px یان زیاتر تاقی بکەرەوە */
+  margin-top: 80px; 
 }
 
 
@@ -464,11 +443,7 @@ body {
   .legal-grid  { grid-template-columns: 1fr; }
 }
 
-
-
-/* ===================================================
-   RESPONSIVE — VERY SMALL (≤ 380px)
-=================================================== */
+/* RESPONSIVE — VERY SMALL (≤ 380px) */
 @media (max-width: 380px) {
   .logo-icon { width: 32px; height: 32px; font-size: 0.85rem; }
   .logo-text { font-size: 1rem; }
