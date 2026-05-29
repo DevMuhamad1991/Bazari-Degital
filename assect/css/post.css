@@ -1,6 +1,4 @@
-/* ===========================
-   ڤاریەبڵەکانی سیستەم
-=========================== */
+/* ڤاریەبڵەکانی سیستەم */
 :root {
   --b400: #5db8ff;
   --b500: #2d8fff;
@@ -44,9 +42,7 @@
 }
 
 
-/* ===========================
-   ڕیسێت و بنەڕەت
-=========================== */
+/*ڕیسێت و بنەڕەت */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
@@ -61,9 +57,7 @@ body {
   padding-top: 68px;
 }
 
-/* ===========================
-   پاشزەمینی ئەتمۆسفیری
-=========================== */
+/*پاشزەمینی ئەتمۆسفیری */
 .bg-orbs { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
 
 .orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.13; animation: floatOrb linear infinite alternate; }
@@ -87,27 +81,19 @@ body::before {
   100% { transform: translate(24px, 36px) scale(1.08); }
 }
 
-/* ===========================
-   کۆنتەینەر
-=========================== */
+/* کۆنتەینەر */
 .container { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
 
-/* ===========================
-   هیرۆ
-=========================== */
+/* هیرۆ */
 .hero { text-align: center; margin-bottom: 2.5rem; animation: fadeUp 0.6s var(--ease) both; }
 .hero h1 { font-size: 22px; font-weight: 800; color: var(--tx); margin-bottom: 6px; letter-spacing: -0.3px; animation: fadeUp 0.5s var(--ease) 0.1s both; }
 .hero p { font-size: 13.5px; color: var(--tx-2); animation: fadeUp 0.5s var(--ease) 0.2s both; }
 
-/* ===========================
-   خەتی پێشکەوتن
-=========================== */
+/*خەتی پێشکەوتن */
 .progress-track { height: 3px; background: rgba(255,255,255,0.06); border-radius: var(--rad-full); margin-bottom: 2rem; overflow: hidden; }
 .progress-fill { height: 100%; background: linear-gradient(90deg, var(--b600), var(--sky)); border-radius: var(--rad-full); width: 0%; transition: width 0.45s var(--ease); box-shadow: 0 0 10px rgba(59,142,243,0.5); }
 
-/* ===========================
-   کارتەکان
-=========================== */
+/* کارتەکان */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -132,15 +118,11 @@ body::before {
 .c-sky    { background: rgba(96,195,250,0.12); color: var(--sky); }
 .c-indigo { background: rgba(99,102,241,0.14); color: #818cf8; }
 
-/* ===========================
-   گرید و فیلد
-=========================== */
+/* گرید و فیلد */
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 @media (max-width: 520px) { .grid-2 { grid-template-columns: 1fr; } }
 
-/* ===========================
-   خانەی تێکست
-=========================== */
+/* خانەی تێکست */
 .input-wrap { position: relative; display: flex; align-items: center; }
 .field-icon { position: absolute; right: 13px; font-size: 16px; color: var(--tx-3); pointer-events: none; transition: color 0.25s; }
 .input-wrap:focus-within .field-icon { color: var(--b400); }
@@ -168,9 +150,7 @@ body::before {
 .select-wrap .sel-arrow { position: absolute; left: 12px; right: auto; font-size: 15px; color: var(--tx-3); pointer-events: none; }
 .input-wrap select { padding: 11px 40px 11px 34px; cursor: pointer; }
 
-/* ===========================
-   جۆری ئەکاونت
-=========================== */
+/* جۆری ئەکاونت */
 .type-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.25rem; }
 .type-card { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px 14px; background: var(--bg-input); border: 1.5px solid var(--border); border-radius: var(--rad-lg); cursor: pointer; transition: all 0.22s var(--ease); text-align: center; user-select: none; }
 .type-card i { font-size: 30px; color: var(--tx-3); transition: color 0.22s; }
@@ -182,9 +162,7 @@ body::before {
 .type-card.active .type-label { color: var(--b400); }
 .type-card.active .type-sub { color: var(--sky); }
 
-/* ===========================
-   پلاتفۆرم
-=========================== */
+/* پلاتفۆرم */
 .platform-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(94px, 1fr)); gap: 9px; }
 .plat-btn { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 13px 7px; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--rad-md); cursor: pointer; transition: all 0.2s var(--ease); text-align: center; user-select: none; }
 .plat-btn .plat-ico { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
@@ -210,26 +188,20 @@ body::before {
 .ico-lords     { background: #8b5e3c; }
 .ico-other     { background: rgba(59,142,243,0.25); border: 1px solid rgba(59,142,243,0.3); }
 
-/* ===========================
-   بەجەکان
-=========================== */
+/* بەجەکان */
 .badge-row { display: flex; gap: 9px; flex-wrap: wrap; }
 .badge-check { display: flex; align-items: center; gap: 8px; padding: 9px 14px; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--rad-md); cursor: pointer; transition: all 0.2s var(--ease); user-select: none; font-size: 12.5px; color: var(--tx-2); }
 .badge-check i { font-size: 15px; color: var(--tx-3); transition: color 0.2s; }
 .badge-check.active { border-color: var(--ok); background: rgba(52,211,153,0.08); color: var(--ok); }
 .badge-check.active i { color: var(--ok); }
 
-/* ===========================
-   تاگەکان
-=========================== */
+/* تاگەکان */
 .tags-wrap { display: flex; flex-wrap: wrap; gap: 7px; }
 .tag { padding: 6px 14px; border-radius: var(--rad-full); border: 1px solid var(--border); font-size: 12px; color: var(--tx-2); background: var(--bg-input); cursor: pointer; transition: all 0.2s var(--ease); user-select: none; }
 .tag:hover { border-color: var(--border-ho); color: var(--b400); }
 .tag.active { background: linear-gradient(135deg, var(--b700), var(--b500)); border-color: transparent; color: #fff; box-shadow: 0 3px 14px rgba(59,142,243,0.4); transform: translateY(-1px); }
 
-/* ===========================
-   تێکست ئەریا
-=========================== */
+/* تێکست ئەریا */
 .textarea-wrap { position: relative; }
 .textarea-wrap textarea { width: 100%; padding: 12px 14px 34px; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--rad-md); color: var(--tx); font-family: 'Noto Kufi Arabic', sans-serif; font-size: 13.5px; resize: vertical; min-height: 108px; transition: border-color 0.2s, box-shadow 0.2s; }
 .textarea-wrap textarea::placeholder { color: var(--tx-3); font-size: 12.5px; }
@@ -237,9 +209,7 @@ body::before {
 .char-count { position: absolute; left: 10px; bottom: 10px; font-size: 11px; color: var(--tx-3); }
 .char-count.warn { color: var(--err); }
 
-/* ===========================
-   بارکردنی وێنە
-=========================== */
+/* بارکردنی وێنە */
 .upload-zone { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 2rem 1rem; border: 1.5px dashed rgba(59,142,243,0.25); border-radius: var(--rad-lg); background: var(--bg-input); cursor: pointer; transition: all 0.25s var(--ease); text-align: center; }
 .upload-zone:hover { border-color: var(--b500); background: rgba(59,142,243,0.05); }
 .upload-ico { font-size: 34px; color: var(--b400); display: block; }
@@ -251,42 +221,30 @@ body::before {
 .prev-item .del-btn { position: absolute; top: -6px; left: -6px; width: 20px; height: 20px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--b700); color: var(--err); font-size: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; line-height: 1; }
 .prev-item .del-btn:hover { background: rgba(248,113,113,0.15); }
 
-/* ===========================
-   نرخ
-=========================== */
+/* نرخ */
 .price-row { display: flex; align-items: center; gap: 10px; }
 .currency-tag { padding: 10px 14px; background: rgba(59,142,243,0.1); border: 1px solid rgba(59,142,243,0.25); border-radius: var(--rad-md); font-size: 12.5px; font-weight: 600; color: var(--b400); white-space: nowrap; flex-shrink: 0; }
 .hint { font-size: 12px; color: var(--tx-3); margin-top: 7px; display: flex; align-items: center; gap: 5px; }
 .hint i { font-size: 14px; color: var(--b400); }
 
-/* ===========================
-   ئاگاداری
-=========================== */
+/* ئاگاداری */
 .warn-box { display: flex; align-items: flex-start; gap: 10px; padding: 14px 15px; background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.18); border-radius: var(--rad-md); margin-top: 1rem; }
 .warn-box i { font-size: 17px; color: var(--warn); flex-shrink: 0; margin-top: 2px; }
 .warn-box p { font-size: 12px; color: #c4982e; line-height: 1.7; }
 
-/* ===========================
-   دابەشکەر
-=========================== */
+/* دابەشکەر */
 .section-divider { display: flex; align-items: center; gap: 10px; margin: 1.25rem 0; color: var(--tx-3); font-size: 11.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
 .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-/* ===========================
-   هەڵە
-=========================== */
+/* هەڵە */
 .err { display: block; font-size: 11.5px; color: var(--err); margin-top: 5px; min-height: 16px; opacity: 0; transform: translateY(-3px); transition: all 0.18s var(--ease); }
 .err.show { opacity: 1; transform: translateY(0); }
 
-/* ===========================
-   دینامیک
-=========================== */
+/* دینامیک */
 .dynamic-section { display: none; }
 .dynamic-section.visible { display: block; animation: fadeUp 0.3s var(--ease) both; }
 
-/* ===========================
-   دوگمەی ناردن
-=========================== */
+/* دوگمەی ناردن */
 .submit-btn { align-items: center;
   margin-left: auto;
   margin-right: auto;
@@ -311,9 +269,7 @@ body::before {
 .submit-btn.loading span, .submit-btn.loading .btn-txt-icon { display: none; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ===========================
-   سەرکەوتن
-=========================== */
+/* سەرکەوتن */
 .success-box { text-align: center; padding: 3.5rem 2rem; background: var(--bg-card); border: 1px solid rgba(52,211,153,0.22); border-radius: var(--rad-xl); animation: fadeUp 0.5s var(--ease) both; }
 .success-box.hidden { display: none; }
 .success-ico { width: 70px; height: 70px; border-radius: 50%; background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.25); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; animation: popIn 0.5s var(--ease) 0.1s both; }
@@ -324,15 +280,12 @@ body::before {
 .reset-btn { padding: 11px 28px; border-radius: var(--rad-full); border: 1px solid rgba(59,142,243,0.4); background: transparent; color: var(--b400); font-family: 'Noto Kufi Arabic', sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.22s var(--ease); }
 .reset-btn:hover { background: rgba(59,142,243,0.12); border-color: var(--b500); }
 
-/* ===========================
-   ئەنیمەیشن
-=========================== */
+/* ئەنیمەیشن
+ */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes popIn  { from { opacity: 0; transform: scale(0.7); } to { opacity: 1; transform: scale(1); } }
 
-/* ===========================
-   رسپۆنسیڤ
-=========================== */
+/* رسپۆنسیڤ */
 @media (max-width: 480px) {
   .container { padding: 1.5rem 0.9rem 4rem; }
   .card { padding: 1.35rem; }
