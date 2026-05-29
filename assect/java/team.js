@@ -1,9 +1,7 @@
 'use strict';
 
 
-/* ─────────────────────────────────────────────────
-   1. AOS — Animate On Scroll
-───────────────────────────────────────────────── */
+/* 1. AOS — Animate On Scroll */
 (function initAOS() {
   const items = document.querySelectorAll('[data-aos]');
   if (!items.length) return;
@@ -23,9 +21,7 @@
 })();
 
 
-/* ─────────────────────────────────────────────────
-   2. COUNTER ANIMATION
-───────────────────────────────────────────────── */
+/* 2. COUNTER ANIMATION */
 (function initCounters() {
   const nums = document.querySelectorAll('.stat-num[data-count]');
   if (!nums.length) return;
@@ -60,9 +56,7 @@
 })();
 
 
-/* ─────────────────────────────────────────────────
-   3. CARD TILT — 3D
-───────────────────────────────────────────────── */
+/* 3. CARD TILT — 3D */
 (function initCardTilt() {
   if (window.matchMedia('(pointer: coarse)').matches) return;
 
@@ -89,9 +83,7 @@
 })();
 
 
-/* ─────────────────────────────────────────────────
-   4. RIPPLE — دوگمەکان
-───────────────────────────────────────────────── */
+/* 4. RIPPLE — دوگمەکان*/
 (function initRipple() {
   if (!document.getElementById('ripple-style')) {
     const s = document.createElement('style');
@@ -128,9 +120,7 @@
 })();
 
 
-/* ─────────────────────────────────────────────────
-   5. STAT PARTICLES
-───────────────────────────────────────────────── */
+/* 5. STAT PARTICLES */
 (function initStatParticles() {
   const stats  = document.querySelectorAll('.stat-item');
   const colors = ['#3b82f6','#22d3ee','#60a5fa','#bfdbfe'];
