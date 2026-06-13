@@ -12,12 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <div class="nav-links-wrap">
           <ul class="nav-links">
-            <li><a class="nav-link" href="index.html">سەرەکی</a></li>
-            <li><a class="nav-link" href="market.html">بازاڕ</a></li>
-            <li><a class="nav-link" href="post.html">فرۆشتن</a></li>
-            <li><a class="nav-link" href="read.html">خوێندنەوە</a></li>
-            <li><a class="nav-link" href="team.html">تیم</a></li>
-            <li><a class="nav-link" href="sign.html">چوونەژوورەوە</a></li>
+            <li><a class="nav-link" href="index.html">Home</a></li>
+            <li><a class="nav-link" href="market.html">Market</a></li>
+            <li><a class="nav-link" href="post.html">Post</a></li>
+            <li><a class="nav-link" href="read.html">Read</a></li>
+            <li><a class="nav-link" href="team.html">Team</a></li>
+            <li><a class="nav-link" href="sign.html">Sign</a></li>
           </ul>
         </div>
       </div>
