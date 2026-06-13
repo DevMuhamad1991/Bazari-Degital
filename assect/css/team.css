@@ -1,6 +1,16 @@
+/* =====================================================
+   KURDACCOUNT — TEAM PAGE  ·  team.css
+   Dark Luxury / Deep Navy Editorial
+   ✔ All CSS variables defined in :root
+   ✔ Cursor glow works on desktop
+   ✔ Fully responsive (360px → 1600px+)
+===================================================== */
+
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300&family=Playfair+Display:wght@700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap');
 
-/* DESIGN TOKENS */
+/* ══════════════════════════════════════════════════
+   DESIGN TOKENS — هەموو وردەبژارەکان لێرەن
+══════════════════════════════════════════════════ */
 :root {
   /* backgrounds */
   --ink:        #03080f;
@@ -43,7 +53,9 @@
 }
 
 
-/* RESET + BASE */
+/* ══════════════════════════════════════════════════
+   RESET + BASE
+══════════════════════════════════════════════════ */
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 
@@ -76,7 +88,9 @@ body::after {
 .container { width:min(1280px,100%); margin:auto; padding:0 32px; }
 
 
-/* TEAM SECTION HEADER */
+/* ══════════════════════════════════════════════════
+   TEAM SECTION HEADER
+══════════════════════════════════════════════════ */
 .team-section { padding:130px 0 160px; position:relative; }
 
 /* eyebrow pill */
@@ -120,7 +134,9 @@ body::after {
 }
 
 
-/* TEAM GRID + CARDS */
+/* ══════════════════════════════════════════════════
+   TEAM GRID + CARDS
+══════════════════════════════════════════════════ */
 .team-grid {
   display:grid; grid-template-columns:repeat(4,1fr);
   gap:20px; align-items:stretch;
@@ -259,7 +275,9 @@ body::after {
 .social-links a:has(.fa-linkedin):hover  { background:rgba(59,130,246,.10);  border-color:rgba(59,130,246,.26);  box-shadow:0 6px 20px rgba(59,130,246,.14);  color:#93c5fd; }
 
 
-/* STATS STRIP */
+/* ══════════════════════════════════════════════════
+   STATS STRIP
+══════════════════════════════════════════════════ */
 .stats-strip {
   display:grid; grid-template-columns:repeat(3,1fr);
   gap:16px; margin-top:60px;
@@ -322,7 +340,10 @@ body::after {
   letter-spacing:.1em; text-transform:uppercase;
 }
 
-/* ABOUT SECTION */
+
+/* ══════════════════════════════════════════════════
+   ABOUT SECTION
+══════════════════════════════════════════════════ */
 .about-team {
   position:relative; margin-top:80px;
   border-radius:var(--r-xl); overflow:hidden;
@@ -426,7 +447,9 @@ body::after {
 .feature-text p  { font-size:.83rem; color:var(--text-3); line-height:1.7; }
 
 
-/* AOS — SCROLL ANIMATIONS */
+/* ══════════════════════════════════════════════════
+   AOS — SCROLL ANIMATIONS
+══════════════════════════════════════════════════ */
 [data-aos] {
   opacity:0;
   transition-property:opacity,transform;
@@ -441,7 +464,9 @@ body::after {
 [data-aos].aos-animate  { opacity:1; transform:none; }
 
 
-/* CURSOR GLOW */
+/* ══════════════════════════════════════════════════
+   CURSOR GLOW (دروست دەکرێت بە JS)
+══════════════════════════════════════════════════ */
 #cursor-glow {
   position:fixed;
   width:520px; height:520px;
@@ -456,7 +481,9 @@ body::after {
 }
 
 
-/* RESPONSIVE */
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
 @media(min-width:1400px){
   .team-grid { gap:26px; }
   .section-title { font-size:5.2rem; }
