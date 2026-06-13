@@ -81,7 +81,7 @@
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding: 0 4px 2px;
-  direction: rtl;
+  direction: ltr;
   margin-right: auto;
 }
 
@@ -103,6 +103,7 @@
   border-radius: 8px;
   white-space: nowrap;
   position: relative;
+   direction: rtl;
   transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
