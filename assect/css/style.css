@@ -20,7 +20,7 @@
   --nav-h: 64px;
 }
 
-/*  TABLET FIX (768px - 1024px)  */
+/* ===== TABLET FIX (768px - 1024px) ===== */
 @media (max-width: 1024px) and (min-width: 641px) {
   .hero {
     flex-direction: column;
@@ -45,6 +45,9 @@
   .card-3 { bottom: 20px; }
 }
 
+
+
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -61,7 +64,9 @@ body {
 
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-/* NAVBAR */
+/* =====================================================
+   NAVBAR
+===================================================== */
 .navbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   height: var(--nav-h);
@@ -105,7 +110,7 @@ body {
   color: var(--blue-light);
 }
 
-/* FIX :2  */
+/* FIX 1: --blue و --accent ئێستا تەعریفکراون بۆ ئایکۆن نیشاندان */
 .logo-icon {
   width: 38px;
   height: 38px;
@@ -127,7 +132,7 @@ body {
   min-width: 0;
   display: flex;
   align-items: center;
-  overflow: hidden;       
+  overflow: hidden;        /* ← ئەمە بمێنێتەوە بۆ y-axis */
 }
 
 /* ── Nav Links ── */
@@ -138,7 +143,7 @@ body {
   list-style: none;
   flex-wrap: nowrap;
   overflow-x: auto;
-  overflow-y: visible;     
+  overflow-y: visible;     /* ← بگۆڕە hidden → visible */
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding: 0 4px 2px;
@@ -170,13 +175,13 @@ body {
     box-shadow 0.3s ease;
 }
 
-/* FIX 2: */
+/* FIX 2: RTL — right بەجێی left بۆ ئەنیمەیشنی خەتی ژێر */
 .nav-link::after {
   content: '';
   position: absolute;
   bottom: 4px;
-  right: 50%; 
-  transform: translateX(50%) scaleX(0);
+  right: 50%; /* ← right بۆ RTL */
+  transform: translateX(50%) scaleX(0); /* ← +50% بۆ RTL */
   width: 60%;
   height: 2px;
   background: linear-gradient(90deg, var(--accent), var(--blue-light));
@@ -191,10 +196,10 @@ body {
   box-shadow: 0 4px 16px rgba(37,99,235,0.15);
 }
 
-/* FIX 3: */
+/* FIX 3: ئەنیمەیشنی active و hover چاکسەراوە */
 .nav-link:hover::after,
 .nav-link.active::after {
-  transform: translateX(50%) scaleX(1); 
+  transform: translateX(50%) scaleX(1); /* ← +50% هاوتای بەرووی */
 }
 
 .nav-link.active {
@@ -267,7 +272,9 @@ body {
   }
 }
 
-/* HERO */
+/* ===================================================
+   HERO
+=================================================== */
 .hero {
   min-height: 100vh;
   display: flex; align-items: center;
@@ -365,6 +372,7 @@ body {
 }
 
 /* ===== HERO VISUAL ===== */
+/* ===== HERO VISUAL — BASE ===== */
 .hero-visual {
   flex: 1;
   position: relative;
@@ -403,6 +411,9 @@ body {
 .floating-card:hover { border-color: var(--border-bright); transform: scale(1.05); }
 .floating-card span  { font-size: 0.74rem; color: var(--text-muted); font-weight: 600; }
 .floating-card strong{ font-size: 0.92rem; color: var(--accent); font-weight: 900; }
+
+
+
 
 /* Desktop */
 .card-1 { top: 50%; left: -10px;  right: auto; animation: float2 5s   ease-in-out infinite; }
@@ -482,12 +493,13 @@ body {
     height: 320px;
     width: 100%;
     max-width: 340px;
-    margin: 0 auto ;  
+    margin: 0 auto ;  /* ← ئەمە بگۆڕە */
     overflow: visible;
     display: flex;
     align-items: center;
     justify-content: center;
   }
+
 
   .central-orb {
     width: 100px;
@@ -519,7 +531,12 @@ body {
   .floating-card { min-width: 90px; padding: 8px 10px; }
 }
 
-/* ABOUT */
+
+
+
+/* ===================================================
+   ABOUT
+=================================================== */
 .about-web {
   padding: 70px 0;
   background: linear-gradient(180deg, var(--dark) 0%, var(--dark-2) 100%);
@@ -532,7 +549,9 @@ body {
   color: var(--text-muted); font-size: 1rem; line-height: 2.1;
 }
 
-/* SECTION HEADERS */
+/* ===================================================
+   SECTION HEADERS
+=================================================== */
 .section-tag {
   display: inline-block;
   background: rgba(37,99,235,0.12); border: 1px solid var(--border-bright);
@@ -548,7 +567,9 @@ body {
   color: var(--text-muted); font-size: 0.94rem; margin-bottom: 44px;
 }
 
-/* TUTORIALS */
+/* ===================================================
+   TUTORIALS
+=================================================== */
 .tutorials { padding: 90px 0; background: var(--dark-2); }
 .tutorials .container { text-align: center; }
 .tut-grid {
@@ -582,7 +603,9 @@ body {
 .tut-card h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 10px; }
 .tut-card p  { color: var(--text-muted); font-size: 0.84rem; line-height: 1.9; }
 
-/* FOOTER */
+/* ===================================================
+   FOOTER
+=================================================== */
 .footer { background: var(--dark); border-top: 1px solid var(--border); }
 .footer-top { padding: 70px 0 50px; }
 .footer-grid {
@@ -641,7 +664,9 @@ body {
 }
 .footer-bottom p { font-size: 0.8rem; color: var(--text-muted); }
 
-/* ANIMATIONS */
+/* ===================================================
+   ANIMATIONS
+=================================================== */
 @keyframes fadeInDown {
   from { opacity: 0; transform: translateY(-20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -660,12 +685,16 @@ body {
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* RESPONSIVE — TABLET  (≤ 1024px) */
+/* ===================================================
+   RESPONSIVE — TABLET  (≤ 1024px)
+=================================================== */
 @media (max-width: 1024px) {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
 }
 
-/* RESPONSIVE — SMALL TABLET / LARGE PHONE */
+/* ===================================================
+   RESPONSIVE — SMALL TABLET / LARGE PHONE (≤ 900px)
+=================================================== */
 @media (max-width: 900px) {
   .hero {
     flex-direction: column;
@@ -682,7 +711,9 @@ body {
 }
 
 
-/* RESPONSIVE — MOBILE (≤ 640px) */
+/* ===================================================
+   RESPONSIVE — MOBILE (≤ 640px)
+=================================================== */
 @media (max-width: 640px) {
   .nav-container { padding: 0 12px; gap: 10px; }
   .logo-text { display: none; } /* ← ناوی KurdAccount دیار نابێت */
@@ -691,7 +722,7 @@ body {
   .nav-link { 
     font-size: 0.82rem; 
     padding: 7px 11px;
-    border-radius: 20px;
+    border-radius: 20px; /* ← نەرمتر */
     transition: var(--transition);
   }
   .nav-link:hover, .nav-link.active {
@@ -704,6 +735,8 @@ body {
 @keyframes ripple {
   to { transform: scale(2.5); opacity: 0; }
 }
+
+
   /* --- Hero --- */
   .hero { padding: calc(var(--nav-h) + 20px) 16px 36px; gap: 24px; }
   .hero-badge    { font-size: 0.76rem; padding: 7px 13px; }
@@ -718,8 +751,9 @@ body {
 .hero-visual {
   height: 270px;
   max-width: 300px;
-  margin-top: 80px;  
+  margin-top: 80px;  /* ← ئەمە زیاد بکە، 80px یان زیاتر تاقی بکەرەوە */
 }
+
 
   .central-orb   { width: 118px; height: 118px; font-size: 2.1rem; }
   .floating-card { min-width: 98px; padding: 10px 12px; }
@@ -744,7 +778,11 @@ body {
   .legal-grid  { grid-template-columns: 1fr; }
 }
 
-/* RESPONSIVE — VERY SMALL (≤ 380px) */
+
+
+/* ===================================================
+   RESPONSIVE — VERY SMALL (≤ 380px)
+=================================================== */
 @media (max-width: 380px) {
   .logo-icon { width: 32px; height: 32px; font-size: 0.85rem; }
   .logo-text { font-size: 1rem; }
